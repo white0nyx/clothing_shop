@@ -7,8 +7,10 @@ from django.views.generic import CreateView
 from shop.forms import RegisterUserForm
 
 
-def home_page(request: HttpRequest):
-    return HttpResponse('<h1>Главная страница магазина одежды<h1>')
+def home_page(request):
+    """Функция представления главной страницы"""
+
+    return render(request, 'shop/home.html', context={'title': 'Главная страница'})
 
 
 class RegistrationPage(CreateView):
