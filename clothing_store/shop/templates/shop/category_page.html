@@ -1,0 +1,10 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+{% for item in items %}
+<h1>Имя: {{ item.name }}</h1>
+<p>Описание: {{ item.description }}</p>
+<p>Цена: {{ item.price }} </p>
+<br>
+{% endfor %}
+{% endblock %}
