@@ -3,6 +3,7 @@
 {% block content %}
 {% for item in items %}
 <h1>Имя: {{ item.name }}</h1>
+<p><img class="img-article_left thumb" src="{{item.main_photo.url}}"></p>
 <p>Описание: {{ item.description }}</p>
 <p>Цена: {{ item.price }} </p>
 <br>
