@@ -50,6 +50,11 @@ class RegistrationPage(CreateView):
         context['title'] = 'Регистрация'
         return context
 
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('home')
+
 
 class LoginPage(LoginView):
     """Класс представления страницы авторизации"""
