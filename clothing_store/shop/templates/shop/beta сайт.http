@@ -18,7 +18,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
         <!-- Стили сайта -->
-        <link rel="stylesheet" href="C:\Users\elfim\OneDrive\Рабочий стол\сайт\Static\Styles\style0.css">
+        <link rel="stylesheet" href="https://github.com/white0nyx/clothing_shop/blob/newbeta/clothing_store/shop/static/shop/style0.css">
     </head>
     <body>
         <nav class = "header">
