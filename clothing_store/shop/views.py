@@ -25,6 +25,7 @@ class CategoryPage(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
+        context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
         return context
 
 

@@ -1,7 +1,11 @@
 <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
         {% for cat in categories %}
+        {% if category_selected == cat.id %}
+            <li class="p-2 link-secondary">{{ cat.name }}</li>
+        {% else %}
             <a class="p-2 link-secondary" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
+        {% endif %}
         {% endfor %}
     </nav>
 </div>
