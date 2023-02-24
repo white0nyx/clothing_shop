@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru" translate="no">
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+        <meta name = "viewport" content = "width = device - width, initial-scale = 1.0">
+        <title>Продажный сайт</title>
+        <link rel="icon" href="/ "/>
+
+        <!-- Bootstrap reboot (для сброса стилей) -->
+        <link rel="stylesheet" href="Styles/bootstrap-reboot.min.css">
+
+        <!-- Bootstrap сетка -->
+        <link rel="stylesheet" href="C:\Users\Максим\Desktop\сайт\Static\Styles\bootstrap-grid.min.css">
+
+        <!-- Шрифты с Google Fonts -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+        <!-- Стили сайта -->
+        <link rel="stylesheet" href="C:\Users\elfim\OneDrive\Рабочий стол\сайт\Static\Styles\style0.css">
+    </head>
+    <body>
+        <nav class = "header">
+            <div class = "container1">
+                <a href = "#" class = "header-brand">Логотип</a>
+                <div class = "header-first">
+                    <a href = "#" class = "button1">Вход</a>
+                    <a href = "#" class = "button1">Регистрация</a>
+                </div>
+            </div>
+            <div class = "container2">
+                <div class = "header-second">
+                    <ul class = "header-menu">
+                        <li><a href = "#">Футболки</a></li>
+                        <li><a href = "#">Свитшоты</a></li>
+                        <li><a href = "#">Худи</a></li>
+                        <li><a href = "#">Рюкзаки</a></li>
+                        <li><a href = "#">Штаны/шорты</a></li>
+                        <li><a href = "#">Поло</a></li>
+                        <li><a href = "#">Рубашки</a></li>
+                        <li><a href = "#">Пижамы</a></li>
+                        <li><a href = "#">Шапки</a></li>
+                        <li><a href = "#">Кепки</a></li>
+                        <li><a href = "#">FAQ</a></li>
+                        <li><a href = "#">Ваш заказ</a></li>
+                    </ul>
+                </div>
+                <a href = "#" class = "button2">РУС</a>
+                <a href = "#" class = "button2">РУБ</a>
+                <a href = "#" class = "button2">Корзина</a>
+            </div>
+        </nav>
+        <div class = "category-list">
+            <div class="category-list-content">
+                <a class="category-product" href="#">
+                    <div class="category-product-cover">
+                        <div class = "picture">
+                            <img src = "https://i10.fotocdn.net/s129/b6dac277ecd88eb7/public_pin_l/2923996590.jpg" width = "362px" height = "379px" alt = "Картинка с котиком">
+                        </div>
+                        <div class="category-product-blackout"></div>
+                        <div class="price category-product-price">
+                            <div class="price-current">
+                                <span>Цена котика</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="category-product-name">
+                        <span>Название котика</span>
+                    </button>
+                </a>
+                <a class="category-product" href="#">
+                    <div class="category-product-cover">
+                        <div class = "picture">
+                            <img src = "https://i10.fotocdn.net/s129/b6dac277ecd88eb7/public_pin_l/2923996590.jpg" width = "362px" height = "379px" alt = "Картинка с котиком">
+                        </div>
+                        <div class="category-product-blackout"></div>
+                        <div class="price category-product-price">
+                            <div class="price-current">
+                                <span>Цена котика</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="category-product-name">
+                        <span>Название котика</span>
+                    </button>
+                </a>
+                <a class="category-product" href="#">
+                    <div class="category-product-cover">
+                        <div class = "picture">
+                            <img src = "https://i10.fotocdn.net/s129/b6dac277ecd88eb7/public_pin_l/2923996590.jpg" width = "362px" height = "379px" alt = "Картинка с котиком">
+                        </div>
+                        <div class="category-product-blackout"></div>
+                        <div class="price category-product-price">
+                            <div class="price-current">
+                                <span>Цена котика</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="category-product-name">
+                        <span>Название котика</span>
+                    </button>
+                </a>
+            </div>
+            <div class="category-list-content">
+                <a class="category-product" href="#">
+                    <div class="category-product-cover">
+                        <div class = "picture">
+                            <img src = "https://i10.fotocdn.net/s129/b6dac277ecd88eb7/public_pin_l/2923996590.jpg" width = "362px" height = "379px" alt = "Картинка с котиком">
+                        </div>
+                        <div class="category-product-blackout"></div>
+                        <div class="price category-product-price">
+                            <div class="price-current">
+                                <span>Цена котика</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="category-product-name">
+                        <span>Название котика</span>
+                    </button>
+                </a>
+                <a class="category-product" href="#">
+                    <div class="category-product-cover">
+                        <div class = "picture">
+                            <img src = "https://i10.fotocdn.net/s129/b6dac277ecd88eb7/public_pin_l/2923996590.jpg" width = "362px" height = "379px" alt = "Картинка с котиком">
+                        </div>
+                        <div class="category-product-blackout"></div>
+                        <div class="price category-product-price">
+                            <div class="price-current">
+                                <span>Цена котика</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="category-product-name">
+                        <span>Название котика</span>
+                    </button>
+                </a>
+                <a class="category-product" href="#">
+                    <div class="category-product-cover">
+                        <div class = "picture">
+                            <img src = "https://i10.fotocdn.net/s129/b6dac277ecd88eb7/public_pin_l/2923996590.jpg" width = "362px" height = "379px" alt = "Картинка с котиком">
+                        </div>
+                        <div class="category-product-blackout"></div>
+                        <div class="price category-product-price">
+                            <div class="price-current">
+                                <span>Цена котика</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="category-product-name">
+                        <span>Название котика</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </body>
+</html>
