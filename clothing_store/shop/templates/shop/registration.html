@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-<body>
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<title>{{ title }}</title>
 <form method="post">
     {% csrf_token %}
     {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
+    <p><label class="form-row" for="{{ f.id_for_label }}">{{ f.label }}: </label>{{ f }}</p>
     <div class="form-error">{{ f.errors}}</div>
     {% endfor %}
     <button type="submit"/>Регистрация</button>
 </form>
-</body>
-</html>
+{% endblock %}

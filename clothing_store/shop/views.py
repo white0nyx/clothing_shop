@@ -1,10 +1,12 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout, login
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DetailView
 
-from shop.forms import RegisterUserForm
+from shop.forms import RegisterUserForm, LoginUserForm
 from shop.models import *
 
 
@@ -12,6 +14,13 @@ def home_page(request):
     """Функция представления главной страницы"""
 
     return render(request, 'shop/home.html', context={'title': 'Главная страница'})
+
+
+def logout_user(request):
+    """Деавторизация пользователя"""
+
+    logout(request)
+    return redirect('home')
 
 
 class CategoryPage(ListView):
@@ -40,3 +49,19 @@ class RegistrationPage(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Регистрация'
         return context
+
+
+class LoginPage(LoginView):
+    """Класс представления страницы авторизации"""
+
+    form_class = LoginUserForm
+    template_name = 'shop/login.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Авторизация'
+
+        return context
+
+    def get_success_url(self):
+        return reverse_lazy('home')

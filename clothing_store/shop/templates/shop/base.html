@@ -15,8 +15,12 @@
                 <h4 align="center">
                     <a style="color: black; text-decoration: none" href="{% url 'home' %}">WearFit</a>
                 </h4>
-                <a class="p-2 link-secondary" href="#">Вход</a>
-                <a class="p-2 link-secondary" href="{% url 'registration' %}">Регистрация</a>
+                {% if request.user.is_authenticated %}
+                    <li class="p-2 link-secondary"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+                {% else %}
+                    <a class="p-2 link-secondary" href="{% url 'login' %}">Вход</a>
+                    <a class="p-2 link-secondary" href="{% url 'registration' %}">Регистрация</a>
+                {% endif %}
             </div>
         </header>
         {% get_categories category_selected %}
