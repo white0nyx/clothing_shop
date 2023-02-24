@@ -8,10 +8,10 @@
         <link rel="icon" href="/ "/>
 
         <!-- Bootstrap reboot (для сброса стилей) -->
-        <link rel="stylesheet" href="Styles/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="https://github.com/white0nyx/clothing_shop/blob/newbeta/clothing_store/shop/static/shop/bootstrap-reboot.min.css">
 
         <!-- Bootstrap сетка -->
-        <link rel="stylesheet" href="C:\Users\Максим\Desktop\сайт\Static\Styles\bootstrap-grid.min.css">
+        <link rel="stylesheet" href="https://github.com/white0nyx/clothing_shop/blob/newbeta/clothing_store/shop/static/shop/bootstrap-grid.min.css">
 
         <!-- Шрифты с Google Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
