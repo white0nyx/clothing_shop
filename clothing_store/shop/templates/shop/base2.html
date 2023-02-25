@@ -1,49 +1,45 @@
+{% load shop_tags %}
+{% load static %}
 <!DOCTYPE html>
+
 <html lang="ru" translate="no">
     <head>
         <meta charset = "UTF-8">
         <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
         <meta name = "viewport" content = "width = device - width, initial-scale = 1.0">
-        <title>Продажный сайт</title>
+        <title>{{ title }}</title>
         <link rel="icon" href="/ "/>
 
         <!-- Bootstrap reboot (для сброса стилей) -->
-        <link rel="stylesheet" href="https://github.com/white0nyx/clothing_shop/blob/newbeta/clothing_store/shop/static/shop/bootstrap-reboot.min.css">
+        <link rel="stylesheet" href="{% static 'shop/css/bootstrap-reboot.min.css' %}">
 
         <!-- Bootstrap сетка -->
-        <link rel="stylesheet" href="https://github.com/white0nyx/clothing_shop/blob/newbeta/clothing_store/shop/static/shop/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="{% static 'shop/css/bootstrap-grid.min.css' %}">
 
         <!-- Шрифты с Google Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
         <!-- Стили сайта -->
-        <link rel="stylesheet" href="https://github.com/white0nyx/clothing_shop/blob/newbeta/clothing_store/shop/static/shop/style0.css">
+        <link rel="stylesheet" href="{% static 'shop/css/styles.css' %}">
     </head>
     <body>
         <nav class = "header">
             <div class = "container1">
-                <a href = "#" class = "header-brand">Логотип</a>
+                <a href = "{% url 'home' %}" class = "header-brand">WearFit</a>
                 <div class = "header-first">
-                    <a href = "#" class = "button1">Вход</a>
-                    <a href = "#" class = "button1">Регистрация</a>
+                    {% if request.user.is_authenticated %}
+                    <li class="p-2 link-secondary"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+                    {% else %}
+                        <a class="p-2 link-secondary" href="{% url 'login' %}">Вход</a>
+                        <a class="p-2 link-secondary" href="{% url 'registration' %}">Регистрация</a>
+                    {% endif %}
                 </div>
             </div>
             <div class = "container2">
                 <div class = "header-second">
                     <ul class = "header-menu">
-                        <li><a href = "#">Футболки</a></li>
-                        <li><a href = "#">Свитшоты</a></li>
-                        <li><a href = "#">Худи</a></li>
-                        <li><a href = "#">Рюкзаки</a></li>
-                        <li><a href = "#">Штаны/шорты</a></li>
-                        <li><a href = "#">Поло</a></li>
-                        <li><a href = "#">Рубашки</a></li>
-                        <li><a href = "#">Пижамы</a></li>
-                        <li><a href = "#">Шапки</a></li>
-                        <li><a href = "#">Кепки</a></li>
-                        <li><a href = "#">FAQ</a></li>
-                        <li><a href = "#">Ваш заказ</a></li>
+                        {% get_categories category_selected %}
                     </ul>
                 </div>
                 <a href = "#" class = "button2">РУС</a>
