@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Category(models.Model):
+    """Модель категории"""
+
     name = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(db_index=True, unique=True, verbose_name='URL')
 
@@ -20,6 +22,8 @@ class Category(models.Model):
 
 
 class Item(models.Model):
+    """Модель товара"""
+
     name = models.CharField(max_length=255, verbose_name='Название')
     main_photo = models.ImageField(upload_to="images/category/", verbose_name='Главное фото')
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.PROTECT)

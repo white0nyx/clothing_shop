@@ -20,7 +20,9 @@ def home_page(request):
     return render(request, 'shop/home.html', context={'title': 'Главная страница'})
 
 
-def split_list_into_chunks(items):
+def split_list_into_chunks(items) -> [list]:
+    """Функция для получения товаров разбитых на линии"""
+
     chunk_size = ITEMS_IN_LINE
     return [items[i:i + chunk_size] for i in range(0, len(items), chunk_size)]
 
@@ -50,6 +52,8 @@ def logout_user(request):
 
 
 class CategoryPage(ListView):
+    """Класс представления главной страницы"""
+
     model = Item
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
