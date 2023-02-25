@@ -1,11 +1,29 @@
-{% extends 'shop/base2.html' %}
+{% extends 'shop/base.html' %}
 
 {% block content %}
-{% for item in items %}
-<h1>Имя: {{ item.name }}</h1>
-<p><img class="img-article_left thumb" src="{{item.main_photo.url}}"></p>
-<p>Описание: {{ item.description }}</p>
-<p>Цена: {{ item.price }} </p>
-<br>
+{% for line in items %}
+<div class="category-list">
+
+    <div class="category-list-content">
+        {% for item in line %}
+            <a class="category-product" href="#">
+                <div class="category-product-cover">
+                    <div class="picture">
+                        <img src="{{ item.main_photo.url}}" width="362px" height="379px" alt="{{item.name}}">
+                    </div>
+                    <div class="category-product-blackout"></div>
+                    <div class="price category-product-price">
+                        <div class="price-current">
+                            <span>{{ item.price }}</span>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="category-product-name">
+                    <span>{{ item.name}}</span>
+                </button>
+            </a>
+        {% endfor %}
+    </div>
+</div>
 {% endfor %}
 {% endblock %}
