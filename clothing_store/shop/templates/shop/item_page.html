@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<h1>{{ item }}</h1>
+<img src="{{ item.main_photo.url }}">
+<h4>Описание: {{ item.description }}</h4>
+<h4>Цена: {{ item.price }}</h4>
+<button type="button" class="category-product-name">
+    <span>Добавить в корзину</span>
+</button>
+{% endblock %}
