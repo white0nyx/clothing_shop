@@ -1,6 +1,12 @@
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
+
+
+class Account(User):
+    about_yourself = models.TextField(verbose_name='О себе', null=True)
+    def get_absolute_url(self):
+        return reverse('account', kwargs={'account_slug': self.username})
 
 
 class Category(models.Model):
