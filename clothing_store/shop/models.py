@@ -67,6 +67,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     username = models.CharField(verbose_name='Имя пользователя', max_length=63, unique=True)
+    # slug = models.SlugField(verbose_name='URL', max_length=63, unique=True, db_index=True)
     first_name = models.CharField(verbose_name='Имя', max_length=255, blank=True)
     last_name = models.CharField(verbose_name='Фамилия', max_length=255, blank=True)
     email = models.EmailField(verbose_name='ЭЛ. ПОЧТА', max_length=255, unique=True)
@@ -95,6 +96,9 @@ class User(AbstractBaseUser):
 
     def save(self, *args, **kwargs):
         super().save()
+
+    def get_absolute_url(self):
+        return reverse('account', kwargs={'username': self.username})
 
 
 class Category(models.Model):

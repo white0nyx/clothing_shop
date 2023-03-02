@@ -29,7 +29,7 @@
                 <a href = "{% url 'home' %}" class = "header-brand">WearFit</a>
                 <div class = "header-first">
                     {% if request.user.is_authenticated %}
-                    <li class="p-2 link-secondary"> {{user.username}} | <a href="{% url 'logout' %}">Выйти</a></li>
+                    <li class="p-2 link-secondary"><a href="{% url 'account' %}">{{user.username}}</a> | <a href="{% url 'logout' %}">Выйти</a></li>
                     {% else %}
                         <a class="p-2 link-secondary" href="{% url 'login' %}">Вход</a>
                         <a class="p-2 link-secondary" href="{% url 'registration' %}">Регистрация</a>

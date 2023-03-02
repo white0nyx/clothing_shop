@@ -3,6 +3,7 @@ import math
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
+from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, _get_queryset
 from django.urls import reverse_lazy
@@ -115,3 +116,17 @@ class LoginPage(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('home')
+
+
+class AccountPage(DetailView):
+    model = User
+    template_name = 'shop/account_page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = context['user']
+        return context
+
+    def get(self, request: WSGIRequest, *args, **kwargs):
+        username = kwargs.get('username')
+        return render(request, 'shop/account_page.html', {'username': username})
