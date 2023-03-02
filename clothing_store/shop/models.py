@@ -50,13 +50,21 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password, first_name='', last_name=''):
+    def create_superuser(self, username, email, password, first_name='', last_name='', father_name='', phone='',
+                         country='', region='', city='', address='', post_index=''):
         user = self.create_user(
             username=username,
             email=email,
             first_name=first_name,
             last_name=last_name,
             password=password,
+            father_name=father_name,
+            phone=phone,
+            country=country,
+            region=region,
+            city=city,
+            address=address,
+            post_index=post_index,
         )
 
         user.is_staff = True
@@ -67,9 +75,15 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     username = models.CharField(verbose_name='Имя пользователя', max_length=63, unique=True)
-    # slug = models.SlugField(verbose_name='URL', max_length=63, unique=True, db_index=True)
     first_name = models.CharField(verbose_name='Имя', max_length=255, blank=True)
     last_name = models.CharField(verbose_name='Фамилия', max_length=255, blank=True)
+    father_name = models.CharField(verbose_name='ОТЧЕСТВО', max_length=255, blank=True)
+    phone = models.CharField(verbose_name='ТЕЛЕФОН', max_length=20, blank=True)
+    country = models.CharField(verbose_name='СТРАНА', max_length=255, blank=True)
+    region = models.CharField(verbose_name='КРАЙ/ОБЛАСТЬ/РЕГИОН', max_length=255, blank=True)
+    city = models.CharField(verbose_name='ГОРОД', max_length=255, blank=True)
+    address = models.CharField(verbose_name='АДРЕС', max_length=255, blank=True)
+    post_index = models.CharField(verbose_name='ИНДЕКС', max_length=255, blank=True)
     email = models.EmailField(verbose_name='ЭЛ. ПОЧТА', max_length=255, unique=True)
     is_active = models.BooleanField(verbose_name='Активен', default=True)
     is_staff = models.BooleanField(verbose_name='Сотрудник', default=False)
