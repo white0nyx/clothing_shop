@@ -1,6 +1,6 @@
 import math
 
-from django.contrib.auth import logout, login
+from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse
@@ -80,7 +80,6 @@ class ItemPage(DetailView):
         return context
 
 
-
 class RegistrationPage(CreateView):
     """Класс представления страницы регистрации нового пользователя"""
 
@@ -95,6 +94,9 @@ class RegistrationPage(CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        print(user.email, user.password)
+
+        # user = authenticate(email=user.email, password=user.password)
         login(self.request, user)
         return redirect('home')
 

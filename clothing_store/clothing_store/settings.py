@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-lrm*9*b5l3$yu_iwx$%6pin%hq&*eg8r4q^+12jq)epco&i$dx
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
-
+AUTH_USER_MODEL = 'shop.User'
 
 # Application definition
 

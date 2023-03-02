@@ -1,7 +1,35 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.forms import UserChangeForm
 
+from .forms import RegisterUserForm
 from .models import *
 
+
+class UserAdmin(BaseUserAdmin):
+
+    form = UserChangeForm
+    add_form = RegisterUserForm
+
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_superuser', 'date_joined')
+    list_filter = ('is_superuser', 'is_staff')
+
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Личная информация', {'fields': ('first_name', 'last_name', 'username')}),
+        ('Права', {'fields': ('is_superuser', 'is_staff')}),
+    )
+
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('username', 'email', 'password1', 'password2')}
+         ),
+    )
+
+    search_fields = ('email', )
+    ordering = ('email', )
+    filter_horizontal = ()
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
@@ -22,3 +50,4 @@ class ItemAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Item, ItemAdmin)
+admin.site.register(User, UserAdmin)
