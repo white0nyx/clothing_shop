@@ -35,7 +35,8 @@ from django.urls import reverse
 #     #     return reverse('account', kwargs={'account_slug': self.username})
 class UserManager(BaseUserManager):
 
-    def create_user(self, username, email, password, first_name='', last_name=''):
+    def create_user(self, username, email, password, first_name='', last_name='', father_name='', phone='',
+                         country='', region='', city='', address='', post_index=''):
         if not email:
             raise ValueError('У пользователя должен быть E-mail адрес')
 
@@ -43,7 +44,15 @@ class UserManager(BaseUserManager):
             username=username,
             email=self.normalize_email(email),
             first_name=first_name,
-            last_name=last_name
+            last_name=last_name,
+            password=password,
+            father_name=father_name,
+            phone=phone,
+            country=country,
+            region=region,
+            city=city,
+            address=address,
+            post_index=post_index,
         )
 
         user.set_password(password)
