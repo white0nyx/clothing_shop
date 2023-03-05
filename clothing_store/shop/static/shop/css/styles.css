@@ -1,28 +1,28 @@
-body{
+body {
     position: relative;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 16 px;
+    font-size: 16px;
     line-height: 1.4;
     color: #000;
-    min-width: 320 px;
+    min-width: 320px;
     overflow-x: hidden;
     height: auto;
     margin: 0;
 }
 
-.header{
+.header {
     width: 100%;
     height: 50px;
 }
 
-.header .container1{
+.header .container1 {
     height: inherit;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header .container2{
+.header .container2 {
     height: inherit;
     display: flex;
     justify-content: space-between;
@@ -30,7 +30,7 @@ body{
     box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
 }
 
-.header-menu{
+.header-menu {
     margin-left: 5px;
     padding: 10px;
     list-style-type: none;
@@ -38,11 +38,11 @@ body{
     margin-bottom: 0;
 }
 
-.header-menu li{
+.header-menu li {
     display: inline-block;
 }
 
-.header-menu li a{
+.header-menu li a {
     display: inline-block;
     color: #000;
     text-decoration: none;
@@ -51,21 +51,22 @@ body{
     transition: all .3s ease-in-out;
 }
 
-.header-menu li a:hover{
+.header-menu li a:hover {
     opacity: 1;
 }
 
-.header-first{
+.header-first {
     display: flex;
     flex-flow: row nowrap;
 }
 
-.header-second{
+.header-second {
     display: flex;
     flex-flow: row nowrap;
 }
 
-.button1{
+.buttonEnter {
+    border: none;
     margin-left: 15px;
     margin-right: 15px;
     text-decoration: none;
@@ -77,7 +78,7 @@ body{
     transition: all .1s ease-out;
 }
 
-.button2{
+.button2 {
     margin-left: 15px;
     margin-right: 15px;
     text-decoration: none;
@@ -89,15 +90,15 @@ body{
     transition: all .1s ease-out;
 }
 
-.button1:hover{
+.button1:hover {
     transform: scale(1.05);
 }
 
-.button2:hover{
+.button2:hover {
     transform: scale(1.05);
 }
 
-.header-brand{
+.header-brand {
     margin-left: 15px;
     font-weight: 700;
     font-size: 30px;
@@ -105,7 +106,7 @@ body{
     color: #000;
 }
 
-.category-list-content{
+.category-list-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -117,10 +118,81 @@ body{
     margin-right: 15px;
 }
 
-.category-product{
+.category-product {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     display: inline-block;
     text-align: center;
+}
+
+
+.popups_inner_enter.active {
+    display: flex;
+
+}
+
+.popups_inner_enter {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+}
+
+
+.popup_enter {
+    background: #e5dede;
+    position: relative;
+    padding: 60px 0px;
+    border-radius: 15px;
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+a.close_popup_enter {
+    position: absolute;
+    top: 10px;
+
+    right: 15px;
+    color: #000;
+    font-size: 27px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.popup_enter h3 {
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.popup_enter form {
+    margin-bottom: 0;
+    margin-top: 25px;
+}
+
+.popup_enter input[type = "submit"] {
+    margin-bottom: 0;
+
+}
+
+.popup_enter input {
+    display: block;
+    margin: 0px auto 15px;
+    width: 250px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+
+.popup_enter a {
+    color: #000;
 }
