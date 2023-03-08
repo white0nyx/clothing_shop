@@ -48,14 +48,48 @@
                 {% get_categories category_selected %}
             </ul>
         </div>
+
         <div class="header-buttons">
-            <a href="#" class="button2">РУС</a>
+            
+            <button class="button2">
+                РУС
+            </button>
+            <button class="button2">
+                РУБ
+            </button>
+            <button class="button-basket">
+                КОРЗИНА
+            </button>
+                
+            
+            <!-- <a href="#" class="button2">РУС</a>
             <a href="#" class="button2">РУБ</a>
-            <a href="#" class="button2">Корзина</a>
+            <a href="#" class="button2">Корзина</a> -->
         </div>
     </div>
 </nav>
+<div class="popups-inner-basket">
+    <div class = "popups-basket">
+        <a class="close-popup-busket">Продолжить покупки</a>
+        <h3>Мои покупки</h3>
+        <form>
+            <span>Итого</span>
+            <span>0</span>
+            <span>USD</span>
+            <input type="submit" value="Оформит заказ">
+        </form>
+    </div>
+    <script>
+        $('.header-buttons button').on('click', function () {
+            $('.popups-inner-basket').addClass('active');
 
+        });
+        $('.close-popup-busket').on('click', function () {
+            $('.popups-inner-basket').removeClass('active');
+
+        });
+    </script>
+</div>
 <div class="popups_inner_enter">
     <div class="popup_enter">
         <a class="close_popup_enter">x</a>
@@ -83,45 +117,4 @@
 {% block content %}
 {% endblock %}
 </body>
-<footer class = "footer">
-    <div class = "footer-container">
-        <div class = "before-row">
-            <div class = "footer-col1">
-                <ul>
-                    <li class="footer-menu-item"><a href="#">Футболки</a></li>
-                    <li class="footer-menu-item"><a href="#">Свитшоты/худи</a></li>
-                    <li class="footer-menu-item"><a href="#">Штаны/шорты</a></li>
-                    <li class="footer-menu-item"><a href="#">Шапки</a></li>
-                    <li class="footer-menu-item"><a href="#">Рюкзаки/сумки</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class = "row">
-            <div class = "footer-col">
-                <h4>WearFit</h4>
-                <ul>
-                    <li><a href = "#">support@wearfit.com</a></li>
-                    <li><a href = "#">ПН-ПТ: 9:00-21:00</a></li>
-                    <li><a href = "#">© 2023, WearFit.com</a></li>
-                </ul>
-            </div>
-            <div class = "footer-col">
-                <h4>Помощь</h4>
-                <ul>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Ваш заказ</a></li>
-                </ul>
-            </div>
-            <div class = "footer-col">
-                <h4>Соц.Сети</h4>
-                <ul>
-                    <li><a href="#">facebook</a></li>
-                    <li><a href="#">vk</a></li>
-                    <li><a href="#">instagram</a></li>
-                    <li><a href="#">twitter</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
 </html>
