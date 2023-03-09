@@ -349,3 +349,26 @@ ul{
     padding-right: 20px;
 }
 
+.footer-menu-item a {
+    display: inline-block;
+    position: relative;
+}
+
+.footer-menu-item a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    background: none repeat scroll 0 0 transparent;
+    height: 2px;
+    width: 0;
+    background: #e91e63;
+    transition: width 0.6s ease 0s, left 0.6s ease 0s;
+}
+
+.footer-menu-item a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
