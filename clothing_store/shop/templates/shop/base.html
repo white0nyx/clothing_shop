@@ -31,19 +31,9 @@
 <nav class="header">
     <div class="container1">
         <a href="{% url 'home' %}" class="header-brand">WearFit</a>
-        <div class="header-first">
-            {% if request.user.is_authenticated %}
-            <li class="p-2 link-secondary"><a href="{% url 'account' %}">{{user.username}}</a> | <a
-                    href="{% url 'logout' %}">Выйти</a></li>
-            {% else %}
-            <button class="buttonEnter">
-                <p>Вход</p>
-            </button>
-            {% endif %}
-        </div>
     </div>
     <div class="container2">
-        <div class="header-second">
+        <div class="header-first1">
             <ul class="header-menu">
                 <li><a href="http://127.0.0.1:8000/category/t-shirts/#">Футболки</a></li>
                 <li><a href="http://127.0.0.1:8000/category/sweatshirts/">Свитшоты/худи</a></li>
@@ -53,22 +43,32 @@
             </ul>
         </div>
 
-        <div class="header-buttons">
-            
+    </div>
+    <div class = "container3">
+        <div class="header-second">
             <button class="button2">
                 РУС
             </button>
             <button class="button2">
                 РУБ
             </button>
+        </div>
+        <div class="header-buttons">
             <button class="button-basket">
                 КОРЗИНА
             </button>
-                
-            
-            <!-- <a href="#" class="button2">РУС</a>
-            <a href="#" class="button2">РУБ</a>
-            <a href="#" class="button2">Корзина</a> -->
+        </div>
+        <div class="header-second">
+            <div class="header-first">
+                {% if request.user.is_authenticated %}
+                <li class="p-2 link-secondary"><a href="{% url 'account' %}">{{user.username}}</a> | <a
+                        href="{% url 'logout' %}">Выйти</a></li>
+                {% else %}
+                <button class="buttonEnter">
+                    <p>Вход</p>
+                </button>
+                {% endif %}
+            </div>
         </div>
     </div>
 </nav>
