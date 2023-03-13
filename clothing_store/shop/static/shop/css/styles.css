@@ -493,7 +493,7 @@ ul{
     width:70%;
 }
 
-.price-current {
+.price-current1 {
     background: #000;
     color: #fff;
     padding: 15px;
@@ -511,7 +511,7 @@ ul{
     padding-left:25px;
 }
 
-.category-product-name{
+.category-product-name1{
     align-items: center;
     background: #000;
     border-radius: 1000px;
