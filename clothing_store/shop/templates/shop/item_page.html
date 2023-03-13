@@ -1,11 +1,48 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<h1>{{ item }}</h1>
-<img src="{{ item.main_photo.url }}">
-<h4>Описание: {{ item.description }}</h4>
-<h4>Цена: {{ item.price }}</h4>
-<button type="button" class="category-product-name">
-    <span>Добавить в корзину</span>
-</button>
+<div class = "product-name">
+    <h2>{{ item }}</h2>
+</div>
+
+<div class = "product-content">
+    <div class = "product-slide">
+        <img src="{{ item.main_photo.url }}" class="product-photo">
+    </div>
+    <div class = "product-info">
+        <div class = "price-product-info-price">
+            <div class = "price-current">
+                <span>
+                    {{ item.price }}
+                    &nbsp
+                    РУБ
+                </span>
+            </div>
+        </div>
+
+        <h4>Описание: {{ item.description }}</h4>
+
+        <div class="product-info-sizes">
+            <div class="product-info-sizes-title">Выберите размер:</div>
+            <div class="product-info-sizes-list">
+                <div class="product-info-sizes-list-content">
+                    <button type="button" class="product-info-sizes-size">S</button>
+                    <button type="button" class="product-info-sizes-size">M</button>
+                    <button type="button" class="product-info-sizes-size">L</button>
+                    <button type="button" class="product-info-sizes-size">XL</button>
+                    <button type="button" class="product-info-sizes-size">2XL</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-info-count-counter">
+            <div class="product-info-count-title">Количество:</div>
+            <input class="product-info-count-input" value="1">
+        </div>
+
+        <button type="button" class="category-product-name">
+            <span>Добавить в корзину</span>
+        </button>
+    </div>
+</div>
 {% endblock %}
