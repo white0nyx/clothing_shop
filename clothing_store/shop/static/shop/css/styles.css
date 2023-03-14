@@ -609,3 +609,14 @@ input {
     vertical-align: initial;
 }
 
+.product-info-sizes-size{
+    background: #fff;
+    color: #d7d5d6;
+    font-weight: 400;
+}
+
+.product-info-sizes-size:focus{
+    background: #000;
+    color: #fff;
+    font-weight: 400;
+}
