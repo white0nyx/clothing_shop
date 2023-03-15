@@ -583,9 +583,17 @@ ul{
     margin-top:30px;
 }
 
-.product-info-count-input{
-    border: 2px solid #000;
+input {
+    -webkit-appearance: none;
+    background: inherit;
     font-size: 15px;
+    font-weight: 500;
+    outline: none;
+    font-family: Futura,sans-serif;
+    margin: 0;
+    padding: 0;
+    vertical-align: initial;
+
     text-align: center;
     align-items: center;
     display: flex;
@@ -593,20 +601,6 @@ ul{
     justify-content: center;
     width: 50px;
     margin-top:10px;
-}
-
-input {
-    -webkit-appearance: none;
-    background: inherit;
-    border: none;
-    border-radius: 0;
-    font-size: 18px;
-    font-weight: 500;
-    outline: none;
-    font-family: Futura,sans-serif;
-    margin: 0;
-    padding: 0;
-    vertical-align: initial;
 }
 
 .product-info-sizes-size{
@@ -619,4 +613,43 @@ input {
     background: #000;
     color: #fff;
     font-weight: 400;
+}
+
+.counter{
+    display: inline-flex;
+    align-items:center;
+    user-select: none;
+    column-gap:7px;
+}
+
+.counter_button_counter_button_minus{
+    display: flex;
+    align-items:center;
+    user-select: none;
+    width=30px;
+    flex:0 0 30px;
+    height:30px;
+    border:1px solid #000;
+    border-radius:50%;
+    justify-content:center;
+    cursor: pointer;
+}
+
+.counter_button_counter_button_minus.disabled{
+    border:1px solid #c4c4c4;
+    color:1px solid #c4c4c4;
+    cursor: default;
+}
+
+.counter_button_counter_button_plus{
+    display: flex;
+    align-items:center;
+    user-select: none;
+    width=30px;
+    flex:0 0 30px;
+    height:30px;
+    border:1px solid #000;
+    border-radius:50%;
+    justify-content:center;
+    cursor: pointer;
 }
