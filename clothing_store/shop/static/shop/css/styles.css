@@ -467,12 +467,13 @@ ul{
 }
 
 .product-name{
-    width:100px;
+    width:300px;
     height:50px
     background-color: #000;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15px;
+    text-align: center;
 }
 
 .product-content{
@@ -583,26 +584,6 @@ ul{
     margin-top:30px;
 }
 
-input {
-    -webkit-appearance: none;
-    background: inherit;
-    font-size: 15px;
-    font-weight: 500;
-    outline: none;
-    font-family: Futura,sans-serif;
-    margin: 0;
-    padding: 0;
-    vertical-align: initial;
-
-    text-align: center;
-    align-items: center;
-    display: flex;
-    height: 50px;
-    justify-content: center;
-    width: 50px;
-    margin-top:10px;
-}
-
 .product-info-sizes-size{
     background: #fff;
     color: #d7d5d6;
@@ -615,41 +596,56 @@ input {
     font-weight: 400;
 }
 
-.counter{
+.counter {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
-    align-items:center;
-    user-select: none;
-    column-gap:7px;
+    -webkit-column-gap: 7px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    margin-top:30px;
 }
 
-.counter_button_counter_button_minus{
+.counter_button {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 30px;
+            flex: 0 0 30px;
+    height: 30px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items:center;
-    user-select: none;
-    width=30px;
-    flex:0 0 30px;
-    height:30px;
-    border:1px solid #000;
-    border-radius:50%;
-    justify-content:center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     cursor: pointer;
 }
 
-.counter_button_counter_button_minus.disabled{
-    border:1px solid #c4c4c4;
-    color:1px solid #c4c4c4;
+.counter_button_minus.disabled {
+    border: 1px solid #c4c4c4;
+    color: #c4c4c4;
     cursor: default;
 }
 
-.counter_button_counter_button_plus{
-    display: flex;
-    align-items:center;
-    user-select: none;
-    width=30px;
-    flex:0 0 30px;
-    height:30px;
-    border:1px solid #000;
-    border-radius:50%;
-    justify-content:center;
-    cursor: pointer;
+.counter_input {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 30px;
+            flex: 0 0 30px;
+}
+
+.counter_input input {
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    text-align: center;
+
 }
