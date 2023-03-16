@@ -34,6 +34,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+    background-color: #000;
 }
 
 .header-menu {
@@ -296,7 +297,7 @@ ul{
     background-color: #e91e63;
     height: 2px;
     box-sizing: border-box;
-    width: 50px;
+    width: 75px;
 }
 
 .footer-col ul li:not(:last-child){
@@ -387,7 +388,7 @@ ul{
 }
 
 .product-info{
-    padding-left:50px;
+    padding-left:150px;
     width:70%;
 }
 
@@ -401,7 +402,7 @@ ul{
     height: 2em;
     position: relative;
     white-space: nowrap;
-    width:100px;
+    width:110px;
     scale:1.5;
 }
 
@@ -546,6 +547,77 @@ ul{
 
 }
 
+
+.slider-container {
+    max-width: 1200px;
+    display: flex;
+}
+
+.slider-prev {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right:15px;
+    margin-top: 195px;
+}
+
+.slider-next {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left:15px;
+    margin-top: 195px;
+}
+
+.product-slide {
+    width: 362px;
+    height: 379px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.slide-line {
+    width: 1024px;
+    height: 256px;
+    display: flex;
+    background: orange;
+    position: relative;
+    left: 0;
+    transition: all ease 1s;
+}
+
+.product-photo{
+    width: 362px;
+    height: 379px;
+}
 
 .popups-inner-basket{
     position: absolute;
@@ -704,32 +776,40 @@ input {
     transition: opacity .2s;
     width: 165px;
 }
+
 .modal__signin-classic-signIn>span {
     line-height: 1em;
 }
+
 .modal__signin-classic-signIn-arrow {
     fill: #fff;
     margin-left: 12px;
 }
+
 .icon__animated {
     transition: all .3s;
 }
+
 .icon .arrow {
     height: 7px;
     width: 12px;
 }
+
 * {
     box-sizing: border-box;
     scrollbar-width: none;
 }
+
 user agent stylesheet
 svg:not(:root) {
     overflow: hidden;
 }
+
 .modal__signin-classic-signIn-arrow {
     fill: #fff;
     margin-left: 12px;
 }
+
 .modal__signin-sign-up {
     cursor: pointer;
     font-size: 15px;
@@ -739,6 +819,7 @@ svg:not(:root) {
     color: black;
     text-decoration: solid;
 }
+
 .modal-close, .modal__signin.modal {
     position: absolute;
 }
@@ -751,9 +832,11 @@ svg:not(:root) {
     top: 20px;
     width: 20px;
 }
+
 .icon__animated {
     transition: all .3s;
 }
+
 .icon .cross {
     height: 15px;
     width: 15px;
