@@ -5,7 +5,10 @@
 <div class="category-list">
 
     <div class="category-list-content">
-        {% for item in line %}
+<!--        {% for item in line %}-->
+<!--        {% for img in item.additionalimageitem_set.all %}-->
+<!--        <img src="{{img.path.url }}" alt="{{ item.name }}">-->
+        {% endfor %}
             <a class="category-product" href="{{ item.get_absolute_url }}">
                 <div class="category-product-cover">
                     <div class="picture">
@@ -27,3 +30,5 @@
 </div>
 {% endfor %}
 {% endblock %}
+
+

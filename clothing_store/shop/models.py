@@ -36,7 +36,7 @@ from django.urls import reverse
 class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password, first_name='', last_name='', father_name='', phone='',
-                         country='', region='', city='', address='', post_index=''):
+                    country='', region='', city='', address='', post_index=''):
         if not email:
             raise ValueError('У пользователя должен быть E-mail адрес')
 
@@ -165,3 +165,17 @@ class Item(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ['id']
+
+
+class AdditionalImageItem(models.Model):
+    """Модель изображения товара"""
+
+    path = models.ImageField(upload_to="images/category/", verbose_name='Фото')
+    item = models.ForeignKey(Item, default=None, on_delete=models.PROTECT, verbose_name='Товар', )
+
+    class Meta:
+        verbose_name = 'Дополнительное изображение товара'
+        verbose_name_plural = 'Дополнительные изображения товара'
+
+    def __str__(self):
+        return self.item.name + ' Image'

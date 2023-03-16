@@ -7,7 +7,6 @@ from .models import *
 
 
 class UserAdmin(BaseUserAdmin):
-
     form = UserChangeForm
     add_form = RegisterUserForm
 
@@ -27,9 +26,10 @@ class UserAdmin(BaseUserAdmin):
          ),
     )
 
-    search_fields = ('email', )
-    ordering = ('email', )
+    search_fields = ('email',)
+    ordering = ('email',)
     filter_horizontal = ()
+
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug')
@@ -48,6 +48,12 @@ class ItemAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
+class ImageItemAdmin(admin.ModelAdmin):
+    list_display = ('path', )
+    list_display_links = ('path',)
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Item, ItemAdmin)
+admin.site.register(AdditionalImageItem, ImageItemAdmin)
 admin.site.register(User, UserAdmin)
