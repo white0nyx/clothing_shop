@@ -146,7 +146,7 @@ class Item(models.Model):
     """Модель товара"""
 
     name = models.CharField(max_length=255, verbose_name='Название')
-    main_photo = models.ImageField(upload_to="images/category/", verbose_name='Главное фото')
+    main_photo = models.ImageField(upload_to="images/photo/", verbose_name='Главное фото')
     category = models.ForeignKey(Category, verbose_name='Категория', on_delete=models.PROTECT)
     slug = models.SlugField(db_index=True, unique=True, verbose_name='URL')
     description = models.TextField(verbose_name='Описание')
