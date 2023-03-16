@@ -6,9 +6,39 @@
 </div>
 
 <div class = "product-content">
-    <div class = "product-slide">
-        <img src="{{ item.main_photo.url }}" class="product-photo">
+    <div class="slider-container">
+        <button class="slider-prev">←</button>
+        <div class = "product-slide">
+            <div class="slide-line">
+                <img src="{{ item.main_photo.url }}" class="product-photo">
+                <img src="{{ item.main_photo.url }}" class="product-photo">
+                <img src="{{ item.main_photo.url }}" class="product-photo">
+            </div>
+        </div>
+        <button class="slider-next">→</button>
     </div>
+
+    <script>
+        let offset = 0;
+        const sliderLine = document.querySelector('.slide-line');
+
+        document.querySelector('.slider-next').addEventListener('click', function(){
+            offset = offset + 362;
+            if (offset > 724) {
+                offset = 0;
+            }
+            sliderLine.style.left = -offset + 'px';
+        });
+
+        document.querySelector('.slider-prev').addEventListener('click', function () {
+            offset = offset - 362;
+            if (offset < 0) {
+                offset = 724;
+            }
+            sliderLine.style.left = -offset + 'px';
+        });
+    </script>
+
     <div class = "product-info">
         <div class = "price-product-info-price">
             <div class = "price-current1">
@@ -26,13 +56,11 @@
             <div class="product-info-sizes-title">Выберите размер:</div>
             <div class="product-info-sizes-list">
                 <div class="product-info-sizes-list-content">
-
-                        <button type="button" class="product-info-sizes-size"id="smb">S</button>
+                    <button type="button" class="product-info-sizes-size"id="smb">S</button>
                     <button type="button" class="product-info-sizes-size">M</button>
                     <button type="button" class="product-info-sizes-size">L</button>
                     <button type="button" class="product-info-sizes-size">XL</button>
                     <button type="button" class="product-info-sizes-size">2XL</button>
-
                 </div>
             </div>
         </div>
