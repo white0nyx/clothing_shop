@@ -1,0 +1,29 @@
+<div class="before-row">
+    <div class="footer-col1">
+        <ul>
+            {% for cat in categories %}
+            {% if category_selected == cat.id %}
+            {{cat.id}}
+            {{category_selected}}
+            <li class="footer-menu-item">{{ cat.name }}</li>
+            {% else %}
+            <li class="footer-menu-item"><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!--<div class="before-row">-->
+<!--    <div class="footer-col1">-->
+<!--        <ul>-->
+<!--            <li class="footer-menu-item"><a href="http://127.0.0.1:8000/category/t-shirts/#">Футболки</a></li>-->
+<!--            <li class="footer-menu-item"><a href="http://127.0.0.1:8000/category/sweatshirts/">Свитшоты/худи</a>-->
+<!--            </li>-->
+<!--            <li class="footer-menu-item"><a href="http://127.0.0.1:8000/category/pants-shorts/">Штаны/шорты</a>-->
+<!--            </li>-->
+<!--            <li class="footer-menu-item"><a href="http://127.0.0.1:8000/category/hats/">Шапки</a></li>-->
+<!--            <li class="footer-menu-item"><a href="http://127.0.0.1:8000/category/bags/">Рюкзаки/сумки</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->

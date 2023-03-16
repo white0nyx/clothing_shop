@@ -1,11 +1,28 @@
-<div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex justify-content-between">
-        {% for cat in categories %}
-        {% if category_selected == cat.id %}
-            <li class="p-2 link-secondary">{{ cat.name }}</li>
-        {% else %}
-            <a class="p-2 link-secondary" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a>
-        {% endif %}
-        {% endfor %}
-    </nav>
+<div class="container2">
+    <div class="header-first1">
+        <ul class="header-menu">
+            {% for cat in categories %}
+            {% if category_selected == cat.id %}
+            {{cat.id}}
+            {{category_selected}}
+            <li><a href="#">{{ cat.name }}</a></li>
+            {% else %}
+            <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
 </div>
+
+<!--<div class="container2">-->
+<!--    <div class="header-first1">-->
+<!--        <ul class="header-menu">-->
+<!--            <li><a href="http://127.0.0.1:8000/category/t-shirts/#">Футболки</a></li>-->
+<!--            <li><a href="http://127.0.0.1:8000/category/sweatshirts/">Свитшоты/худи</a></li>-->
+<!--            <li><a href="http://127.0.0.1:8000/category/pants-shorts/">Штаны/шорты</a></li>-->
+<!--            <li><a href="http://127.0.0.1:8000/category/hats/">Шапки</a></li>-->
+<!--            <li><a href="http://127.0.0.1:8000/category/bags/">Рюкзаки/сумки</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--</div>-->

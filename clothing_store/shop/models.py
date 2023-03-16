@@ -170,8 +170,8 @@ class Item(models.Model):
 class AdditionalImageItem(models.Model):
     """Модель изображения товара"""
 
-    path = models.ImageField(upload_to="images/category/", verbose_name='Фото')
-    item = models.ForeignKey(Item, default=None, on_delete=models.PROTECT, verbose_name='Товар', )
+    path = models.ImageField(upload_to="images/photo/", verbose_name='Фото')
+    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Товар', )
 
     class Meta:
         verbose_name = 'Дополнительное изображение товара'
