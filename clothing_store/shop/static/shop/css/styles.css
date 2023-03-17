@@ -389,7 +389,7 @@ ul{
 
 .product-info{
     padding-left:150px;
-    width:70%;
+    width:100%;
 }
 
 .price-current1 {
@@ -849,4 +849,109 @@ svg:not(:root) {
 .icon .cross {
     height: 15px;
     width: 15px;
+}
+
+.product-recs {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    position: relative;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    z-index: 1;
+}
+
+.product-recs-title {
+    font-size: 26px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.product-recs-title>span {
+    background: #000;
+    color: #ebe6e8;
+    margin-left: 7px;
+    padding: 9px 15px;
+}
+
+
+.slider-container2 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    max-width: 1562px;
+    display: flex;
+}
+
+.slider-prev2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    margin-right:30px;
+    margin-top: 195px;
+    background-color:inherit;
+    font-size: 50px;
+}
+
+.slider-next2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 30px;
+    flex: 0 0 30px;
+    height: 30px;
+    width: 30px;
+    border: none;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left:30px;
+    margin-top: 195px;
+    background-color:inherit;
+    font-size: 50px;
+}
+
+.product-slide2 {
+    width: 1810px;
+    height: 379px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.slide-line2 {
+    width: 1024px;
+    height: 256px;
+    display: flex;
+    background: orange;
+    position: relative;
+    left: 0;
+    transition: all ease 1s;
+}
+
+.product-photo2{
+    width: 362px;
+    height: 379px;
 }

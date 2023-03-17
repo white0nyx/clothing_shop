@@ -119,5 +119,49 @@
             <span>Добавить в корзину</span>
         </button>
     </div>
+
 </div>
+
+<div class = "product-recs">
+    <div class="product-recs-title">Рекомендуем к <span>покупке</span></div>
+</div>
+<div class="slider-container2">
+    <button class="slider-prev2">🢐</button>
+    <div class = "product-slide2">
+        <div class="slide-line2">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+            <img src="{{ item.main_photo.url }}" class="product-photo">
+        </div>
+    </div>
+    <button class="slider-next2"> 🢒</button>
+</div>
+
+<script>
+        let offset2 = 0;
+        const sliderLine2 = document.querySelector('.slide-line2');
+
+        document.querySelector('.slider-next2').addEventListener('click', function(){
+            offset2 = offset2 + 362;
+            if (offset2 > 1810) {
+                offset2 = 0;
+            }
+            sliderLine2.style.left = -offset2 + 'px';
+        });
+
+        document.querySelector('.slider-prev2').addEventListener('click', function () {
+            offset2 = offset2 - 362;
+            if (offset2 < 0) {
+                offset2 = 1810;
+            }
+            sliderLine2.style.left = -offset2 + 'px';
+        });
+    </script>
+
 {% endblock %}
