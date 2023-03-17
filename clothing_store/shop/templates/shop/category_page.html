@@ -6,20 +6,19 @@
 
     <div class="category-list-content">
         {% for item in line %}
-<!--        {% for img in item.additionalimageitem_set.all %}-->
-<!--        <img src="{{img.path.url }}" alt="{{ item.name }}">-->
-<!--        {% endfor %}-->
+
             <a class="category-product" href="{{ item.get_absolute_url }}">
-                <div class="category-product-cover">
-                    <div class="picture">
-                        <img src="{{ item.main_photo.url}}" width="362px" height="379px" alt="{{item.name}}">
-                    </div>
-                    <div class="category-product-blackout"></div>
-                    <div class="price category-product-price">
-                        <div class="price-current">
-                            <span>{{ item.price }}</span>
+                <div class="category-product-cover1">
+                     <div class="picture">
+                          <img src="{{ item.main_photo.url}}" width="362px" height="379px" alt="{{item.name}}">
+                     </div>
+                     <div class="category-product-blackout"></div>
+                     <div class="price-category-product-price1">
+                        <div class="price-current1">
+                            <span>2000 РУБ</span>
                         </div>
-                    </div>
+                     </div>
+
                 </div>
                 <button type="button" class="category-product-name">
                     <span>{{ item.name}}</span>

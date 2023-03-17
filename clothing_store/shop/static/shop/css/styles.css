@@ -955,3 +955,151 @@ svg:not(:root) {
     width: 362px;
     height: 379px;
 }
+
+.category-product-cover1 {
+    display:flex;
+
+    background: #fff;
+    border-radius: 29px;
+
+
+    -webkit-mask-image: -webkit-radial-gradient(#fff,#000);
+    overflow: hidden;
+    position: relative;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: initial;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.category-product {
+    cursor: default;
+}
+
+a {
+    color: inherit;
+}
+
+.category-product-blackout {
+    opacity: 0;
+}
+
+.price-category-product-price1 {
+    display:flex;
+
+    position: absolute;
+
+}
+
+.price-current1{
+    display:flex;
+    border-radius: 0 0 1em 0;
+    padding: 0 1em;
+    z-index: 1;
+}
+
+
+
+
+.product-info-sizes-size:focus{
+    background: #000;
+    color: #fff;
+    font-weight: 400;
+}
+
+.product-info-sizes-size:focus{
+    background: #000;
+    color: #fff;
+    font-weight: 400;
+}
+
+.counter{
+    display: inline-flex;
+    align-items:center;
+    user-select: none;
+    column-gap:7px;
+}
+
+.counter_button_counter_button_minus{
+    display: flex;
+    align-items:center;
+    user-select: none;
+    width=30px;
+    flex:0 0 30px;
+    height:30px;
+    border:1px solid #000;
+    border-radius:50%;
+    justify-content:center;
+    cursor: pointer;
+}
+
+.counter_button_counter_button_minus.disabled{
+    border:1px solid #c4c4c4;
+    color:1px solid #c4c4c4;
+    cursor: default;
+}
+
+.counter_button_counter_button_plus{
+    display: flex;
+    align-items:center;
+    user-select: none;
+    width=30px;
+    flex:0 0 30px;
+    height:30px;
+    border:1px solid #000;
+    border-radius:50%;
+    justify-content:center;
+    cursor: pointer;
+}
+
+
+.category-product-name{
+    border-radius: 100px;
+    contain: strict;
+    cursor: pointer;
+    height: 58px;
+    margin-top: 20px;
+    -webkit-mask-image: -webkit-radial-gradient(#fff,#000);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    background: 0 0;
+    outline: none;
+    -webkit-user-select: none;
+    border: 0;
+    font-family: Futura,sans-serif;
+
+    padding: 0;
+    vertical-align: initial;
+}
+
+.category-product-name>span:first-child {
+    background: #fff;
+    border: 2px solid #f1f3f5;
+
+}
+
+.category-product-name>span {
+    align-items: center;
+    border-radius: inherit;
+    display: flex;
+    font-size: 18px;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+}
+
+
+
+*{
+    box-sizing: border-box;
+}
