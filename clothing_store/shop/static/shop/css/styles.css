@@ -971,6 +971,7 @@ svg:not(:root) {
     text-align: center;
     justify-content: center;
 }
+
 .rec:hover{
     opacity: 0.7;
 }
