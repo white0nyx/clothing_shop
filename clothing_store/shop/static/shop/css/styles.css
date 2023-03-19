@@ -634,6 +634,7 @@ ul{
     align-items: center;
     display: none;
     margin: 327px auto 0px 0px;
+    z-index: 5;
 }
 
 .popups-basket{
@@ -669,6 +670,7 @@ button.close-popup-basket{
 
 .modal__signin-tile.modal-tile.active{
     display: flex;
+
 }
 
 .modal__signin-tile.modal-tile {
@@ -682,6 +684,7 @@ button.close-popup-basket{
     width: 366px;
     padding: 30px;
     margin: 380px auto 0px 0px;
+    z-index: 5;
 }
 
 .modal-tile {
