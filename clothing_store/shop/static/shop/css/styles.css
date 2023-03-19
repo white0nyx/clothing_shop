@@ -120,7 +120,7 @@ body {
     margin-bottom: 0rem;
 }
 
-.button2 {
+.button-language,.button-currency {
     margin-left: 15px;
     margin-right: 15px;
     text-decoration: none;
@@ -638,6 +638,7 @@ ul{
     align-items: center;
     display: none;
     margin: 327px auto 0px 0px;
+    z-index: 5;
 }
 
 .popups-basket{
@@ -673,6 +674,7 @@ button.close-popup-basket{
 
 .modal__signin-tile.modal-tile.active{
     display: flex;
+
 }
 
 .modal__signin-tile.modal-tile {
@@ -685,7 +687,8 @@ button.close-popup-basket{
     right: 5vw;
     width: 366px;
     padding: 30px;
-    margin: 110px auto 0px 0px;
+    margin: 380px auto 0px 0px;
+    z-index: 5;
 }
 
 .modal-tile {
@@ -1157,4 +1160,42 @@ a {
 
 *{
     box-sizing: border-box;
+}
+
+.currency-switcher .select-list, .language-switcher .select-list {
+}
+.select-list {
+    max-height: none!important;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 30px 0 hsl(228deg 6% 84% / 42%);
+    max-height: 256px;
+    opacity: 0;
+    padding: 8px 0;
+    position: absolute;
+    top: calc(17% + 4px);
+    transition: all .3s;
+    z-index: 1000;
+}
+.select-list-value {
+    align-items: center;
+    color: #000;
+    display: flex;
+    font-weight: 500;
+    height: 48px;
+    justify-content: center;
+    line-height: 20px;
+    padding: 0 21px;
+    position: relative;
+    transition: color .3s,background .3s;
+}
+.select-list button{
+    border: none;
+    background: none;
+}
+.select-list-transition-currency>.select-list.active{
+    opacity: 1;
+}
+.select-list-transition-language>.select-list.active{
+    opacity: 1;
 }
