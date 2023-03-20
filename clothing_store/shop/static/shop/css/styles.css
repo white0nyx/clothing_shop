@@ -545,6 +545,12 @@ ul{
     cursor: default;
 }
 
+.counter_button_plus.disabled {
+    border: 1px solid #c4c4c4;
+    color: #c4c4c4;
+    cursor: default;
+}
+
 .counter_input {
     -webkit-box-flex: 0;
         -ms-flex: 0 0 30px;

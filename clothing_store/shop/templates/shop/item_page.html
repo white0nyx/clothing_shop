@@ -65,12 +65,6 @@
             </div>
         </div>
 
-        <script>
-            document.querySelector('#smb').onclick = function(){
-                alert('Не завставляйте меня больше учить джаваскрипт')
-            }
-        </script>
-
         <div class="product-info-count-counter">
             <div class="product-info-count-title">Количество:</div>
             <div class = "counter" data-counter>
@@ -104,8 +98,15 @@
                             if (value <= 0) {
                                 value = 0;
                                 target.closest('.counter').querySelector('.counter_button_minus').classList.add('disabled')
-                            } else {
+                            }else {
                                 target.closest('.counter').querySelector('.counter_button_minus').classList.remove('disabled')
+                            }
+
+                            if (value >= 20) {
+                                value = 20;
+                                target.closest('.counter').querySelector('.counter_button_plus').classList.add('disabled')
+                            }else {
+                                target.closest('.counter').querySelector('.counter_button_plus').classList.remove('disabled')
                             }
 
                             target.closest('.counter').querySelector('input').value = value;
@@ -225,24 +226,24 @@
 </div>
 
 <script>
-        let offset2 = 0;
-        const sliderLine2 = document.querySelector('.slide-line2');
+    let offset2 = 0;
+    const sliderLine2 = document.querySelector('.slide-line2');
 
-        document.querySelector('.slider-next2').addEventListener('click', function(){
-            offset2 = offset2 + 362;
-            if (offset2 > 1810) {
-                offset2 = 0;
-            }
-            sliderLine2.style.left = -offset2 + 'px';
-        });
+    document.querySelector('.slider-next2').addEventListener('click', function(){
+        offset2 = offset2 + 362;
+        if (offset2 > 1810) {
+            offset2 = 0;
+        }
+        sliderLine2.style.left = -offset2 + 'px';
+    });
 
-        document.querySelector('.slider-prev2').addEventListener('click', function () {
-            offset2 = offset2 - 362;
-            if (offset2 < 0) {
-                offset2 = 1810;
-            }
-            sliderLine2.style.left = -offset2 + 'px';
-        });
-    </script>
+    document.querySelector('.slider-prev2').addEventListener('click', function () {
+        offset2 = offset2 - 362;
+        if (offset2 < 0) {
+            offset2 = 1810;
+        }
+        sliderLine2.style.left = -offset2 + 'px';
+    });
+</script>
 
 {% endblock %}
