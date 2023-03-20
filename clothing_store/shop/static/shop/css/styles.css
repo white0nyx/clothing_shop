@@ -44,11 +44,11 @@ body {
     margin-bottom: 0;
 }
 
-.header-menu l {
+.header-menu li {
     display: inline-block;
 }
 
-.header-menu li a {
+.header-menu li a{
     display: inline-block;
     color: #ffffff;
     text-decoration: none;
