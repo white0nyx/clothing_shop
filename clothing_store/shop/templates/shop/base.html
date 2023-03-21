@@ -30,46 +30,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<nav class="header">
-    <div class="container1">
-        <a href="{% url 'home' %}" class="header-brand"><img src="{% static 'shop/WEARFIT_main1.png' %} " alt=""
-                                                             height="180px"></a>
-    </div>
-    {% get_categories_in_header %}
-    <div class="container3">
-        <div class="header-second">
-            <div class="switcher-language">
-                <button class="button-language">
-                    РУС
-                </button>
-                <div class="select-list-transition-language">
-                    <ul class="select-list language">
-                        <button class="select-list-value">АНГЛ</button>
-                        <button class="select-list-value">РУС</button>
-                        <button class="select-list-value">УКР</button>
-                    </ul>
-                </div>
-                <script type="text/javascript" src='{% static "shop/js/language_choice.js" %}'></script>
-            </div>
-
-            <div class="switcher-currency">
-                <button class="button-currency">
-                    РУБ
-                </button>
-                <div class="select-list-transition-currency">
-                    <ul class="select-list currency">
-                        <button class="select-list-value">USD</button>
-                        <button class="select-list-value">EUR</button>
-                        <button class="select-list-value">UAH</button>
-                        <button class="select-list-value">KZT</button>
-                        <button class="select-list-value">CZK</button>
-                        <button class="select-list-value">PLN</button>
-                        <button class="select-list-value">GEL</button>
-                    </ul>
-                </div>
-                <script type="text/javascript" src='{% static "shop/js/currency_choice.js" %}'></script>
-=======
     <nav class="header">
         <div class="container1">
             <a href="{% url 'home' %}" class="header-brand"><img src="{% static 'shop/WEARFIT_main1.png' %} " alt=""
@@ -89,19 +49,8 @@
                             <button class="select-list-value">УКР</button>
                         </ul>
                     </div>
-                    <script>
-                        $('.switcher-language button').on('click', function () {
-                            $('.select-list-transition-language>.select-list').addClass('active');
+                    <script type="text/javascript" src='{% static "shop/js/language_choice.js" %}'></script>
 
-                        });
-                        $('.select-list button').on('click', function () {
-                            $('.select-list').removeClass('active');
-
-                        }
-                        );
-
-
-                    </script>
                 </div>
 
                 <div class="switcher-currency">
@@ -119,20 +68,7 @@
                             <button class="select-list-value">GEL</button>
                         </ul>
                     </div>
-                    <script>
-                        $('.switcher-currency button').on('click', function () {
-                            $('.select-list-transition-currency>.select-list').addClass('active');
-
-                        });
-                        $('.select-list button').on('click', function () {
-                            $('.select-list').removeClass('active');
-
-                        }
-                        );
-
-
-                    </script>
->>>>>>> e51ca9d178d8a4d058153587aa1885201482d042
+                    <script type="text/javascript" src='{% static "shop/js/currency_choice.js" %}'></script>
                 </div>
             </div>
             <div class="header-second">
@@ -199,40 +135,16 @@
                     <svg class="cross" xmlns="http://www.w3.org/2000/svg" viewBox="">
                         <polygon
                             points="15,0.54 14.46,0 7.5,6.96 0.54,0 0,0.54 6.96,7.5 0,14.46 0.54,15 7.5,8.04 14.46,15 15,14.46 8.04,7.5">
-<<<<<<< HEAD
-                    </polygon>
-                </svg>
-            </div>
-            <script type="text/javascript" src='{% static "shop/js/entry_window.js" %}'></script>
-        </div>
-        <div class="header-buttons">
-            <button class="button-basket">
-                КОРЗИНА
-            </button>
-        </div>
-        <div class="popups-inner-basket">
-            <div class="popups-basket">
-                <button class="close-popup-basket">
-                    <span>Продолжить покупки</span>
-=======
+
                         </polygon>
                     </svg>
                 </div>
-                <script>
-                    $('.header-first button').on('click', function () {
-                        $('.modal__signin-tile.modal-tile').addClass('active');
+            <script type="text/javascript" src='{% static "shop/js/entry_window.js" %}'></script>
 
-                    });
-                    $('.cross').on('click', function () {
-                        $('.modal__signin-tile.modal-tile').removeClass('active');
-
-                    });
-                </script>
             </div>
             <div class="header-buttons">
                 <button class="button-basket">
                     КОРЗИНА
->>>>>>> e51ca9d178d8a4d058153587aa1885201482d042
                 </button>
             </div>
             <div class="app__modals">
@@ -306,20 +218,7 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             <script type="text/javascript" src='{% static "shop/js/cart.js" %}'></script>
-=======
-            <script>
-                $('.header-buttons button').on('click', function () {
-                    $('.modal__cart.modal').addClass('active');
-
-                });
-                $('.modal__cart-continue-shopping-2 button').on('click', function () {
-                    $('.modal__cart.modal').removeClass('active');
-
-                });
-            </script>
->>>>>>> e51ca9d178d8a4d058153587aa1885201482d042
         </div>
         </div>
     </nav>
