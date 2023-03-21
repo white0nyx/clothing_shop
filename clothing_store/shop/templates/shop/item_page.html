@@ -1,4 +1,6 @@
 {% extends 'shop/base.html' %}
+{% load static %}
+
 
 {% block content %}
 <div class = "product-name">
@@ -18,26 +20,7 @@
         <button class="slider-next"> 🢒</button>
     </div>
 
-    <script>
-        let offset = 0;
-        const sliderLine = document.querySelector('.slide-line');
-
-        document.querySelector('.slider-next').addEventListener('click', function(){
-            offset = offset + 362;
-            if (offset > 724) {
-                offset = 0;
-            }
-            sliderLine.style.left = -offset + 'px';
-        });
-
-        document.querySelector('.slider-prev').addEventListener('click', function () {
-            offset = offset - 362;
-            if (offset < 0) {
-                offset = 724;
-            }
-            sliderLine.style.left = -offset + 'px';
-        });
-    </script>
+    <script type="text/javascript" src='{% static "shop/js/slider_photo_product.js" %}'></script>
 
     <div class = "product-info">
         <div class = "price-product-info-price">
@@ -74,47 +57,7 @@
             </div>
         </div>
 
-        <script>
-            const counters = document.querySelectorAll('[data-counter]');
-
-            if (counters) {
-                counters.forEach(counter => {
-                    counter.addEventListener('click', e => {
-                        const target = e.target;
-
-                        if (target.closest('.counter_button')) {
-                            if (target.closest('.counter').querySelector('input').value == '' && (target.classList.contains('counter_button_minus') || target.classList.contains('counter_button_plus'))) {
-                                target.closest('.counter').querySelector('input').value = 0;
-                            }
-
-                            let value = parseInt(target.closest('.counter').querySelector('input').value);
-
-                            if (target.classList.contains('counter_button_plus')) {
-                                value++;
-                            } else {
-                                --value;
-                            }
-
-                            if (value <= 0) {
-                                value = 0;
-                                target.closest('.counter').querySelector('.counter_button_minus').classList.add('disabled')
-                            }else {
-                                target.closest('.counter').querySelector('.counter_button_minus').classList.remove('disabled')
-                            }
-
-                            if (value >= 20) {
-                                value = 20;
-                                target.closest('.counter').querySelector('.counter_button_plus').classList.add('disabled')
-                            }else {
-                                target.closest('.counter').querySelector('.counter_button_plus').classList.remove('disabled')
-                            }
-
-                            target.closest('.counter').querySelector('input').value = value;
-                        }
-                    })
-                })
-            }
-        </script>
+        <script type="text/javascript" src="{% static 'shop/js/quantity_count_product.js' %}"></script>
 
         <button type="button" class="category-product-name1">
             <span>Добавить в корзину</span>
@@ -225,25 +168,6 @@
     <button class="slider-next2"> 🢒</button>
 </div>
 
-<script>
-    let offset2 = 0;
-    const sliderLine2 = document.querySelector('.slide-line2');
-
-    document.querySelector('.slider-next2').addEventListener('click', function(){
-        offset2 = offset2 + 362;
-        if (offset2 > 1810) {
-            offset2 = 0;
-        }
-        sliderLine2.style.left = -offset2 + 'px';
-    });
-
-    document.querySelector('.slider-prev2').addEventListener('click', function () {
-        offset2 = offset2 - 362;
-        if (offset2 < 0) {
-            offset2 = 1810;
-        }
-        sliderLine2.style.left = -offset2 + 'px';
-    });
-</script>
+<script type="text/javascript" src='{% static "shop/js/slider_offered_product.js" %}'></script>
 
 {% endblock %}

@@ -49,19 +49,7 @@
                         <button class="select-list-value">УКР</button>
                     </ul>
                 </div>
-                <script>
-                        $('.switcher-language button').on('click', function () {
-                            $('.select-list-transition-language>.select-list').addClass('active');
-
-                        });
-                        $('.select-list button').on('click', function () {
-                            $('.select-list').removeClass('active');
-                
-                        }
-                        );
-
-
-                </script>
+                <script type="text/javascript" src='{% static "shop/js/language_choice.js" %}'></script>
             </div>
 
             <div class="switcher-currency">
@@ -79,19 +67,7 @@
                         <button class="select-list-value">GEL</button>
                     </ul>
                 </div>
-                <script>
-                        $('.switcher-currency button').on('click', function () {
-                            $('.select-list-transition-currency>.select-list').addClass('active');
-
-                        });
-                        $('.select-list button').on('click', function () {
-                            $('.select-list').removeClass('active');
-                
-                        }
-                        );
-
-
-                    </script>
+                <script type="text/javascript" src='{% static "shop/js/currency_choice.js" %}'></script>
                 </div>
             </div>
             <div class="header-second">
@@ -160,16 +136,7 @@
                     </polygon>
                 </svg>
             </div>
-            <script>
-                    $('.header-first button').on('click', function () {
-                        $('.modal__signin-tile.modal-tile').addClass('active');
-
-                    });
-                    $('.cross').on('click', function () {
-                        $('.modal__signin-tile.modal-tile').removeClass('active');
-
-                    });
-            </script>
+            <script type="text/javascript" src='{% static "shop/js/entry_window.js" %}'></script>
         </div>
         <div class="header-buttons">
             <button class="button-basket">
@@ -202,16 +169,7 @@
                     </div>
                 </div>
             </div>
-            <script>
-                    $('.header-buttons button').on('click', function () {
-                        $('.popups-inner-basket').addClass('active');
-
-                    });
-                    $('.close-popup-basket').on('click', function () {
-                        $('.popups-inner-basket').removeClass('active');
-
-                    });
-            </script>
+            <script type="text/javascript" src='{% static "shop/js/cart.js" %}'></script>
         </div>
     </div>
 </nav>
