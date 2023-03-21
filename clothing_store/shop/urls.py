@@ -5,7 +5,7 @@ from shop.views import *
 urlpatterns = [
     path('', HomePage.as_view(), name='home'),
     path('registration/', RegistrationPage.as_view(), name='registration'),
-    path('login/', LoginPage.as_view(), name='login'),
+    #path('login/', LoginPage.as_view(), name='login'),
     path('logout/', logout_user, name='logout'),
     path('account/', AccountPage.as_view(), name='account'),
     path('category/<slug:category_slug>/', CategoryPage.as_view(), name='category'),

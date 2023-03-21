@@ -52,12 +52,13 @@ def logout_user(request):
     return redirect('home')
 
 
-class CategoryPage(ListView):
+class CategoryPage(ListView, LoginView):
     """Класс представления главной страницы"""
 
     model = Item
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
+    form_class = LoginUserForm
 
     def get_queryset(self):
         items = Item.objects.filter(category__slug=self.kwargs['category_slug'], is_in_stock=True)
@@ -67,7 +68,12 @@ class CategoryPage(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
         context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
+        context['form'] = LoginUserForm
         return context
+
+
+    def get_success_url(self):
+        return reverse_lazy('home')
 
 
 class ItemPage(DetailView):
@@ -101,7 +107,7 @@ class RegistrationPage(CreateView):
         login(self.request, user)
         return redirect('home')
 
-
+'''
 class LoginPage(LoginView):
     """Класс представления страницы авторизации"""
 
@@ -116,7 +122,7 @@ class LoginPage(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('home')
-
+'''
 
 class AccountPage(DetailView):
     model = User
