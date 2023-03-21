@@ -107,18 +107,19 @@
                 </div>
             </div>
             <div class="modal-tile modal__signin-tile">
-                <div class="modal__signin-arrow" style="right: calc((171.219px - 5vw) +20px);"></div>
-                <form class="modal__signin-classic">
+                <div class="modal__signin-arrow" style="right: calc((171.219px - 5vw) + 20px);"></div>
+                <form method="post" class="modal__signin-classic">
+                    {% csrf_token %}
                     <div class="modal__signin-classic-field">
                         <label for="signin-email" class="modal__signin-classic-field-label">
-                            Эл.Почта
+                            {{ form.email.label }}
                         </label>
                         <input id="signin-email" class="modal__signin-classic-field-input" maxlength="255" type="email"
                             name="email" autocomplete="email" required="" value="">
                     </div>
                     <div class="modal__signin-classic-field">
                         <label for="signin-password" class="modal__signin-classic-field-label">
-                            Пароль
+                            {{ form.password.label }}
                         </label>
                         <input id="signin-password" class="modal__signin-classic-field-input" maxlength="255"
                             type="password" name="password" autocomplete="current-password" required="" value="">

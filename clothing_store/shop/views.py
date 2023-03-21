@@ -28,17 +28,19 @@ def split_list_into_chunks(items) -> [list]:
     return [items[i:i + chunk_size] for i in range(0, len(items), chunk_size)]
 
 
-class HomePage(ListView):
+class HomePage(LoginView, ListView):
     """Класс представления главной страницы"""
 
     model = Item
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
+    form_class = LoginUserForm
 
     def get_queryset(self):
         items = Item.objects.all()
         return split_list_into_chunks((list(items)))
 
+    object_list = split_list_into_chunks((list(Item.objects.all())))
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'WearFit'
@@ -59,6 +61,7 @@ class CategoryPage(ListView, LoginView):
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
     form_class = LoginUserForm
+    object_list = split_list_into_chunks((list(Item.objects.all())))
 
     def get_queryset(self):
         items = Item.objects.filter(category__slug=self.kwargs['category_slug'], is_in_stock=True)

@@ -23,21 +23,19 @@ class RegisterUserForm(UserCreationForm):
 class LoginUserForm(AuthenticationForm):
     """Форма авторизации пользователя"""
 
-    password = forms.CharField(label='ПАРОЛЬ', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
-    captcha = CaptchaField(label='')
+    # password = forms.CharField(label='ПАРОЛЬ', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
-'''
-# попытка сделать форму 
-    email = forms.EmailField(label='Эл.Почта', widget=forms.EmailInput(attrs={
+    email = forms.EmailField(label='ЭЛ.ПОЧТА ИЗ ФОРМЫ', widget=forms.EmailInput(attrs={
         'class': 'modal__signin-classic-field-input',
         'id': 'signin-email',
         'maxlength': '255',
+        'type': 'email',
         'autocomplete': 'email',
         'required': True,
     }))
 
     password = forms.CharField(
-        label='Пароль',
+        label='ПАРОЛЬ ИЗ формы',
         widget=forms.PasswordInput(attrs={
             'class': 'modal__signin-classic-field-input',
             'id': 'signin-password',
@@ -46,6 +44,6 @@ class LoginUserForm(AuthenticationForm):
             'required': True,
         }),
     )
-'''
+
     class Meta:
         model = User
