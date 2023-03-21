@@ -26,5 +26,26 @@ class LoginUserForm(AuthenticationForm):
     password = forms.CharField(label='ПАРОЛЬ', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
     captcha = CaptchaField(label='')
 
+'''
+# попытка сделать форму 
+    email = forms.EmailField(label='Эл.Почта', widget=forms.EmailInput(attrs={
+        'class': 'modal__signin-classic-field-input',
+        'id': 'signin-email',
+        'maxlength': '255',
+        'autocomplete': 'email',
+        'required': True,
+    }))
+
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={
+            'class': 'modal__signin-classic-field-input',
+            'id': 'signin-password',
+            'maxlength': '255',
+            'autocomplete': 'current-password',
+            'required': True,
+        }),
+    )
+'''
     class Meta:
         model = User
