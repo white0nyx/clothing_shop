@@ -4,6 +4,7 @@ from shop.views import *
 
 urlpatterns = [
     path('', HomePage.as_view(), name='home'),
+    path('accounts/profile/', HomePage.as_view(), name='profile'), # чтобы не было 404 ошибки при авторизации
     path('registration/', RegistrationPage.as_view(), name='registration'),
     #path('login/', LoginPage.as_view(), name='login'),
     path('logout/', logout_user, name='logout'),
