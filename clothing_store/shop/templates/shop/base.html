@@ -72,35 +72,37 @@
                 </div>
             </div>
             <div class="header-second">
-                <div class="header-first">
-                    {% if request.user.is_authenticated %}
-                    <li class="p-2 link-secondary"><a href="{% url 'account' %}">{{user.username}}</a> | <a
-                            href="{% url 'logout' %}">Выйти</a></li>
-                    {% else %}
-                    <button class="buttonEnter">
-                        <p>Вход</p>
-                    </button>
-                    {% endif %}
-                </div>
+            <div class="header-first">
+                {% if request.user.is_authenticated %}
+                <li class="p-2 link-secondary"><a href="{% url 'account' %}">{{user.username}}</a> | <a
+                        href="{% url 'logout' %}">Выйти</a></li>
+                {% else %}
+                <button class="buttonEnter">
+                    <p>Вход</p>
+                </button>
+                {% endif %}
             </div>
-            <div class="modal-tile modal__signin-tile">
-                <div class="modal__signin-arrow" style="right: calc((171.219px - 5vw) + 20px);"></div>
-                <form method="post" class="modal__signin-classic">
-                    {% csrf_token %}
-                    <div class="modal__signin-classic-field">
-                        <label for="signin-email" class="modal__signin-classic-field-label">
-                            {{ form.email.label }}
-                        </label>
-                        <input id="signin-email" class="modal__signin-classic-field-input" maxlength="255" type="email"
-                            name="email" autocomplete="email" required="" value="">
-                    </div>
-                    <div class="modal__signin-classic-field">
-                        <label for="signin-password" class="modal__signin-classic-field-label">
-                            {{ form.password.label }}
-                        </label>
-                        <input id="signin-password" class="modal__signin-classic-field-input" maxlength="255"
-                            type="password" name="password" autocomplete="current-password" required="" value="">
-                    </div>
+        </div>
+        <div class="modal-tile modal__signin-tile">
+            <div class="modal__signin-arrow" style="right: calc((171.219px - 5vw) + 20px);"></div>
+            <form method="post" class="modal__signin-classic">
+                {% csrf_token %}
+                <div class="form-error">{{ form.non_field_errors }}</div>
+                <div class="modal__signin-classic-field">
+                    <label for="{{ form.username.id_for_label }}" class="modal__signin-classic-field-label">
+                        {{ form.username.label }}
+                    </label>
+                    {{ form.username }}
+                    <div class="form-error">{{ form.username.errors }}</div>
+                </div>
+                <div class="modal__signin-classic-field">
+                    <label for="{{ form.password.id_for_label }}" class="modal__signin-classic-field-label">
+                        {{ form.password.label }}
+                    </label>
+                    {{ form.password }}
+                </div>
+                <div class="form-error">{{ form.password.errors }}</div>
+
 
                     <!-- Попытка формы -->
                     <!--<form class="modal__signin-classic" method="post">
