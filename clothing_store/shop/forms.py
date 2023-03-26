@@ -25,25 +25,22 @@ class LoginUserForm(AuthenticationForm):
 
     # password = forms.CharField(label='ПАРОЛЬ', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
-    email = forms.EmailField(label='ЭЛ.ПОЧТА ИЗ ФОРМЫ', widget=forms.EmailInput(attrs={
+    username = forms.EmailField(label='ЭЛ.ПОЧТА', widget=forms.EmailInput(attrs={
+            'class': 'modal__signin-classic-field-input',
+            'id': 'signin-email',
+            'maxlength': '255',
+            'autocomplete': 'email',
+            'required': True,
+        }))
+
+    password = forms.CharField(label='ПАРОЛЬ', widget=forms.PasswordInput(attrs={
         'class': 'modal__signin-classic-field-input',
-        'id': 'signin-email',
+        'id': 'signin-password',
         'maxlength': '255',
-        'type': 'email',
-        'autocomplete': 'email',
+        'autocomplete': 'current-password',
         'required': True,
     }))
 
-    password = forms.CharField(
-        label='ПАРОЛЬ ИЗ формы',
-        widget=forms.PasswordInput(attrs={
-            'class': 'modal__signin-classic-field-input',
-            'id': 'signin-password',
-            'maxlength': '255',
-            'autocomplete': 'current-password',
-            'required': True,
-        }),
-    )
 
     class Meta:
         model = User

@@ -255,3 +255,9 @@ ul{
     color: #ffffff;
     padding-left: 10px;
 }
+
+.form-error ul {
+    list-style: none;
+    padding: 0;
+    color: #CC0000;
+}
