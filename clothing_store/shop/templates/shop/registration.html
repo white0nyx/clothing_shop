@@ -12,16 +12,35 @@
                             <span class="modal__signup-title">
                                 Регистрация
                             </span>
-                            <form class="modal__signup-classic">
+                            <form class="modal__signup-classic" method="post">
+                                {% csrf_token %}
                                 <div class="modal__signup-classic-field">
-                                    <label for="signup-email" class="modal__signup-classic-field-label">Эл.почта</label>
-                                    <input id="signup-email" class="modal__signup-classic-field-input" maxlength="255" type="email" name="email" autocomplete="email" required="" value="">
+                                    <label for="{{ form.email.id_for_label }}" class="modal__signup-classic-field-label">
+                                        {{ form.email.label }}
+                                    </label>
+                                    {{form.email}}
+                                    <div class="form-error">{{ form.email.errors }}</div>
                                 </div>
                                 <div class="modal__signup-classic-field">
-                                    <label for="signup-password" class="modal__signup-classic-field-label">Пароль</label><input id="signup-password" class="modal__signup-classic-field-input" maxlength="255" type="password" name="password" autocomplete="new-password" required="" value="">
+                                    <label for="{{ form.username.id_for_label }}" class="modal__signup-classic-field-label">
+                                        {{ form.username.label }}
+                                    </label>
+                                    {{form.username}}
+                                    <div class="form-error">{{ form.username.errors }}</div>
                                 </div>
                                 <div class="modal__signup-classic-field">
-                                    <label for="signup-confirmation" class="modal__signup-classic-field-label">Подтвердите пароль</label><input id="signup-confirmation" class="modal__signup-classic-field-input" maxlength="255" type="password" name="password" autocomplete="new-password" required="" value="">
+                                    <label for="{{ form.password.id_for_label }}" class="modal__signup-classic-field-label">
+                                        {{ form.password1.label }}
+                                    </label>
+                                    {{ form.password1 }}
+                                    <div class="form-error">{{ form.password1.errors }}</div>
+                                </div>
+                                <div class="modal__signup-classic-field">
+                                    <label for="{{ form.password.id_for_label }}" class="modal__signup-classic-field-label">
+                                        {{ form.password2.label }}
+                                    </label>
+                                    {{ form.password2 }}
+                                    <div class="form-error">{{ form.password2.errors }}</div>
                                 </div>
 
                                 <button class="modal__signup-classic-sign-up hoverable disabled" type="submit">
