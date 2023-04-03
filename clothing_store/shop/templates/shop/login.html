@@ -3,7 +3,7 @@
 {% block content %}
 <title>{{ title }}</title>
 
-<form method="post">
+<form method="post" action="{% url home %}">
     {% csrf_token %}
 
     <div class="row-form-errors">{{ form.non_field_errors }}</div>
