@@ -1,25 +1,105 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<h1>Мой аккаунт</h1>
-<h3>Персональные данные</h3>
-<p>ИМЯ: {{user.first_name}}
-<p>ФАМИЛИЯ: {{user.last_name}}
-<p>ОТЧЕСТВО: {{user.father_name}}
-<p>ЭЛ. ПОЧТА: {{user.email}}
-<p>ТЕЛЕФОН: {{user.phone}}
-<br>
-<br>
-<br>
-<h3>Адрес доставки</h3>
-<p>СТРАНА: {{user.country}}
-<p>КРАЙ/ОБЛАСТЬ/РЕГИОН: {{user.region}}
-<p>ГОРОД: {{user.city}}
-<p>УЛИЦА, ДОМ, КВАРТИРА: {{user.address}}
-<p>ПОЧТОВЫЙ ИНДЕКС: {{user.post_index}}
-<br>
-<br>
-<br>
-<h3>Пароль</h3>
-<p> Тут можно будет изменить пароль
+<selection class = "profile_page app-page">
+    <h1 class="account-page-title">Мой аккаунт</h1>
+
+    <div class="account-page-content">
+        <div class="account-page-side">
+            <ul class="account-page-menu">
+                <li class="account-page-menu-item hoverable" active="true">
+                    <a href="#">Личные данные</a></li>
+                <li class="account-page-menu-item hoverable" active="false">
+                    <a href="#">Мои заказы</a></li>
+            </ul>
+            <button type="button" class="account-page-logout hoverable">
+            <span>Выйти из аккаунта</span>
+            </button>
+        </div>
+
+        <div class="account-page-page">
+            <div class="account__details">
+                <form class="account__details-personal-data" changing="false">
+                    <header class="account__details-personal-data-header">
+                        <span class="account__details-personal-data-title">Персональные данные</span>
+                        <span class="account__details-personal-data-change hoverable">Изменить</span>
+                    </header>
+                    <div class="account__details-personal-data-list">
+                        <div class="account__details-personal-data-list-content">
+                            <div class="account__details-personal-data-item">
+                                <p class="account__details-personal-data-item-title">Имя</p>
+                                <input name="first_name" class="account__details-personal-data-item-input" maxlength="30" type="text" value={{user.first_name}}>
+                            </div>
+                            <div class="account__details-personal-data-item">
+                                <p class="account__details-personal-data-item-title">Фамилия</p>
+                                <input name="last_name" class="account__details-personal-data-item-input" maxlength="30" type="text" value={{user.last_name}}>
+                            </div>
+                            <div class="account__details-personal-data-item">
+                                <p class="account__details-personal-data-item-title">Отчество</p>
+                                <input name="middle_name" class="account__details-personal-data-item-input" maxlength="30" type="text" value={{user.father_name}}>
+                            </div>
+                            <div class="account__details-personal-data-item account__details-personal-data-phone-number">
+                                <p class="account__details-personal-data-item-title">Телефон</p>
+                                <input class="account__details-personal-data-item-input" type="text" value={{user.phone}}>
+                            </div>
+                            <div class="account__details-personal-data-item">
+                                <p class="account__details-personal-data-item-title">Эл.Почта</p>
+                                <input name="email" class="account__details-personal-data-item-input unchangable" type="text" value={{user.email}}>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </form>
+                <form class="account__details-delivery" changing="false">
+                    <header class="account__details-delivery-header">
+                        <span class="account__details-delivery-title">Адрес доставки</span>
+                        <span class="account__details-delivery-change hoverable">Изменить</span>
+                    </header>
+                    <div class="account__details-delivery-list">
+                        <div class="account__details-delivery-list-content">
+                            <div class="account__details-delivery-item">
+                                <p class="account__details-delivery-item-title">Страна</p>
+                                <input name="country" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.country}}>
+                            </div>
+                            <div class="account__details-delivery-item">
+                                <p class="account__details-delivery-item-title">Город</p>
+                                <input name="city" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.city}}>
+                            </div>
+                            <div class="account__details-delivery-item">
+                                <p class="account__details-delivery-item-title">Край/Область/Регион</p>
+                                <input name="region" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.region}}>
+                            </div><div class="account__details-delivery-item">
+                            <p class="account__details-delivery-item-title">Улица, Дом, Квартира</p>
+                            <input name="address" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.address}}>
+                        </div>
+                            <div class="account__details-delivery-item">
+                                <p class="account__details-delivery-item-title">Почтовый индекс</p>
+                                <input name="zip_code" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.post_index}}>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </form>
+                <form class="account__details-reset-password" changing="false">
+                    <header class="account__details-reset-password-header">
+                        <span class="account__details-reset-password-title">Пароль</span>
+                        <span class="account__details-reset-password-change hoverable">Изменить</span>
+                    </header><div class="account__details-reset-password-list">
+                    <div class="account__details-reset-password-list-content">
+                        <div class="account__details-reset-password-item">
+                            <p class="account__details-reset-password-item-title">Новый пароль</p>
+                            <input name="password" class="account__details-personal-data-item-input" maxlength="255" type="password" value="">
+                        </div>
+                        <div class="account__details-reset-password-item">
+                            <p class="account__details-reset-password-item-title">Повторите пароль</p>
+                            <input name="password_confirmation" class="account__details-personal-data-item-input" maxlength="255" type="password" value="">
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</selection>
 {% endblock %}

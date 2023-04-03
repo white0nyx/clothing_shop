@@ -1764,3 +1764,283 @@ button {
 .modal.modal__signup.enter-done{
     display: none;
 }
+
+.account-page-title {
+    font-weight: 400;
+    margin-top: 40px;
+    font-size: 2rem;
+    width:300px;
+    height:50px
+    background-color: #000;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    text-align: center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.account-page-side {
+    width:266px;
+    height:832px
+    border: 0;
+    font-family: Futura,sans-serif;
+    margin: 0;
+    padding: 0;
+    vertical-align: initial;
+}
+
+.account-page-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.account-page-menu {
+    background: #000;
+    border-radius: 15px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 164px;
+    justify-content: center;
+    padding: 25px;
+    width: 100%;
+    list-style: none;
+}
+
+.hoverable {
+    cursor: pointer;
+    transition: opacity .2s;
+}
+
+.account-page-logout, .account-page-menu-item>a {
+    align-items: center;
+    display: flex;
+    color: inherit;
+    text-decoration: none;
+}
+
+.account-page-logout {
+    background: #000;
+    border-radius: 1000px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    height: 50px;
+    justify-content: center;
+    letter-spacing: 2px;
+    margin-top: 35px;
+    position: relative;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.account-page-logout:hover {
+    opacity: 0.6;
+}
+
+.account-page-logout>span {
+    line-height: 1em;
+}
+
+.account-page-page {
+    flex: 1 1;
+    margin-left: 70px;
+}
+
+.account__details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.account__details-personal-data-header{
+    display: flex;
+    margin-bottom: 50px;
+    width: 100%;
+    align-items: baseline;
+}
+
+.account__details-personal-data-title{
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.account__details-personal-data-change{
+    border-bottom: 1px dashed #818d92;
+    color: #818d92;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 100%;
+    margin-left: 10px;
+}
+
+.account__details-personal-data-list {
+    width: 120%;
+}
+
+.account__details-personal-data-list-content{
+    justify-content: space-between;
+}
+
+.account__details-personal-data-list-content{
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px -5px;
+}
+
+.account__details-personal-data-item{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    width: 35%;
+}
+
+.account__details-personal-data-item-title{
+    color: #818d92;
+    font-size: 15px;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+.account__details-personal-data:not([changing=true]) .account__details-personal-data-item-input{
+    border-bottom: 1px solid #e8ecef;
+    pointer-events: none;
+}
+
+.account__details-personal-data-item-input{
+    height: 36px;
+    min-width: 200px;
+    width: 100%;
+}
+
+.account__details-delivery {
+    margin-top: 60px;
+    width: 100%;
+    order: 4;
+}
+
+.account__details-delivery-header{
+    display: flex;
+    margin-bottom: 30px;
+    width: 100%;
+    align-items: baseline;
+}
+
+.account__details-delivery-title{
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.account__details-delivery-change{
+    border-bottom: 1px dashed #818d92;
+    color: #818d92;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 100%;
+    margin-left: 10px;
+}
+
+.account__details-delivery-list-content{
+    justify-content: space-between;
+}
+
+.account__details-delivery-list-content{
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px -5px;
+}
+
+.account__details-delivery-item{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    width: 35%;
+}
+
+.account__details-delivery-item-title{
+    color: #818d92;
+    font-size: 15px;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+.account__details-delivery-item-input{
+    height: 36px;
+    min-width: 200px;
+    width: 100%;
+}
+
+.account__details-delivery:not([changing=true]) .account__details-delivery-item-input{
+    border-bottom: 1px solid #e8ecef;
+    pointer-events: none;
+}
+
+.account__details-reset-password {
+    margin-top: 60px;
+    width: 100%;
+    order: 5;
+}
+
+.account__details-delivery-header, .account__details-personal-data-header, .account__details-reset-password-header {
+    display: flex;
+    margin-bottom: 30px;
+    width: 100%;
+    align-items: baseline;
+}
+
+.account__details-reset-password-title {
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.account__details-reset-password-change {
+    margin-left: 10px;
+    border-bottom: 1px dashed #818d92;
+    color: #818d92;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 100%;
+}
+
+.account__details-reset-password-list-content {
+    justify-content: flex-start!important;
+}
+
+.account__details-reset-password-list-content {
+    align-items: flex-end;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px -5px;
+}
+
+.account__details-reset-password-item {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    width: 35%;
+}
+
+.account__details-reset-password-item-title {
+    color: #818d92;
+    font-size: 15px;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+.account__details-reset-password:not([changing=true]) .account__details-personal-data-item-input{
+    border-bottom: 1px solid #e8ecef;
+    pointer-events: none;
+}
+
+.account__details-personal-data-item-input{
+    height: 36px;
+    min-width: 200px;
+    width: 100%;
+}
