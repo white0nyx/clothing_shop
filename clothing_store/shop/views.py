@@ -41,6 +41,7 @@ class HomePage(LoginView, ListView):
         return split_list_into_chunks((list(items)))
 
     object_list = split_list_into_chunks((list(Item.objects.all())))
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'WearFit'
@@ -73,7 +74,6 @@ class CategoryPage(ListView, LoginView):
         context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
         context['form'] = LoginUserForm
         return context
-
 
     def get_success_url(self):
         return reverse_lazy('home')
@@ -110,6 +110,7 @@ class RegistrationPage(CreateView):
         login(self.request, user)
         return redirect('home')
 
+
 '''
 class LoginPage(LoginView):
     """Класс представления страницы авторизации"""
@@ -127,6 +128,7 @@ class LoginPage(LoginView):
         return reverse_lazy('home')
 '''
 
+
 class AccountPage(DetailView):
     model = User
     template_name = 'shop/account_page.html'
@@ -139,3 +141,17 @@ class AccountPage(DetailView):
     def get(self, request: WSGIRequest, *args, **kwargs):
         username = kwargs.get('username')
         return render(request, 'shop/account_page.html', {'username': username})
+
+
+def cart(request):
+    """Функция представления страницы корзины"""
+
+    return render(request, 'shop/home.html', context={'title': 'Корзина'})
+
+
+def add_to_cart(request, item_id):
+    # Получаем объект товара по идентификатору
+    item = Item.objects.get(id=item_id)
+    size = request.POST['size']
+    quantity = request.POST['quantity']
+    return redirect('cart')

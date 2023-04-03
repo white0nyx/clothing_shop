@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'captcha',
-    'shop.apps.ShopConfig'
+    'shop.apps.ShopConfig',
+    'cart.apps.CartConfig'
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'home'
+
+CART_SESSION_ID = 'cart'
