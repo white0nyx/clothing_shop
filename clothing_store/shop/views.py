@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect, _get_queryset
+from django.shortcuts import render, redirect, _get_queryset, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
 
@@ -146,12 +146,30 @@ class AccountPage(DetailView):
 def cart(request):
     """Функция представления страницы корзины"""
 
-    return render(request, 'shop/home.html', context={'title': 'Корзина'})
+    return render(request, 'shop/cart_test_page_2.html', context={'title': 'Корзина'})
 
 
-def add_to_cart(request, item_id):
+def cart_add(request, item_id):
     # Получаем объект товара по идентификатору
-    item = Item.objects.get(id=item_id)
+    item = get_object_or_404(Item, id=item_id)
     size = request.POST['size']
     quantity = request.POST['quantity']
+
+    cart = Cart(request)
+
+    if size in ['S', 'M', 'L', 'XL', '2XL'] and 1 <= int(quantity) <= 20:
+        cart.add(item=item, quantity=quantity, size=size, update_quantity=True)  # update_quantity - временно True
+    print(cart.get_total_price())
     return redirect('cart')
+
+
+def cart_remove(request, item_id):
+    cart = Cart(request)
+    item = get_object_or_404(Item, id=item_id)
+    cart.remove(item)
+    return redirect('cart')
+
+
+def cart_detail(request):
+    cart = Cart(request)
+    return render(request, 'shop/cart_test_page.html', {'cart': cart})

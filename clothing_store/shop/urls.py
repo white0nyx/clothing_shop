@@ -9,6 +9,6 @@ urlpatterns = [
     path('account/', AccountPage.as_view(), name='account'),
     path('category/<slug:category_slug>/', CategoryPage.as_view(), name='category'),
     path('item/<slug:item_slug>/', ItemPage.as_view(), name='item'),
-    path('cart', cart, name='cart'),
-    path('add_to_cart/<int:item_id>/', add_to_cart, name='add_to_cart'),
+    path('cart', cart_detail, name='cart'),
+    path('cart_add/<int:item_id>/', cart_add, name='cart_add'),
 ]

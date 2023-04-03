@@ -1,7 +1,14 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<title>{{ title }}</title>
+{% for item in cart %}
+{{ item }}
+<h6>Товар: {{ item.product }}</h6>
+<h6>Размер: {{ item.size }}</h6>
+<h6>Цена: {{ item.price }}</h6>
+<h6>Количество: {{ item.quantity }}</h6>
+<h6>Общая стоимость: {{ item.total_price }}</h6>
+{% endfor %}
 
 
 {% endblock %}

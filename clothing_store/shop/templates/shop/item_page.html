@@ -59,7 +59,7 @@
 
         <script type="text/javascript" src="{% static 'shop/js/quantity_count_product.js' %}"></script>
 
-        <form action="{% url 'add_to_cart' item.id %}" method="post">
+        <form action="{% url 'cart_add' item.id %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="quantity" id="quantity-input" value="1">
             <input type="hidden" name="size" id="size-input">
