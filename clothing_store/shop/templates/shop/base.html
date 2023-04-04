@@ -74,7 +74,7 @@
             <div class="header-second">
             <div class="header-first">
                 {% if request.user.is_authenticated %}
-                <li class="p-2 link-secondary"><a href="{% url 'account' %}">{{user.username}}</a> | <a
+                <li class="p-2 link-secondary"><a class="account-link-p" href="{% url 'account' %}">{{user.username}}</a> | <a class="account-link-p"
                         href="{% url 'logout' %}">Выйти</a></li>
                 {% else %}
                 <button class="buttonEnter">

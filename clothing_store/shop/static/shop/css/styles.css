@@ -132,6 +132,21 @@ body {
     transition: all .1s ease-out;
 }
 
+.account-link-p{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #000;
+    padding-top: 5px;
+    transition: all .1s ease-out;
+}
+
+.account-link-p:hover{
+    color: #fff;
+}
+
 .button-basket {
     margin-left: 15px;
     margin-right: 15px;
@@ -1851,6 +1866,7 @@ button {
 }
 
 .account-page-page {
+    width: 850px;
     flex: 1 1;
     margin-left: 70px;
 }
@@ -1874,6 +1890,7 @@ button {
 }
 
 .account__details-personal-data-change{
+    border:none;
     border-bottom: 1px dashed #818d92;
     color: #818d92;
     cursor: pointer;
@@ -1942,6 +1959,7 @@ button {
 }
 
 .account__details-delivery-change{
+    border:none;
     border-bottom: 1px dashed #818d92;
     color: #818d92;
     cursor: pointer;
@@ -2007,6 +2025,7 @@ button {
 
 .account__details-reset-password-change {
     margin-left: 10px;
+    border:none;
     border-bottom: 1px dashed #818d92;
     color: #818d92;
     cursor: pointer;
