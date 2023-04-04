@@ -1295,6 +1295,7 @@ a {
 }
 
 .select-list {
+    display: none;
     max-height: none!important;
     background: #fff;
     border-radius: 20px;
@@ -1327,11 +1328,15 @@ a {
 }
 
 .select-list-transition-currency>.select-list.active {
+    display: flex;
+    flex-direction: column;
     opacity: 1;
 }
 
 .select-list-transition-language>.select-list.active {
     opacity: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .price-category-product-price1 {
