@@ -79,10 +79,11 @@ class CategoryPage(ListView, LoginView):
         return reverse_lazy('home')
 
 
-class ItemPage(DetailView):
+class ItemPage(LoginView, DetailView):
     model = Item
     template_name = 'shop/item_page.html'
     slug_url_kwarg = 'item_slug'
+    form_class = LoginUserForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
