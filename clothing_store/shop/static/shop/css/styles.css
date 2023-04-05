@@ -2125,3 +2125,14 @@ button {
 .account__details-reset-password-save-changes:hover {
     opacity: 0.6;
 }
+
+.account{
+    background-color:#000;
+    color: #fff;
+    height: 21px;
+    width: 21px;
+}
+
+.header-first{
+    fill: #fff;
+}
