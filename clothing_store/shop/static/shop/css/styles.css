@@ -678,12 +678,6 @@ ul {
     font-weight: 400;
 }
 
-.product-info-sizes-size:focus {
-    background: #000;
-    color: #fff;
-    font-weight: 400;
-}
-
 .counter {
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
@@ -1207,12 +1201,6 @@ a {
     width:100px;
     scale:1.5;
     justify-content: center;
-}
-
-.product-info-sizes-size:focus {
-    background: #000;
-    color: #fff;
-    font-weight: 400;
 }
 
 .product-info-sizes-size:focus {
@@ -1815,6 +1803,8 @@ button {
     flex-wrap: wrap;
     margin-top: 40px;
     margin-left: 40px;
+    margin-right: 400px;
+    margin-bottom: 40px;
 }
 
 .account-page-menu {
@@ -1928,12 +1918,55 @@ button {
     text-transform: uppercase;
 }
 
-.account__details-personal-data:not([changing=true]) .account__details-personal-data-item-input{
+.account__details-personal-data-item-input{
     border-bottom: 1px solid #e8ecef;
     pointer-events: none;
 }
 
+.account__details-personal-data-item-input.active{
+    background: #f4f6f8;
+    border-radius: 1000px;
+    padding: 0 15px;
+    pointer-events: auto;
+}
+
 .account__details-personal-data-item-input{
+    height: 36px;
+    min-width: 200px;
+    width: 100%;
+}
+
+.account__details-personal-data-item-input1{
+    border-bottom: 1px solid #e8ecef;
+    pointer-events: none;
+}
+
+.account__details-personal-data-item-input1.active{
+    background: #f4f6f8;
+    border-radius: 1000px;
+    padding: 0 15px;
+    pointer-events: auto;
+}
+
+.account__details-personal-data-item-input1{
+    height: 36px;
+    min-width: 200px;
+    width: 100%;
+}
+
+.account__details-delivery-item-input{
+    border-bottom: 1px solid #e8ecef;
+    pointer-events: none;
+}
+
+.account__details-delivery-item-input.active{
+    background: #f4f6f8;
+    border-radius: 1000px;
+    padding: 0 15px;
+    pointer-events: auto;
+}
+
+.account__details-delivery-item-input{
     height: 36px;
     min-width: 200px;
     width: 100%;
@@ -1993,17 +2026,6 @@ button {
     text-transform: uppercase;
 }
 
-.account__details-delivery-item-input{
-    height: 36px;
-    min-width: 200px;
-    width: 100%;
-}
-
-.account__details-delivery:not([changing=true]) .account__details-delivery-item-input{
-    border-bottom: 1px solid #e8ecef;
-    pointer-events: none;
-}
-
 .account__details-reset-password {
     margin-top: 60px;
     width: 100%;
@@ -2056,15 +2078,4 @@ button {
     font-size: 15px;
     line-height: 25px;
     text-transform: uppercase;
-}
-
-.account__details-reset-password:not([changing=true]) .account__details-personal-data-item-input{
-    border-bottom: 1px solid #e8ecef;
-    pointer-events: none;
-}
-
-.account__details-personal-data-item-input{
-    height: 36px;
-    min-width: 200px;
-    width: 100%;
 }

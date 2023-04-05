@@ -22,7 +22,7 @@
                 <form class="account__details-personal-data" changing="false">
                     <header class="account__details-personal-data-header">
                         <span class="account__details-personal-data-title">Персональные данные</span>
-                        <button class="account__details-personal-data-change hoverable">Изменить</button>
+                        <button class="account__details-personal-data-change" type="button">Изменить</button>
                     </header>
                     <div class="account__details-personal-data-list">
                         <div class="account__details-personal-data-list-content">
@@ -47,15 +47,25 @@
                                 <input name="email" class="account__details-personal-data-item-input unchangable" type="text" value={{user.email}}>
                             </div>
                             <hr>
+                            <button class="account__details-personal-data-save-changes hoverable" type="submit"><span>Сохранить изменения</span></button>
                         </div>
                     </div>
                 </form>
 
+                <script>
+                    $('.account__details-personal-data-change' ).on('click', function () {
+                        if (!$('.account__details-personal-data-item-input').hasClass('active')) {
+                            $('.account__details-personal-data-item-input').addClass('active');
+                        } else {
+                            $('.account__details-personal-data-item-input').removeClass('active');
+                        }
+                    });
+                </script>
 
                 <form class="account__details-delivery" changing="false">
                     <header class="account__details-delivery-header">
                         <span class="account__details-delivery-title">Адрес доставки</span>
-                        <button class="account__details-delivery-change hoverable">Изменить</button>
+                        <button class="account__details-delivery-change hoverable" type="button">Изменить</button>
                     </header>
                     <div class="account__details-delivery-list">
                         <div class="account__details-delivery-list-content">
@@ -79,27 +89,51 @@
                                 <input name="zip_code" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.post_index}}>
                             </div>
                             <hr>
+                            <button class="account__details-delivery-save-changes hoverable" type="submit"><span>Сохранить изменения</span></button>
                         </div>
                     </div>
                 </form>
+
+                <script>
+                    $('.account__details-delivery-change' ).on('click', function () {
+                        if (!$('.account__details-delivery-item-input').hasClass('active')) {
+                            $('.account__details-delivery-item-input').addClass('active');
+                        } else {
+                            $('.account__details-delivery-item-input').removeClass('active');
+                        }
+                    });
+                </script>
+
                 <form class="account__details-reset-password" changing="false">
                     <header class="account__details-reset-password-header">
                         <span class="account__details-reset-password-title">Пароль</span>
-                        <button class="account__details-reset-password-change hoverable">Изменить</button>
+                        <button class="account__details-reset-password-change hoverable" type="button">Изменить</button>
                     </header><div class="account__details-reset-password-list">
                     <div class="account__details-reset-password-list-content">
                         <div class="account__details-reset-password-item">
                             <p class="account__details-reset-password-item-title">Новый пароль</p>
-                            <input name="password" class="account__details-personal-data-item-input" maxlength="255" type="password" value="">
+                            <input name="password" class="account__details-personal-data-item-input1" maxlength="255" type="password" value="">
                         </div>
                         <div class="account__details-reset-password-item">
                             <p class="account__details-reset-password-item-title">Повторите пароль</p>
-                            <input name="password_confirmation" class="account__details-personal-data-item-input" maxlength="255" type="password" value="">
+                            <input name="password_confirmation" class="account__details-personal-data-item-input1" maxlength="255" type="password" value="">
                         </div>
                         <hr>
+                        <button class="account__details-reset-password-save-changes hoverable" type="submit"><span>Сохранить изменения</span></button>
                     </div>
                 </div>
                 </form>
+
+                <script>
+                    $('.account__details-reset-password-change' ).on('click', function () {
+                        if (!$('.account__details-personal-data-item-input1').hasClass('active')) {
+                            $('.account__details-personal-data-item-input1').addClass('active');
+                        } else {
+                            $('.account__details-personal-data-item-input1').removeClass('active');
+                        }
+                    });
+                </script>
+
             </div>
         </div>
     </div>
