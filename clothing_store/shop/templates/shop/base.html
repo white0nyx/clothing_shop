@@ -83,9 +83,16 @@
                 {% endif %}
             </div>
         </div>
+
+        
         <div class="modal-tile modal__signin-tile">
+            
+            
+            
             <div class="modal__signin-arrow" style="right: calc((171.219px - 5vw) + 20px);"></div>
+            
             <form method="post" class="modal__signin-classic">
+                
                 {% csrf_token %}
                 <div class="form-error">{{ form.non_field_errors }}</div>
                 <div class="modal__signin-classic-field">
@@ -140,9 +147,12 @@
 
                         </polygon>
                     </svg>
-                </div>
-            <script type="text/javascript" src='{% static "shop/js/entry_window.js" %}'></script>
 
+                </div>
+                
+        
+                <script type="text/javascript" src='{% static "shop/js/entry_window.js" %}'></script>
+                
             </div>
             <div class="header-buttons">
                 <button class="button-basket">
