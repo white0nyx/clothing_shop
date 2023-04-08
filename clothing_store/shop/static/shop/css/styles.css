@@ -219,6 +219,7 @@ body {
     background: none;
     border-bottom: 2px solid #ebeef1;
 }
+
 .icon__animated {
     transition: all .3s;
 }
@@ -227,22 +228,24 @@ body {
     height: 32px;
     width: 17px;
 }
+
 .modal__cart-continue-shopping>span {
     margin-left: 24px;
 }
+
 .modal__cart.modal {
     padding: 0;
     display: none;
-    
 }
+
 .modal__cart.modal.active {
-    
     display: flex;
-    
 }
+
 .modal, .modal-transition .enter-active .modal-blackout {
     transition: opacity .5s cubic-bezier(.5,0,.5,1);
 }
+
 .modal {
     align-items: center;
     display: flex;
@@ -257,6 +260,7 @@ body {
     width: 100%;
     z-index: 10000;
 }
+
 .modal-inside {
     align-items: center;
     display: flex;
@@ -265,12 +269,14 @@ body {
     position: relative;
     width: 100%;
 }
+
 .modal-blackout, .modal-close-area {
     height: 100%;
     min-height: 100vh;
     min-width: 100vw;
     width: 100%;
 }
+
 .modal-blackout {
     background: rgba(0,0,0,.43);
     left: 0;
@@ -278,15 +284,12 @@ body {
     position: fixed;
     top: 0;
 }
+
 .modal-close-area {
     position: absolute;
 }
-.modal-blackout, .modal-close-area {
-    height: 100%;
-    min-height: 100vh;
-    min-width: 100vw;
-    width: 100%;
-}
+
+
 
 .modal__cart-tile.modal-tile {
     align-items: center;
@@ -836,7 +839,7 @@ ul {
 
 
 
-.modal-tile {
+.modal-tile  {
     background: #fff;
     border-radius: 20px;
     margin: 5vw 0; 
@@ -919,11 +922,6 @@ input {
 
 .modal__signin-classic-signIn.disabled {
     opacity: .7;
-}
-
-.hoverable {
-    cursor: pointer;
-    transition: opacity .2s;
 }
 
 .modal__signin-classic-signIn {
@@ -1441,26 +1439,13 @@ html {
     display: flex;
     justify-content: center;
     margin: auto;
-    width:820px;
-    height:584px;
+    
     position: relative;
 
 }
 
-.modal-blackout, .modal-close-area {
-    height: 100%;
-    min-height: 100vh;
-    min-width: 100vw;
-    width: 100%;
-}
 
-.modal-blackout {
-    background: rgba(0,0,0,.43);
-    left: 0;
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-}
+
 
 .modal-close-area {
     position: absolute;
@@ -1481,14 +1466,6 @@ html {
     width: 366px;
 }
 
-.modal-tile {
-    background: #fff;
-    border-radius: 20px;
-    position: relative;
-    border: 0;
-    font-family: Futura,sans-serif;
-    vertical-align: initial;
-}
 
 .modal__signup-title {
     align-items: center;
@@ -1820,11 +1797,6 @@ button {
     list-style: none;
 }
 
-.hoverable {
-    cursor: pointer;
-    transition: opacity .2s;
-}
-
 .account-page-logout, .account-page-menu-item>a {
     align-items: center;
     display: flex;
@@ -2078,4 +2050,67 @@ button {
     font-size: 15px;
     line-height: 25px;
     text-transform: uppercase;
+}
+
+.account__details-delivery-save-changes, .account__details-personal-data-save-changes, .account__details-reset-password-save-changes {
+    align-items: center;
+    background: #fff;
+    border:none;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+    height: 40px;
+    justify-content: center;
+    letter-spacing: 2px;
+    margin-left: 5px;
+    margin-top: 20px;
+    position: relative;
+    text-transform: uppercase;
+    width: 300px;
+}
+
+.account__details-delivery-save-changes.active, .account__details-personal-data-save-changes.active, .account__details-reset-password-save-changes.active {
+    align-items: center;
+    background: #000;
+    border-radius: 1000px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+    height: 40px;
+    justify-content: center;
+    letter-spacing: 2px;
+    margin-left: 5px;
+    margin-top: 20px;
+    position: relative;
+    text-transform: uppercase;
+    width: 300px;
+}
+
+.account__details-delivery-save-changes:hover {
+    opacity: 0.6;
+}
+
+.account__details-personal-data-save-changes:hover {
+    opacity: 0.6;
+}
+
+.account__details-reset-password-save-changes:hover {
+    opacity: 0.6;
+}
+
+.account,.cart{
+    background-color:#000;
+    color: #fff;
+    height: 21px;
+    width: 21px;
+}
+
+.header-first{
+    fill: #fff;
+}
+
+.header-buttons{
+    fill: #fff;
 }
