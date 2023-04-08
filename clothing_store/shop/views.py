@@ -35,6 +35,7 @@ class HomePage(LoginView, ListView):
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
     form_class = LoginUserForm
+    register_form_class = RegisterUserForm
 
     def get_queryset(self):
         items = Item.objects.all()
@@ -45,6 +46,7 @@ class HomePage(LoginView, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'WearFit'
+        context['form'] = LoginUserForm
         return context
 
 
@@ -73,6 +75,7 @@ class CategoryPage(ListView, LoginView):
         context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
         context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
         context['form'] = LoginUserForm
+        context['registration_form'] = RegisterUserForm
         return context
 
     def get_success_url(self):
@@ -91,17 +94,23 @@ class ItemPage(LoginView, DetailView):
         return context
 
 
-class RegistrationPage(CreateView):
+class RegistrationPage(CreateView, ListView):
     """Класс представления страницы регистрации нового пользователя"""
 
+    model = Item
+    context_object_name = 'items'
     form_class = RegisterUserForm
     template_name = 'shop/registration.html'
     success_url = reverse_lazy('home')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Регистрация'
+        context['title'] = 'WearFit'
         return context
+
+    def get_queryset(self):
+        items = Item.objects.all()
+        return split_list_into_chunks((list(items)))
 
     def form_valid(self, form):
         user = form.save()
