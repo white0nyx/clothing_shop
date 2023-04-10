@@ -12,8 +12,8 @@ from django.views.generic import CreateView, ListView, DetailView
 from shop.forms import RegisterUserForm, LoginUserForm
 from shop.models import *
 
-ITEMS_IN_LINE = 3
 
+ITEMS_IN_LINE = 3 # items
 
 def home_page(request):
     """Функция представления главной страницы"""
