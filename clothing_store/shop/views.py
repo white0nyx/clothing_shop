@@ -193,3 +193,9 @@ def cart_remove(request, item_id):
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'shop/cart_test_page.html', {'cart': cart})
+
+
+def place_on_order_page(request):
+    """Функция представления страницы оформления заказа"""
+
+    return render(request, 'shop/place_on_order.html')
