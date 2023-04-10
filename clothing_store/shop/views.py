@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect, _get_queryset, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
 
-from shop.forms import RegisterUserForm, LoginUserForm
+from shop.forms import RegisterUserForm, LoginUserForm, AccountUserForm
 from shop.models import *
 
 ITEMS_IN_LINE = 3
@@ -35,7 +35,6 @@ class HomePage(LoginView, ListView):
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
     form_class = LoginUserForm
-    register_form_class = RegisterUserForm
 
     def get_queryset(self):
         items = Item.objects.all()
@@ -49,6 +48,9 @@ class HomePage(LoginView, ListView):
         context['form'] = LoginUserForm
         return context
 
+    # def form_invalid(self, form):
+    #     print(form.errors)
+    #     return super().form_invalid(form)
 
 def logout_user(request):
     """Деавторизация пользователя"""
@@ -75,7 +77,6 @@ class CategoryPage(ListView, LoginView):
         context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
         context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
         context['form'] = LoginUserForm
-        context['registration_form'] = RegisterUserForm
         return context
 
     def get_success_url(self):
@@ -120,6 +121,16 @@ class RegistrationPage(CreateView, ListView):
         login(self.request, user)
         return redirect('home')
 
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        return super().post(request, *args, **kwargs)
+
+
+
 
 '''
 class LoginPage(LoginView):
@@ -137,7 +148,6 @@ class LoginPage(LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 '''
-
 
 class AccountPage(DetailView):
     model = User
