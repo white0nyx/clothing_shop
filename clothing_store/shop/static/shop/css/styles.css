@@ -1300,6 +1300,7 @@ a {
     top: calc(17% + 4px);
     transition: all .3s;
     z-index: 1000;
+    display: none;
 }
 
 .select-list-value {
@@ -1321,10 +1322,14 @@ a {
 }
 
 .select-list-transition-currency>.select-list.active {
+    display: flex;
+    flex-direction: column;
     opacity: 1;
 }
 
 .select-list-transition-language>.select-list.active {
+    display: flex;
+    flex-direction: column;
     opacity: 1;
 }
 
