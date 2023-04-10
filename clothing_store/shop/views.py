@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect, _get_queryset, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView
 
-from shop.forms import RegisterUserForm, LoginUserForm, AccountUserForm
+from shop.forms import RegisterUserForm, LoginUserForm
 from shop.models import *
 
 ITEMS_IN_LINE = 3
