@@ -2118,14 +2118,17 @@ button {
     width: 21px;
 }
 
-.booking-page app-page{
+.booking-page.app-page{
     opacity: 1;
 }
 
-@media only screen and (max-width: 1024px)
-.app-page {
-    min-height: calc(var(--vh,1vh)*100 - 75px);
+@media only screen and (max-width: 1024px){
+    .booking-page.app-page{
+        min-height: calc(var(--vh,1vh)*100 - 75px);
+    }
 }
+
+
 
 .booking-page, .booking-page-header {
     align-items: center;
@@ -2145,9 +2148,13 @@ button {
     margin-top: 40px;
 }
 
-@media only screen and (min-width: 480px)
+
 .booking-page-title {
-    font-size: 42px;
+    font-size: 34px;
+    width: 376px;
+    height: 63px;
+    margin: 0;
+    padding-top:14.5px;
 }
 
 .booking-page-title {
@@ -2155,9 +2162,9 @@ button {
     text-align: center;
 }
 
-@media only screen and (min-width: 480px)
 .booking-page-id {
-    font-size: 15px;
+    font-size: 13px;
+    width: 176px;
 }
 
 .booking-page-id {
@@ -2165,10 +2172,18 @@ button {
     text-transform: uppercase;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page-content {
-    justify-content: center;
-    width: 90vw;
+@media only screen and (max-width: 1024px){
+    .booking-page-content {
+        justify-content: center;
+        width: 90vw;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1600px){
+    .booking-page-content {
+        justify-content: space-between;
+        width: 960px;
+    }
 }
 
 .booking-page-content {
@@ -2177,12 +2192,26 @@ button {
     flex-wrap: wrap;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page__details {
-    align-items: center;
-    order: 2;
-    width: 100%;
+@media only screen and (max-width: 1024px){
+    .booking-page__details {
+        align-items: center;
+        order: 2;
+        width: 100%;
+    }
 }
+
+@media only screen and (min-width: 1024px) and (max-width: 1600px){
+    .booking-page__details {
+        width: 480px;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .booking-page__details-title {
+        margin-bottom: 50px;
+    }
+}
+
 
 .booking-page__details {
     display: flex;
@@ -2190,10 +2219,11 @@ button {
     position: relative;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page__details-title {
-    margin-bottom: 30px;
-    text-align: center;
+@media only screen and (max-width: 1024px){
+    .booking-page__details-title {
+        margin-bottom: 30px;
+        text-align: center;
+    }
 }
 
 .booking-page__details-title {
@@ -2420,7 +2450,7 @@ input {
     padding: 0px;
 }
 
-.css-ackcql::after {
+.css-ackcql>::after {
     content: attr(data-value) " ";
     visibility: hidden;
     white-space: pre;
@@ -2552,23 +2582,27 @@ svg:not(:root) {
     width: 5px;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page__details-form-bottom {
-    align-items: center;
-    flex-direction: column;
-    margin-top: 30px;
-    width: 100%;
+@media only screen and (max-width: 1024px){
+    .booking-page__details-form-bottom {
+        align-items: center;
+        flex-direction: column;
+        margin-top: 30px;
+        width: 100%;
+    }
 }
+
 
 .booking-page__details-form-bottom {
     display: flex;
     position: relative;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page__details-next-step {
-    order: 2;
+@media only screen and (max-width: 1024px){
+    .booking-page__details-next-step {
+        order: 2;
+    }
 }
+
 
 .booking-page__details-next-step {
     align-items: center;
@@ -2605,10 +2639,12 @@ svg:not(:root) {
     margin-left: 12px;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page__details-step {
-    margin-bottom: 25px;
+@media only screen and (max-width: 1024px){
+    .booking-page__details-step {
+        margin-bottom: 25px;
+    }
 }
+
 
 .booking-page__details-step {
     font-size: 17px;
@@ -2620,12 +2656,14 @@ svg:not(:root) {
     font-weight: 300;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page__products {
-    align-items: center;
-    margin-bottom: 60px;
-    order: 1;
+@media only screen and (max-width: 1024px){
+    .booking-page__products {
+        align-items: center;
+        margin-bottom: 60px;
+        order: 1;
+    }
 }
+
 
 .booking-page__products {
     border-bottom: 2px solid #e8ebee;
@@ -2636,11 +2674,19 @@ svg:not(:root) {
     width: 324px;
 }
 
-@media only screen and (max-width: 1024px)
-.booking-page__products-title {
-    margin-bottom: 30px;
-    text-align: center;
+@media only screen and (max-width: 1024px){
+    .booking-page__products-title {
+        margin-bottom: 30px;
+        text-align: center;
+    }
 }
+
+@media only screen and (min-width: 1024px){
+    .booking-page__products-title {
+        margin-bottom: 50px;
+    }
+}
+
 
 .booking-page__products-title {
     font-size: 28px;
@@ -2676,8 +2722,8 @@ svg:not(:root) {
 
 .booking-page__product-name {
     display: block;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 700;
     margin-bottom: 8px;
 }
 
@@ -2687,13 +2733,13 @@ svg:not(:root) {
 
 .booking-page__product-count-title, .booking-page__product-size-title {
     color: #818d92;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.2;
 }
 
 .booking-page__product-count-value, .booking-page__product-price, .booking-page__product-size-value {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .booking-page__product-price {
@@ -2706,25 +2752,20 @@ svg:not(:root) {
 
 .booking-page__products-delivery-cost, .booking-page__products-products-cost {
     color: #818d92;
-    font-size: 17px;
+    font-size: 14px;
     line-height: 30px;
     width: 262px;
+    height: 30px;
 }
 
 .booking-page__products-delivery-cost-value, .booking-page__products-products-cost-value {
     color: #000;
-    font-weight: 500;
+    font-weight: 700;
+    word-spacing: normal;
 }
 
 .booking-page__products-delivery-cost:last-child {
     margin-bottom: 40px;
-}
-
-.booking-page__products-delivery-cost, .booking-page__products-products-cost {
-    color: #818d92;
-    font-size: 17px;
-    line-height: 30px;
-    width: 262px;
 }
 
 .booking-page__products-total-cost {
@@ -2741,4 +2782,34 @@ svg:not(:root) {
     font-size: 26px;
     font-weight: 600;
     margin-left: 5px;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1600px){
+    .booking-page__details-form-phone-number {
+        width: 220px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1600px){
+    .booking-page__details-form-email {
+        width: 220px;
+    }
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+@media only screen and (min-width: 1024px){
+    .booking-page__details-form-bottom {
+        align-items: flex-end;
+        margin-top: 40px;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .booking-page__details-step {
+        margin-left: 25px;
+    }
 }
