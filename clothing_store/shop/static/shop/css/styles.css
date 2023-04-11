@@ -2830,3 +2830,18 @@ p {
     text-decoration: none;
     color: #ffffff;
 }
+
+.account-link-p{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #000;
+    padding-top: 5px;
+    transition: all .1s ease-out;
+}
+
+.account-link-p:hover{
+    color: #fff;
+}
