@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-<selection class = "profile_page app-page">
+<selection class="profile_page app-page">
     <h1 class="account-page-title">Мой аккаунт</h1>
 
     <div class="account-page-content">
@@ -13,47 +13,57 @@
                     <a href="#">Мои заказы</a></li>
             </ul>
             <button type="button" class="account-page-logout hoverable">
-            <span>Выйти из аккаунта</span>
+                <span>Выйти из аккаунта</span>
             </button>
         </div>
 
+
+        <!--<form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Submit">
+        </form>-->
+
         <div class="account-page-page">
             <div class="account__details">
-                <form class="account__details-personal-data" changing="false">
+                <form method="post" class="account__details-personal-data" changing="false">
+                    {% csrf_token %}
                     <header class="account__details-personal-data-header">
                         <span class="account__details-personal-data-title">Персональные данные</span>
                         <button class="account__details-personal-data-change" type="button">Изменить</button>
                     </header>
+
                     <div class="account__details-personal-data-list">
                         <div class="account__details-personal-data-list-content">
                             <div class="account__details-personal-data-item">
-                                <p class="account__details-personal-data-item-title">Имя</p>
-                                <input name="first_name" class="account__details-personal-data-item-input" maxlength="30" type="text" value={{user.first_name}}>
+                                <p class="account__details-personal-data-item-title">{{ form.first_name.label_tag }}</p>
+                                {{ form.first_name }}
                             </div>
                             <div class="account__details-personal-data-item">
-                                <p class="account__details-personal-data-item-title">Фамилия</p>
-                                <input name="last_name" class="account__details-personal-data-item-input" maxlength="30" type="text" value={{user.last_name}}>
+                                <p class="account__details-personal-data-item-title">{{ form.last_name.label_tag }}</p>
+                                {{ form.last_name }}
                             </div>
                             <div class="account__details-personal-data-item">
-                                <p class="account__details-personal-data-item-title">Отчество</p>
-                                <input name="middle_name" class="account__details-personal-data-item-input" maxlength="30" type="text" value={{user.father_name}}>
+                                <p class="account__details-personal-data-item-title">{{ form.father_name.label_tag }}</p>
+                                {{ form.father_name }}
                             </div>
                             <div class="account__details-personal-data-item account__details-personal-data-phone-number">
-                                <p class="account__details-personal-data-item-title">Телефон</p>
-                                <input class="account__details-personal-data-item-input" type="text" value={{user.phone}}>
+                                <p class="account__details-personal-data-item-title">{{ form.phone.label_tag }}</p>
+                                {{ form.phone }}
                             </div>
                             <div class="account__details-personal-data-item">
-                                <p class="account__details-personal-data-item-title">Эл.Почта</p>
-                                <input name="email" class="account__details-personal-data-item-input unchangable" type="text" value={{user.email}}>
+                                <p class="account__details-personal-data-item-title">{{ form.email.label_tag }}</p>
+                                {{ form.email }}
                             </div>
                             <hr>
                         </div>
                     </div>
-                    <button class="account__details-personal-data-save-changes hoverable" type="button"><span>Сохранить изменения</span></button>
+                    <button class="account__details-personal-data-save-changes hoverable" type="submit"><span>Сохранить изменения</span>
+                    </button>
                 </form>
 
                 <script>
-                    $('.account__details-personal-data-change' ).on('click', function () {
+                    $('.account__details-personal-data-change').on('click', function () {
                         if (!$('.account__details-personal-data-item-input').hasClass('active')) {
                             $('.account__details-personal-data-item-input').addClass('active');
                             $('.account__details-personal-data-save-changes').addClass('active');
@@ -62,6 +72,7 @@
                             $('.account__details-personal-data-save-changes').removeClass('active');
                         }
                     });
+
                 </script>
 
                 <form class="account__details-delivery" changing="false">
@@ -73,31 +84,38 @@
                         <div class="account__details-delivery-list-content">
                             <div class="account__details-delivery-item">
                                 <p class="account__details-delivery-item-title">Страна</p>
-                                <input name="country" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.country}}>
+                                <input name="country" class="account__details-delivery-item-input" maxlength="30"
+                                       type="text" value={{user.country}}>
                             </div>
                             <div class="account__details-delivery-item">
                                 <p class="account__details-delivery-item-title">Город</p>
-                                <input name="city" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.city}}>
+                                <input name="city" class="account__details-delivery-item-input" maxlength="30"
+                                       type="text" value={{user.city}}>
                             </div>
                             <div class="account__details-delivery-item">
                                 <p class="account__details-delivery-item-title">Край/Область/Регион</p>
-                                <input name="region" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.region}}>
-                            </div><div class="account__details-delivery-item">
-                            <p class="account__details-delivery-item-title">Улица, Дом, Квартира</p>
-                            <input name="address" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.address}}>
-                        </div>
+                                <input name="region" class="account__details-delivery-item-input" maxlength="30"
+                                       type="text" value={{user.region}}>
+                            </div>
+                            <div class="account__details-delivery-item">
+                                <p class="account__details-delivery-item-title">Улица, Дом, Квартира</p>
+                                <input name="address" class="account__details-delivery-item-input" maxlength="30"
+                                       type="text" value={{user.address}}>
+                            </div>
                             <div class="account__details-delivery-item">
                                 <p class="account__details-delivery-item-title">Почтовый индекс</p>
-                                <input name="zip_code" class="account__details-delivery-item-input" maxlength="30" type="text" value={{user.post_index}}>
+                                <input name="zip_code" class="account__details-delivery-item-input" maxlength="30"
+                                       type="text" value={{user.post_index}}>
                             </div>
                             <hr>
                         </div>
                     </div>
-                    <button class="account__details-delivery-save-changes hoverable" type="button"><span>Сохранить изменения</span></button>
+                    <button class="account__details-delivery-save-changes hoverable" type="button"><span>Сохранить изменения</span>
+                    </button>
                 </form>
 
                 <script>
-                    $('.account__details-delivery-change' ).on('click', function () {
+                    $('.account__details-delivery-change').on('click', function () {
                         if (!$('.account__details-delivery-item-input').hasClass('active')) {
                             $('.account__details-delivery-item-input').addClass('active');
                             $('.account__details-delivery-save-changes').addClass('active');
@@ -106,6 +124,7 @@
                             $('.account__details-delivery-save-changes').removeClass('active');
                         }
                     });
+
                 </script>
 
                 <form class="account__details-reset-password" changing="false">
@@ -117,20 +136,23 @@
                         <div class="account__details-reset-password-list-content">
                             <div class="account__details-reset-password-item">
                                 <p class="account__details-reset-password-item-title">Новый пароль</p>
-                                <input name="password" class="account__details-personal-data-item-input1" maxlength="255" type="password" value="">
+                                <input name="password" class="account__details-personal-data-item-input1"
+                                       maxlength="255" type="password" value="">
                             </div>
                             <div class="account__details-reset-password-item">
                                 <p class="account__details-reset-password-item-title">Повторите пароль</p>
-                                <input name="password_confirmation" class="account__details-personal-data-item-input1" maxlength="255" type="password" value="">
+                                <input name="password_confirmation" class="account__details-personal-data-item-input1"
+                                       maxlength="255" type="password" value="">
                             </div>
                             <hr>
                         </div>
                     </div>
-                    <button class="account__details-reset-password-save-changes hoverable" type="button"><span>Сохранить изменения</span></button>
+                    <button class="account__details-reset-password-save-changes hoverable" type="button"><span>Сохранить изменения</span>
+                    </button>
                 </form>
 
                 <script>
-                    $('.account__details-reset-password-change' ).on('click', function () {
+                    $('.account__details-reset-password-change').on('click', function () {
                         if (!$('.account__details-personal-data-item-input1').hasClass('active')) {
                             $('.account__details-personal-data-item-input1').addClass('active');
                             $('.account__details-reset-password-save-changes').addClass('active');
@@ -139,6 +161,7 @@
                             $('.account__details-reset-password-save-changes').removeClass('active');
                         }
                     });
+
                 </script>
 
             </div>

@@ -7,9 +7,9 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, _get_queryset, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, FormView
 
-from shop.forms import RegisterUserForm, LoginUserForm
+from shop.forms import RegisterUserForm, LoginUserForm, MainUserDataForm
 from shop.models import *
 
 ITEMS_IN_LINE = 3
@@ -48,9 +48,6 @@ class HomePage(LoginView, ListView):
         return split_list_into_chunks((list(items)))
 
     object_list = split_list_into_chunks((list(Item.objects.all())))
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        pass
 
     # def form_invalid(self, form):
     #     print(form.errors)
@@ -153,18 +150,31 @@ class LoginPage(LoginView):
 '''
 
 
-class AccountPage(DetailView):
+class AccountPage(FormView, DetailView):
     model = User
     template_name = 'shop/account_page.html'
+    form_class = MainUserDataForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = context['user']
-        return context
+    # def get_context_data(self, **kwargs):
+    #
+    #     print(context['form'])
+    #     return context
 
     def get(self, request: WSGIRequest, *args, **kwargs):
-        username = kwargs.get('username')
-        return render(request, 'shop/account_page.html', {'username': username})
+        context = {
+            'title': "Аккаунт",
+            'form': MainUserDataForm,
+            'username': kwargs.get('username')
+        }
+        return render(request, 'shop/account_page.html', context)
+
+    def post(self, request: WSGIRequest, *args, **kwargs):
+        new_user_data = request.POST
+        print(new_user_data)
+        return super().post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('account')
 
 
 def cart(request):
