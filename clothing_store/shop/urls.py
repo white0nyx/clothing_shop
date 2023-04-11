@@ -11,4 +11,5 @@ urlpatterns = [
     path('item/<slug:item_slug>/', ItemPage.as_view(), name='item'),
     # path('cart', cart_detail, name='cart'),
     path('cart_add/<int:item_id>/', cart_add, name='cart_add'),
+    path('place_on_order', place_on_order_page, name='place_on_order'),
 ]
