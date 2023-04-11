@@ -283,6 +283,7 @@ body {
     pointer-events: none;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 .modal-close-area {
@@ -818,13 +819,16 @@ ul {
 
 
 
-.modal__signin-tile.modal-tile.active {
+.modal__signin-tile.modal-tile-start.active {
     display: flex;
+}
+.modal__signin-tile.modal-tile-start {
+    display: none;
 }
 
 .modal__signin-tile.modal-tile {
     align-items: center;
-    display: none;
+    display: flex;
     flex-direction: column;
     margin: 0;
     max-width: 90vw;
@@ -832,7 +836,7 @@ ul {
     right: 5vw;
     width: 366px;
     padding: 30px;
-    margin: 380px auto 0px 0px;
+    margin: 35px auto 0px 0px;
     z-index: 5;
 
 }
@@ -1464,6 +1468,7 @@ html {
     margin: 0;
     max-width: 90vw;
     width: 366px;
+    z-index: 1;
 }
 
 
