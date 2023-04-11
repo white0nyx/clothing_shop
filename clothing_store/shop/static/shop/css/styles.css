@@ -1439,10 +1439,12 @@ html {
     position: absolute;
 }
 
-@media only screen and (min-width: 360px)
-.modal__signup-tile1.modal-tile1 {
-    padding: 30px;
+@media only screen and (min-width: 360px){
+    .modal__signup-tile1.modal-tile1 {
+        padding: 30px;
+    }
 }
+
 
 .modal__signup-tile1.modal-tile1 {
     padding: 30px;
@@ -2814,4 +2816,7 @@ p {
     }
 }
 
-
+.modal__cart-checkout a{
+    text-decoration: none;
+    color: #ffffff;
+}
