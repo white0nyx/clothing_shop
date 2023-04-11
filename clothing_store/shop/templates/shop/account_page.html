@@ -18,11 +18,11 @@
         </div>
 
 
-        <form method="post">
+        <!--<form method="post">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="submit" value="Submit">
-        </form>
+        </form>-->
 
         <div class="account-page-page">
             <div class="account__details">
@@ -36,36 +36,29 @@
                     <div class="account__details-personal-data-list">
                         <div class="account__details-personal-data-list-content">
                             <div class="account__details-personal-data-item">
-                                <label for="{{ form.first_name }}" class="modal__signin-classic-field-label">
-                                    {{ form.first_name.label }}
-                                </label>
+                                <p class="account__details-personal-data-item-title">{{ form.first_name.label_tag }}</p>
                                 {{ form.first_name }}
-                                <div class="form-error">{{ form.username.errors }}</div>
                             </div>
                             <div class="account__details-personal-data-item">
-                                <p class="account__details-personal-data-item-title">Фамилия</p>
-                                <input name="last_name" class="account__details-personal-data-item-input" maxlength="30"
-                                       type="text" value={{user.last_name}}>
+                                <p class="account__details-personal-data-item-title">{{ form.last_name.label_tag }}</p>
+                                {{ form.last_name }}
                             </div>
                             <div class="account__details-personal-data-item">
-                                <p class="account__details-personal-data-item-title">Отчество</p>
-                                <input name="middle_name" class="account__details-personal-data-item-input"
-                                       maxlength="30" type="text" value={{user.father_name}}>
+                                <p class="account__details-personal-data-item-title">{{ form.father_name.label_tag }}</p>
+                                {{ form.father_name }}
                             </div>
                             <div class="account__details-personal-data-item account__details-personal-data-phone-number">
-                                <p class="account__details-personal-data-item-title">Телефон</p>
-                                <input class="account__details-personal-data-item-input" type="text"
-                                       value={{user.phone}}>
+                                <p class="account__details-personal-data-item-title">{{ form.phone.label_tag }}</p>
+                                {{ form.phone }}
                             </div>
                             <div class="account__details-personal-data-item">
-                                <p class="account__details-personal-data-item-title">Эл.Почта</p>
-                                <input name="email" class="account__details-personal-data-item-input unchangable"
-                                       type="text" value={{user.email}}>
+                                <p class="account__details-personal-data-item-title">{{ form.email.label_tag }}</p>
+                                {{ form.email }}
                             </div>
                             <hr>
                         </div>
                     </div>
-                    <button class="account__details-personal-data-save-changes hoverable" type="button"><span>Сохранить изменения</span>
+                    <button class="account__details-personal-data-save-changes hoverable" type="submit"><span>Сохранить изменения</span>
                     </button>
                 </form>
 
@@ -79,6 +72,7 @@
                             $('.account__details-personal-data-save-changes').removeClass('active');
                         }
                     });
+
                 </script>
 
                 <form class="account__details-delivery" changing="false">
@@ -130,6 +124,7 @@
                             $('.account__details-delivery-save-changes').removeClass('active');
                         }
                     });
+
                 </script>
 
                 <form class="account__details-reset-password" changing="false">
@@ -166,6 +161,7 @@
                             $('.account__details-reset-password-save-changes').removeClass('active');
                         }
                     });
+
                 </script>
 
             </div>
