@@ -69,3 +69,38 @@ class LoginUserForm(AuthenticationForm):
 
     class Meta:
         model = User
+
+
+class MainUserDataForm(forms.Form):
+
+    first_name = forms.CharField(label='ИМЯ', widget=forms.TextInput(attrs={
+        'name': 'first_name',
+        'class': 'account__details-personal-data-item-input',
+        'maxlength': "30"
+    }))
+
+    last_name = forms.CharField(label='ФАМИЛИЯ', widget=forms.TextInput(attrs={
+        'name': 'last_name',
+        'class': 'account__details-personal-data-item-input',
+        'maxlength': "30"
+    }))
+
+    father_name = forms.CharField(label='ОТЧЕСТВО', widget=forms.TextInput(attrs={
+        'name': 'middle_name',
+        'class': 'account__details-personal-data-item-input',
+        'maxlength': "30"
+    }))
+
+    phone = forms.CharField(label='ТЕЛЕФОН', widget=forms.TextInput(attrs={
+        'name': 'phone',
+        'class': 'account__details-personal-data-item-input'
+    }))
+
+    email = forms.EmailField(label='ЭЛ.ПОЧТА', widget=forms.TextInput(attrs={
+        'name': 'email',
+        'class': 'account__details-personal-data-item-input unchangable'
+    }))
+
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'father_name', 'phone', 'email')
