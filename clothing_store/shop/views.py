@@ -41,7 +41,7 @@ class HomePage(LoginView, ListView):
         context['title'] = 'WearFit'
         context['form'] = LoginUserForm
         context['cart'] = Cart(request)
-        return render(request, 'shop/home.html', context)
+        return render(request, 'shop/category_page.html', context)
 
     def get_queryset(self):
         items = Item.objects.all()
