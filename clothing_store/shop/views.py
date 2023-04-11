@@ -36,6 +36,13 @@ class HomePage(LoginView, ListView):
     context_object_name = 'items'
     form_class = LoginUserForm
 
+    def get(self, request, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'WearFit'
+        context['form'] = LoginUserForm
+        context['cart'] = Cart(request)
+        return render(request, 'shop/home.html', context)
+
     def get_queryset(self):
         items = Item.objects.all()
         return split_list_into_chunks((list(items)))
@@ -43,14 +50,12 @@ class HomePage(LoginView, ListView):
     object_list = split_list_into_chunks((list(Item.objects.all())))
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'WearFit'
-        context['form'] = LoginUserForm
-        return context
+        pass
 
     # def form_invalid(self, form):
     #     print(form.errors)
     #     return super().form_invalid(form)
+
 
 def logout_user(request):
     """Деавторизация пользователя"""
@@ -130,8 +135,6 @@ class RegistrationPage(CreateView, ListView):
         return super().post(request, *args, **kwargs)
 
 
-
-
 '''
 class LoginPage(LoginView):
     """Класс представления страницы авторизации"""
@@ -148,6 +151,7 @@ class LoginPage(LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 '''
+
 
 class AccountPage(DetailView):
     model = User
@@ -180,14 +184,14 @@ def cart_add(request, item_id):
     if size in ['S', 'M', 'L', 'XL', '2XL'] and 1 <= int(quantity) <= 20:
         cart.add(item=item, quantity=quantity, size=size, update_quantity=True)  # update_quantity - временно True
     print(cart.get_total_price())
-    return redirect('cart')
+    return redirect('home')
 
 
 def cart_remove(request, item_id):
     cart = Cart(request)
     item = get_object_or_404(Item, id=item_id)
     cart.remove(item)
-    return redirect('cart')
+    return redirect('home')
 
 
 def cart_detail(request):

@@ -84,15 +84,15 @@
             </div>
         </div>
 
-        
+
         <div class="modal-tile modal__signin-tile">
-            
-            
-            
+
+
+
             <div class="modal__signin-arrow" style="right: calc((171.219px - 5vw) + 20px);"></div>
-            
+
             <form method="post" class="modal__signin-classic">
-                
+
                 {% csrf_token %}
                 <div class="form-error">{{ form.non_field_errors }}</div>
                 <div class="modal__signin-classic-field">
@@ -149,10 +149,10 @@
                     </svg>
 
                 </div>
-                
-        
+
+
                 <script type="text/javascript" src='{% static "shop/js/entry_window.js" %}'></script>
-                
+
             </div>
             <div class="header-buttons">
                 <button class="button-basket">
@@ -169,7 +169,7 @@
 
                         </div>
                         <div class="modal-tile modal__cart-tile">
-                            <div class="modal__cart-continue-shopping-2"> 
+                            <div class="modal__cart-continue-shopping-2">
                                 <button  class="modal__cart-continue-shopping">
                                     <div class="icon modal__cart-continue-shopping-arrow icon__animated">
                                         <svg class="arrow4"
@@ -186,7 +186,14 @@
                                 </button>
                             </div>
                             <div class="modal__cart-title">
-                                Мои покупки
+                                {% for item in cart %}
+
+                                <small>Товар: {{ item.product }}
+                                Размер: {{ item.size }}
+                                Цена: {{ item.price }}
+                                Количество: {{ item.quantity }}
+                                Общая стоимость: {{ item.total_price }}</small>
+                                {% endfor %}
                             </div>
                             <div class="modal__cart-list">
 
@@ -226,7 +233,7 @@
                                     </button>
                                 </div>
                             </div>
-                            
+
                     </div>
                 </div>
             </div>
