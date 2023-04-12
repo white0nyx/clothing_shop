@@ -6,7 +6,7 @@ $('.header-buttons button').on('click', function () {
 
     switcher_currency_basket.textContent = $('.button-currency').text();
 
-    total_to_purchase.textContent = $('.item_total_price').text();
+    
     
 });
 $('.modal__cart-continue-shopping-2 button').on('click', function () {
