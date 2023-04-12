@@ -647,6 +647,12 @@ ul {
     font-weight: 400;
 }
 
+.product-info-sizes-size:focus {
+    background: #000;
+    color: #fff;
+    font-weight: 400;
+}
+
 .product-info-sizes-size:hover {
     background: #cac4c4;
     color: #a09399;
@@ -657,18 +663,6 @@ ul {
     font-size: 16px;
     font-weight: 400;
     margin-top:30px;
-}
-
-.product-info-sizes-size {
-    background: #fff;
-    color: #d7d5d6;
-    font-weight: 400;
-}
-
-.product-info-sizes-size:focus {
-    background: #000;
-    color: #fff;
-    font-weight: 400;
 }
 
 .counter {
@@ -1194,18 +1188,6 @@ a {
     width:100px;
     scale:1.5;
     justify-content: center;
-}
-
-.product-info-sizes-size:focus {
-    background: #000;
-    color: #fff;
-    font-weight: 400;
-}
-
-.product-info-sizes-size:focus {
-    background: #000;
-    color: #fff;
-    font-weight: 400;
 }
 
 .counter {
@@ -1957,27 +1939,11 @@ button {
     order: 4;
 }
 
-.account__details-delivery-header{
-    display: flex;
-    margin-bottom: 30px;
-    width: 100%;
-    align-items: baseline;
-}
 
 .account__details-delivery-title{
     font-size: 25px;
     font-weight: 400;
     line-height: 100%;
-}
-
-.account__details-delivery-change{
-    border:none;
-    border-bottom: 1px dashed #818d92;
-    color: #818d92;
-    cursor: pointer;
-    font-size: 15px;
-    line-height: 100%;
-    margin-left: 10px;
 }
 
 .account__details-delivery-list-content{
@@ -2011,7 +1977,15 @@ button {
     order: 5;
 }
 
-.account__details-delivery-header, .account__details-personal-data-header, .account__details-reset-password-header {
+.account__details-delivery-header, .account__details-reset-password-header {
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    width: 100%;
+    align-items: baseline;
+}
+
+.account__details-personal-data-header{
     display: flex;
     margin-bottom: 30px;
     width: 100%;
@@ -2021,16 +1995,6 @@ button {
 .account__details-reset-password-title {
     font-size: 25px;
     font-weight: 400;
-    line-height: 100%;
-}
-
-.account__details-reset-password-change {
-    margin-left: 10px;
-    border:none;
-    border-bottom: 1px dashed #818d92;
-    color: #818d92;
-    cursor: pointer;
-    font-size: 15px;
     line-height: 100%;
 }
 
