@@ -39,33 +39,36 @@
         <div class="container3">
             <div class="header-second">
                 <div class="switcher-language">
-                    <button class="button-language">
+                    
+                    <button class="button-language" id="button-language-id">
                         РУС
                     </button>
-                    <div class="select-list-transition-language">
-                        <ul class="select-list language">
-                            <button class="select-list-value">АНГЛ</button>
-                            <button class="select-list-value">РУС</button>
-                            <button class="select-list-value">УКР</button>
-                        </ul>
-                    </div>
-{#                    <script type="text/javascript" src='{% static "shop/js/lang_cur_choice.js" %}'></script>#}
-
+                    {#                    <script type="text/javascript" src='{% static "shop/js/lang_cur_choice.js" %}'></script>#}
+                    
+                </div>
+                <div class="select-list-transition-language">
+                    <ul class="select-list language">
+                        <button class="select-list-value" id="ENG">АНГЛ</button>
+                        <button class="select-list-value" id="RUS">РУС</button>
+                        <button class="select-list-value" id="UKR">УКР</button>
+                    </ul>
                 </div>
 
                 <div class="switcher-currency">
-                    <button class="button-currency">
-                        РУБ
+                    
+                    <button class="button-currency" id="button-currency-id">
+                        RUB
                     </button>
                     <div class="select-list-transition-currency">
                         <ul class="select-list currency">
-                            <button class="select-list-value">USD</button>
-                            <button class="select-list-value">EUR</button>
-                            <button class="select-list-value">UAH</button>
-                            <button class="select-list-value">KZT</button>
-                            <button class="select-list-value">CZK</button>
-                            <button class="select-list-value">PLN</button>
-                            <button class="select-list-value">GEL</button>
+                            <button class="select-list-value" id="USD">USD</button>
+                            <button class="select-list-value" id="EUR">EUR</button>
+                            <button class="select-list-value" id="UAH">UAH</button>
+                            <button class="select-list-value" id="KZT">KZT</button>
+                            <button class="select-list-value" id="CZK">CZK</button>
+                            <button class="select-list-value" id="PLN">PLN</button>
+                            <button class="select-list-value" id="GEL">GEL</button>
+                            <button class="select-list-value" id="RUB">RUB</button>
                         </ul>
                     </div>
                     <script type="text/javascript" src='{% static "shop/js/lang_cur_choice.js" %}'></script>
@@ -203,7 +206,7 @@
                                 Размер: {{ item.size }}
                                 Цена: {{ item.price }}
                                 Количество: {{ item.quantity }}
-                                Общая стоимость: {{ item.total_price }}</small>
+                                Общая стоимость: <span class = 'item_total_price'>{{ item.total_price }}</span></small>
                                 {% endfor %}
                             </div>
                             <div class="modal__cart-list">
@@ -227,13 +230,19 @@
                                         </form>
                                     </div>
                                     <div class="modal__cart-total-cost">
+                                        
                                         <span
                                             class="modal__cart-total-cost-title">
                                             Итого:
                                         </span>
                                         <span
                                             class="modal__cart-total-cost-value">
-                                            0&nbsp;USD
+                                            <span id="total-to-purchase"> ggg</span>
+                                            
+                                            <span id="button-currency-id-basket" >
+                                                RUB
+
+                                            </span>
                                         </span>
                                     </div>
                                     <button

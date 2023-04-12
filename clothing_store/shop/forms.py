@@ -100,7 +100,36 @@ class MainUserDataForm(forms.Form):
         'name': 'email',
         'class': 'account__details-personal-data-item-input unchangable'
     }))
+    country = forms.CharField(label='ИМЯ', widget=forms.TextInput(attrs={
+        'name': 'country',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    city = forms.CharField(label='ФАМИЛИЯ', widget=forms.TextInput(attrs={
+        'name': 'city',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    address = forms.CharField(label='ОТЧЕСТВО', widget=forms.TextInput(attrs={
+        'name': 'address',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    post_index = forms.CharField(label='ТЕЛЕФОН', widget=forms.TextInput(attrs={
+        'name': 'post_index',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    region = forms.EmailField(label='ЭЛ.ПОЧТА', widget=forms.TextInput(attrs={
+        'name': 'region',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'father_name', 'phone', 'email')
+        fields = ('first_name', 'last_name', 'father_name', 'phone', 'email', 'country', 'city', 'address', 'post_index', 'region')

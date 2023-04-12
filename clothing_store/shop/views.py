@@ -1,5 +1,5 @@
 import math
-
+import random
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
@@ -94,6 +94,7 @@ class ItemPage(LoginView, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['item']
+        context['items'] = Item.objects.all().order_by('?')
         return context
 
 
