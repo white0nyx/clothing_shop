@@ -797,7 +797,6 @@ ul {
     width: 1024px;
     height: 256px;
     display: flex;
-    background: orange;
     position: relative;
     left: 0;
     transition: all ease 1s;
