@@ -205,7 +205,7 @@
                                 Размер: {{ item.size }}
                                 Цена: {{ item.price }}
                                 Количество: {{ item.quantity }}
-                                Общая стоимость: {{ item.total_price }}</small>
+                                Общая стоимость: <span class = 'item_total_price'>{{ item.total_price }}</span></small>
                                 {% endfor %}
                             </div>
                             <div class="modal__cart-list">
@@ -229,13 +229,15 @@
                                         </form>
                                     </div>
                                     <div class="modal__cart-total-cost">
+                                        
                                         <span
                                             class="modal__cart-total-cost-title">
                                             Итого:
                                         </span>
                                         <span
                                             class="modal__cart-total-cost-value">
-                                            0 
+                                            <span id="total-to-purchase"> ggg</span>
+                                            
                                             <span id="button-currency-id-basket" >
                                                 USD
 
