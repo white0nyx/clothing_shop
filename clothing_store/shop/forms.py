@@ -71,13 +71,12 @@ class LoginUserForm(AuthenticationForm):
         model = User
 
 
-
 class MainUserDataForm(forms.Form):
 
     first_name = forms.CharField(label='ИМЯ', widget=forms.TextInput(attrs={
         'name': 'first_name',
         'class': 'account__details-personal-data-item-input',
-        'maxlength': "30",
+        'maxlength': "30"
     }))
 
     last_name = forms.CharField(label='ФАМИЛИЯ', widget=forms.TextInput(attrs={

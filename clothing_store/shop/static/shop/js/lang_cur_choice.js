@@ -70,3 +70,7 @@ GEL.addEventListener('click', function handleClick() {
     switcher_currency.textContent = "GEL"
     $('.select-list-transition-currency>.select-list').removeClass('active');
   });
+RUB.addEventListener('click', function handleClick() {
+    switcher_currency.textContent = "RUB"
+    $('.select-list-transition-currency>.select-list').removeClass('active');
+  });

@@ -175,14 +175,17 @@ class AdditionalImageItem(models.Model):
     """Модель изображения товара"""
 
     path = models.ImageField(upload_to="images/photo/", verbose_name='Фото')
-    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Товар', )
+    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Товар', related_name='add_images')
 
     class Meta:
         verbose_name = 'Дополнительное изображение товара'
         verbose_name_plural = 'Дополнительные изображения товара'
 
+    # def get_absolute_url(self):
+    #     return self.path
+
     def __str__(self):
-        return self.item.name + ' Image'
+        return self.item.name + ' ADD_Image'
 
 
 class Cart(object):
@@ -195,7 +198,6 @@ class Cart(object):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
-            # save an empty cart in the session
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
@@ -203,16 +205,16 @@ class Cart(object):
         """
         Добавить продукт в корзину или обновить его количество.
         """
-        item_id = str(item.id)
-        if item_id not in self.cart:
-            self.cart[item_id] = {'quantity': 0,
+        item_code = f"{item.id}_{size}"
+        if item_code not in self.cart:
+            self.cart[item_code] = {'quantity': 0,
                                   'price': str(item.price)}
         if update_quantity:
-            self.cart[item_id]['quantity'] = quantity
-            self.cart[item_id]['size'] = size
+            self.cart[item_code]['quantity'] = int(quantity)
+            self.cart[item_code]['size'] = size
         else:
-            self.cart[item_id]['quantity'] += quantity
-            self.cart[item_id]['size'] = size
+            self.cart[item_code]['quantity'] = int(self.cart[item_code]['quantity']) + int(quantity)
+            self.cart[item_code]['size'] = size
 
         self.save()
 
@@ -235,11 +237,11 @@ class Cart(object):
         """
         Перебор элементов в корзине и получение продуктов из базы данных.
         """
-        items_ids = self.cart.keys()
-        # получение объектов product и добавление их в корзину
-        items = Item.objects.filter(id__in=items_ids)
-        for product in items:
-            self.cart[str(product.id)]['product'] = product
+        items_codes = self.cart.keys()
+
+        for item_code in items_codes:
+            self.cart[item_code]['product'] = Item.objects.get(id=int(item_code.split('_')[0]))
+            print(self.cart)
 
         for item in self.cart.values():
             item['price'] = int(item['price'])

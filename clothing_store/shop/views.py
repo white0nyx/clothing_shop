@@ -1,5 +1,5 @@
 import math
-
+import random
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
@@ -37,10 +37,13 @@ class HomePage(LoginView, ListView):
     form_class = LoginUserForm
 
     def get(self, request, *args, **kwargs):
+        cart = Cart(request)
         context = super().get_context_data(**kwargs)
         context['title'] = 'WearFit'
         context['form'] = LoginUserForm
-        context['cart'] = Cart(request)
+        context['cart'] = cart
+        for i in cart:
+            print(f'ID ТОВАРА = {i}')
         return render(request, 'shop/category_page.html', context)
 
     def get_queryset(self):
@@ -94,6 +97,7 @@ class ItemPage(LoginView, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['item']
+        context['items'] = Item.objects.all().order_by('?')
         return context
 
 
@@ -210,7 +214,7 @@ def cart_add(request, item_id):
     cart = Cart(request)
 
     if size in ['S', 'M', 'L', 'XL', '2XL'] and 1 <= int(quantity) <= 20:
-        cart.add(item=item, quantity=quantity, size=size, update_quantity=True)  # update_quantity - временно True
+        cart.add(item=item, quantity=quantity, size=size, update_quantity=False)  # update_quantity - временно True
     print(cart.get_total_price())
     return redirect('home')
 

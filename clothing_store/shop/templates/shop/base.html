@@ -57,7 +57,7 @@
                 <div class="switcher-currency">
                     
                     <button class="button-currency" id="button-currency-id">
-                        USD
+                        RUB
                     </button>
                     <div class="select-list-transition-currency">
                         <ul class="select-list currency">
@@ -68,6 +68,7 @@
                             <button class="select-list-value" id="CZK">CZK</button>
                             <button class="select-list-value" id="PLN">PLN</button>
                             <button class="select-list-value" id="GEL">GEL</button>
+                            <button class="select-list-value" id="RUB">RUB</button>
                         </ul>
                     </div>
                     <script type="text/javascript" src='{% static "shop/js/lang_cur_choice.js" %}'></script>
@@ -200,12 +201,22 @@
                             </div>
                             <div class="modal__cart-title">
                                 {% for item in cart %}
-
                                 <small>Товар: {{ item.product }}
+                                    <br>
                                 Размер: {{ item.size }}
+                                    <br>
                                 Цена: {{ item.price }}
+                                    <br>
                                 Количество: {{ item.quantity }}
-                                Общая стоимость: {{ item.total_price }}</small>
+                                    <br>
+                                Общая стоимость: <span class = 'item_total_price'>{{ item.total_price }}
+                                <button type="button" class="delete-category-product">Убрать из корзины</button>
+                                        <br>
+
+                                    </span></small>
+
+
+
                                 {% endfor %}
                             </div>
                             <div class="modal__cart-list">
@@ -229,15 +240,17 @@
                                         </form>
                                     </div>
                                     <div class="modal__cart-total-cost">
+                                        
                                         <span
                                             class="modal__cart-total-cost-title">
                                             Итого:
                                         </span>
                                         <span
                                             class="modal__cart-total-cost-value">
-                                            0 
+                                            <span id="total-to-purchase"> </span>
+                                            
                                             <span id="button-currency-id-basket" >
-                                                USD
+                                                RUB
 
                                             </span>
                                         </span>
