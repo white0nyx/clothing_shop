@@ -215,34 +215,7 @@
 
 
 <br><br><br><br>
-{% for line in items %}
-<div class="category-list">
-
-    <div class="category-list-content">
-        {% for item in line %}
-
-        <a class="category-product" href="{{ item.get_absolute_url }}">
-            <div class="category-product-cover1">
-                <div class="picture">
-                    <img src="{{ item.main_photo.url}}" width="430px" height="450px" alt="{{item.name}}">
-                </div>
-
-                <div class="category-product-blackout"></div>
-
-                <div class="price-category-product-price1">
-                    <div class="price-current1">
-                        <span>{{ item.price }}&nbspРУБ</span>
-                    </div>
-                </div>
-            </div>
-            <button type="button" class="category-product-name">
-                <span>{{ item.name}}</span>
-            </button>
-        </a>
-        {% endfor %}
-    </div>
-</div>
-{% endfor %}
+<img class="image_home_page" src="{% static 'shop/Make.png' %}" width="100%" height="100%">
 </body>
 <footer class="footer">
     <div class="footer-container">
