@@ -1,29 +1,8 @@
 {% extends 'shop/base.html' %}
+{% load static %}
+
 {% block content %}
 
-{% for line in items %}
-<div class="category-list">
+<img class="image_home_page" src="{% static 'shop/Make.png' %}" width="100%" height="100%">
 
-    <div class="category-list-content">
-        {% for item in line %}
-            <a class="category-product" href="{{ item.get_absolute_url }}">
-                <div class="category-product-cover">
-                    <div class="picture">
-                        <img src="{{ item.main_photo.url}}" width="362px" height="379px" alt="{{item.name}}">
-                    </div>
-                    <div class="category-product-blackout"></div>
-                    <div class="price category-product-price">
-                        <div class="price-current">
-                            <span>{{ item.price }}</span>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="category-product-name" >
-                    <span>{{ item.name}}</span>
-                </button>
-            </a>
-        {% endfor %}
-    </div>
-</div>
-{% endfor %}
 {% endblock %}
