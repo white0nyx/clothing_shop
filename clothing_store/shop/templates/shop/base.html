@@ -201,12 +201,22 @@
                             </div>
                             <div class="modal__cart-title">
                                 {% for item in cart %}
-
                                 <small>Товар: {{ item.product }}
+                                    <br>
                                 Размер: {{ item.size }}
+                                    <br>
                                 Цена: {{ item.price }}
+                                    <br>
                                 Количество: {{ item.quantity }}
-                                Общая стоимость: <span class = 'item_total_price'>{{ item.total_price }}</span></small>
+                                    <br>
+                                Общая стоимость: <span class = 'item_total_price'>{{ item.total_price }}
+                                <button type="button" class="delete-category-product">Убрать из корзины</button>
+                                        <br>
+
+                                    </span></small>
+
+
+
                                 {% endfor %}
                             </div>
                             <div class="modal__cart-list">

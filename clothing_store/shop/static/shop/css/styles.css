@@ -290,10 +290,8 @@ body {
 
 .modal__cart-title {
     align-items: center;
-    display: flex;
     font-size: 38px;
     font-weight: 400;
-    line-height: 108px;
     padding: 0 18px;
     width: 100%;
 }
@@ -2845,4 +2843,27 @@ p {
 .modal__cart-checkout a{
     text-decoration: none;
     color: #ffffff;
+}
+
+small{
+    font-size: 16px;
+    display: inline-block;
+}
+
+.delete-category-product {
+    align-items: center;
+    background: #000;
+    border-radius: 1000px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+    height: 40px;
+    justify-content: center;
+    letter-spacing: 2px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all .5s;
+    width: 277px;
+    margin-top: 10px;
 }
