@@ -2098,6 +2098,21 @@ button {
     width: 300px;
 }
 
+.account-link-p{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #000;
+    padding-top: 5px;
+    transition: all .1s ease-out;
+}
+
+.account-link-p:hover{
+    color: #fff;
+}
+
 .account__details-delivery-save-changes:hover {
     opacity: 0.6;
 }
@@ -2831,19 +2846,4 @@ p {
 .modal__cart-checkout a{
     text-decoration: none;
     color: #ffffff;
-}
-
-.account-link-p{
-    margin-left: 15px;
-    margin-right: 15px;
-    text-decoration: none;
-    border-radius: 100px;
-    color: #fff;
-    background-color: #000;
-    padding-top: 5px;
-    transition: all .1s ease-out;
-}
-
-.account-link-p:hover{
-    color: #fff;
 }
