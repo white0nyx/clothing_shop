@@ -208,7 +208,8 @@ class Cart(object):
         item_code = f"{item.id}_{size}"
         if item_code not in self.cart:
             self.cart[item_code] = {'quantity': 0,
-                                  'price': str(item.price)}
+                                  'price': str(item.price),
+                                    'item_code': item_code}
         if update_quantity:
             self.cart[item_code]['quantity'] = int(quantity)
             self.cart[item_code]['size'] = size
@@ -224,13 +225,13 @@ class Cart(object):
         # Отметить сеанс как "измененный", чтобы убедиться, что он сохранен
         self.session.modified = True
 
-    def remove(self, item):
+    def remove(self, item_code):
         """
         Удаление товара из корзины.
         """
-        product_id = str(item.id)
-        if product_id in self.cart:
-            del self.cart[product_id]
+
+        if item_code in self.cart:
+            del self.cart[item_code]
             self.save()
 
     def __iter__(self):

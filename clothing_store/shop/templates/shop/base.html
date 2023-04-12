@@ -210,7 +210,9 @@
                                 Количество: {{ item.quantity }}
                                     <br>
                                 Общая стоимость: <span class = 'item_total_price'>{{ item.total_price }}
-                                <button type="button" class="delete-category-product">Убрать из корзины</button>
+
+                                <a href="{% url 'cart_remove' item.item_code %}">
+                                <button type="button" class="delete-category-product">Убрать из корзины</button></a>
                                         <br>
 
                                     </span></small>

@@ -215,14 +215,12 @@ def cart_add(request, item_id):
 
     if size in ['S', 'M', 'L', 'XL', '2XL'] and 1 <= int(quantity) <= 20:
         cart.add(item=item, quantity=quantity, size=size, update_quantity=False)  # update_quantity - временно True
-    print(cart.get_total_price())
     return redirect('home')
 
 
-def cart_remove(request, item_id):
+def cart_remove(request, item_code):
     cart = Cart(request)
-    item = get_object_or_404(Item, id=item_id)
-    cart.remove(item)
+    cart.remove(item_code)
     return redirect('home')
 
 
