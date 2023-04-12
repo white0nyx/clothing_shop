@@ -105,6 +105,7 @@
             {% for other_item in items %}
 
             {% if item.id != other_item.id %}
+            <a href="{{ other_item.get_absolute_url }}">
             <div class="rec">
                 <img src="{{ other_item.main_photo.url }}" class="product-photo2">
                 <div class="price product-recs-recommendation-price">
@@ -115,6 +116,7 @@
                 </div>
                 <div class="product-recs-recommendation-name">{{ other_item }}</div>
             </div>
+                </a>
             {% endif %}
             {% endfor %}
 
