@@ -200,7 +200,12 @@
                                 </button>
                             </div>
                             <div class="modal__cart-title">
+
+
+
+
                                 {% for item in cart %}
+                                {% if item.item_code %}
                                 <small>Товар: {{ item.product }}
                                     <br>
                                 Размер: {{ item.size }}
@@ -210,9 +215,10 @@
                                 Количество: {{ item.quantity }}
                                     <br>
                                 Общая стоимость: <span class = 'item_total_price'>{{ item.total_price }}
+                                        <a href="{% url 'cart_remove' item.item_code %}">
 
-                                <a href="{% url 'cart_remove' item.item_code %}">
                                 <button type="button" class="delete-category-product">Убрать из корзины</button></a>
+                                        {% endif %}
                                         <br>
 
                                     </span></small>
