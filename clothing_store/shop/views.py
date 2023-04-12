@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect, _get_queryset, get_object_or_404
+from django.shortcuts import render, redirect,_get_queryset, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, FormView
 
@@ -150,27 +150,45 @@ class LoginPage(LoginView):
 '''
 
 
-class AccountPage(FormView, DetailView):
+class AccountPage(FormView):
     model = User
     template_name = 'shop/account_page.html'
     form_class = MainUserDataForm
 
-    # def get_context_data(self, **kwargs):
-    #
-    #     print(context['form'])
-    #     return context
-
     def get(self, request: WSGIRequest, *args, **kwargs):
+        user = User.objects.get(username=request.user.username)
+        user_data = {'first_name': user.first_name,
+                     'last_name': user.last_name,
+                     'father_name': user.father_name,
+                     'phone': user.phone,
+                     'country': user.country,
+                     'city': user.city,
+                     'address': user.address,
+                     'post_index': user.post_index,
+                     'region': user.region,
+                     'email': user.email
+                     }
         context = {
             'title': "Аккаунт",
-            'form': MainUserDataForm,
+            'form': MainUserDataForm(initial=user_data),
             'username': kwargs.get('username')
         }
         return render(request, 'shop/account_page.html', context)
 
     def post(self, request: WSGIRequest, *args, **kwargs):
         new_user_data = request.POST
-        print(new_user_data)
+        user = User.objects.get(username=request.user.username)
+        user.first_name = new_user_data['first_name']
+        user.last_name = new_user_data['last_name']
+        user.father_name = new_user_data['father_name']
+        user.phone = new_user_data['phone']
+        user.country = new_user_data['country']
+        user.city = new_user_data['city']
+        user.address = new_user_data['address']
+        user.post_index = new_user_data['post_index']
+        user.region = new_user_data['region']
+        user.email = new_user_data['email']
+        user.save()
         return super().post(request, *args, **kwargs)
 
     def get_success_url(self):
@@ -207,6 +225,7 @@ def cart_remove(request, item_id):
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'shop/cart_test_page.html', {'cart': cart})
+
 
 def place_on_order_page(request):
     """Функция представления страницы оформления заказа"""

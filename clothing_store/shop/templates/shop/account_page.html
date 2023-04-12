@@ -58,7 +58,36 @@
                             <hr>
                         </div>
                     </div>
-                    <button class="account__details-personal-data-save-changes hoverable" type="submit"><span>Сохранить изменения</span>
+                    <header class="account__details-delivery-header">
+                        <span class="account__details-delivery-title">Адрес доставки</span>
+                        <button class="account__details-delivery-change hoverable" type="button">Изменить</button>
+                    </header>
+                    <div class="account__details-delivery-list">
+                        <div class="account__details-delivery-list-content">
+                            <div class="account__details-delivery-item">
+                                <p class="account__details-delivery-item-title">{{ form.country.label_tag }}</p>
+                                {{ form.country }}
+                            </div>
+                            <div class="account__details-delivery-item">
+                                 <p class="account__details-delivery-item-title">{{ form.city.label_tag }}</p>
+                                 {{ form.city }}
+                            </div>
+                            <div class="account__details-delivery-item">
+                                 <p class="account__details-delivery-item-title">{{ form.region.label_tag }}</p>
+                                 {{ form.region }}
+                            </div>
+                            <div class="account__details-delivery-item">
+                                 <p class="account__details-delivery-item-title">{{ form.address.label_tag }}</p>
+                                 {{ form.address }}
+                            </div>
+                            <div class="account__details-delivery-item">
+                                <p class="account__details-delivery-item-title">{{ form.post_index.label_tag }}</p>
+                                 {{ form.post_index }}
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <button class="account__details-delivery-save-changes hoverable" type="submit"><span>Сохранить изменения</span>
                     </button>
                 </form>
 
@@ -75,7 +104,8 @@
 
                 </script>
 
-                <form class="account__details-delivery" changing="false">
+                <!--<form method="post" class="account__details-delivery" changing="false">
+                    {% csrf_token %}
                     <header class="account__details-delivery-header">
                         <span class="account__details-delivery-title">Адрес доставки</span>
                         <button class="account__details-delivery-change hoverable" type="button">Изменить</button>
@@ -83,36 +113,31 @@
                     <div class="account__details-delivery-list">
                         <div class="account__details-delivery-list-content">
                             <div class="account__details-delivery-item">
-                                <p class="account__details-delivery-item-title">Страна</p>
-                                <input name="country" class="account__details-delivery-item-input" maxlength="30"
-                                       type="text" value={{user.country}}>
+                                <p class="account__details-delivery-item-title">{{ form.country.label_tag }}</p>
+                                {{ form.country }}
                             </div>
                             <div class="account__details-delivery-item">
-                                <p class="account__details-delivery-item-title">Город</p>
-                                <input name="city" class="account__details-delivery-item-input" maxlength="30"
-                                       type="text" value={{user.city}}>
+                                 <p class="account__details-delivery-item-title">{{ form.city.label_tag }}</p>
+                                 {{ form.city }}
                             </div>
                             <div class="account__details-delivery-item">
-                                <p class="account__details-delivery-item-title">Край/Область/Регион</p>
-                                <input name="region" class="account__details-delivery-item-input" maxlength="30"
-                                       type="text" value={{user.region}}>
+                                 <p class="account__details-delivery-item-title">{{ form.region.label_tag }}</p>
+                                 {{ form.region }}
                             </div>
                             <div class="account__details-delivery-item">
-                                <p class="account__details-delivery-item-title">Улица, Дом, Квартира</p>
-                                <input name="address" class="account__details-delivery-item-input" maxlength="30"
-                                       type="text" value={{user.address}}>
+                                 <p class="account__details-delivery-item-title">{{ form.address.label_tag }}</p>
+                                 {{ form.address }}
                             </div>
                             <div class="account__details-delivery-item">
-                                <p class="account__details-delivery-item-title">Почтовый индекс</p>
-                                <input name="zip_code" class="account__details-delivery-item-input" maxlength="30"
-                                       type="text" value={{user.post_index}}>
+                                <p class="account__details-delivery-item-title">{{ form.post_index.label_tag }}</p>
+                                 {{ form.post_index }}
                             </div>
                             <hr>
                         </div>
                     </div>
-                    <button class="account__details-delivery-save-changes hoverable" type="button"><span>Сохранить изменения</span>
+                    <button class="account__details-delivery-save-changes hoverable" type="submit"><span>Сохранить изменения</span>
                     </button>
-                </form>
+                </form>-->
 
                 <script>
                     $('.account__details-delivery-change').on('click', function () {

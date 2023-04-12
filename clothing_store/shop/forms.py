@@ -71,12 +71,13 @@ class LoginUserForm(AuthenticationForm):
         model = User
 
 
+
 class MainUserDataForm(forms.Form):
 
     first_name = forms.CharField(label='ИМЯ', widget=forms.TextInput(attrs={
         'name': 'first_name',
         'class': 'account__details-personal-data-item-input',
-        'maxlength': "30"
+        'maxlength': "30",
     }))
 
     last_name = forms.CharField(label='ФАМИЛИЯ', widget=forms.TextInput(attrs={
@@ -100,7 +101,38 @@ class MainUserDataForm(forms.Form):
         'name': 'email',
         'class': 'account__details-personal-data-item-input unchangable'
     }))
+    country = forms.CharField(label='СТАРНА', widget=forms.TextInput(attrs={
+        'name': 'country',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    city = forms.CharField(label='ГОРОД', widget=forms.TextInput(attrs={
+        'name': 'city',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    address = forms.CharField(label='АДРЕС', widget=forms.TextInput(attrs={
+        'name': 'address',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    post_index = forms.CharField(label='ПОЧТОВЫЙ ИНДЕКС', widget=forms.TextInput(attrs={
+        'name': 'post_index',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
+
+    region = forms.EmailField(label='РЕГИОН', widget=forms.TextInput(attrs={
+        'name': 'region',
+        'class': 'account__details-delivery-item-input',
+        'maxlength': "30"
+    }))
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'father_name', 'phone', 'email')
+        fields = ('first_name', 'last_name', 'father_name', 'phone', 'email', 'country', 'city', 'address', 'post_index', 'region')
+
+

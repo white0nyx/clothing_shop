@@ -10,8 +10,10 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = RegisterUserForm
 
-    list_display = ('username', 'email', 'first_name', 'last_name', 'is_superuser', 'date_joined')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'father_name', 'phone', 'country', 'city', 'address',
+                    'post_index', 'region', 'is_superuser', 'date_joined', )
     list_filter = ('is_superuser', 'is_staff')
+
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
