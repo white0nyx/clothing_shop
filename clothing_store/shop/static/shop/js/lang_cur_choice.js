@@ -70,4 +70,3 @@ GEL.addEventListener('click', function handleClick() {
     switcher_currency.textContent = "GEL"
     $('.select-list-transition-currency>.select-list').removeClass('active');
   });
-  
