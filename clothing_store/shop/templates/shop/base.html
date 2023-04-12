@@ -39,33 +39,35 @@
         <div class="container3">
             <div class="header-second">
                 <div class="switcher-language">
-                    <button class="button-language">
+                    
+                    <button class="button-language" id="button-language-id">
                         РУС
                     </button>
-                    <div class="select-list-transition-language">
-                        <ul class="select-list language">
-                            <button class="select-list-value">АНГЛ</button>
-                            <button class="select-list-value">РУС</button>
-                            <button class="select-list-value">УКР</button>
-                        </ul>
-                    </div>
-{#                    <script type="text/javascript" src='{% static "shop/js/lang_cur_choice.js" %}'></script>#}
-
+                    {#                    <script type="text/javascript" src='{% static "shop/js/lang_cur_choice.js" %}'></script>#}
+                    
+                </div>
+                <div class="select-list-transition-language">
+                    <ul class="select-list language">
+                        <button class="select-list-value" id="ENG">АНГЛ</button>
+                        <button class="select-list-value" id="RUS">РУС</button>
+                        <button class="select-list-value" id="UKR">УКР</button>
+                    </ul>
                 </div>
 
                 <div class="switcher-currency">
-                    <button class="button-currency">
-                        РУБ
+                    
+                    <button class="button-currency" id="button-currency-id">
+                        USD
                     </button>
                     <div class="select-list-transition-currency">
                         <ul class="select-list currency">
-                            <button class="select-list-value">USD</button>
-                            <button class="select-list-value">EUR</button>
-                            <button class="select-list-value">UAH</button>
-                            <button class="select-list-value">KZT</button>
-                            <button class="select-list-value">CZK</button>
-                            <button class="select-list-value">PLN</button>
-                            <button class="select-list-value">GEL</button>
+                            <button class="select-list-value" id="USD">USD</button>
+                            <button class="select-list-value" id="EUR">EUR</button>
+                            <button class="select-list-value" id="UAH">UAH</button>
+                            <button class="select-list-value" id="KZT">KZT</button>
+                            <button class="select-list-value" id="CZK">CZK</button>
+                            <button class="select-list-value" id="PLN">PLN</button>
+                            <button class="select-list-value" id="GEL">GEL</button>
                         </ul>
                     </div>
                     <script type="text/javascript" src='{% static "shop/js/lang_cur_choice.js" %}'></script>
@@ -233,7 +235,11 @@
                                         </span>
                                         <span
                                             class="modal__cart-total-cost-value">
-                                            0&nbsp;USD
+                                            0 
+                                            <span  >
+                                                USD
+
+                                            </span>
                                         </span>
                                     </div>
                                     <button
