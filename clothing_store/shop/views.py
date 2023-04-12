@@ -32,7 +32,7 @@ class HomePage(LoginView, ListView):
     """Класс представления главной страницы"""
 
     model = Item
-    template_name = 'shop/category_page.html'
+    template_name = 'shop/home.html'
     context_object_name = 'items'
     form_class = LoginUserForm
 
@@ -44,7 +44,7 @@ class HomePage(LoginView, ListView):
         context['cart'] = cart
         for i in cart:
             print(f'ID ТОВАРА = {i}')
-        return render(request, 'shop/category_page.html', context)
+        return render(request, 'shop/home.html', context)
 
     def get_queryset(self):
         items = Item.objects.all()
