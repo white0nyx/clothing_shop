@@ -1296,6 +1296,7 @@ a {
 }
 
 .select-list {
+    margin: 10px;
     max-height: none!important;
     background: #fff;
     border-radius: 20px;
@@ -1304,7 +1305,7 @@ a {
     display: none;
     padding: 8px 0;
     position: absolute;
-    top: calc(17% + 4px);
+    
     transition: all .3s;
     z-index: 1000;
 }
@@ -1333,6 +1334,7 @@ a {
 }
 
 .select-list-transition-language>.select-list.active {
+    margin: 40px 0px 0px -90px;
     display: flex;
     flex-direction: column;
 }
