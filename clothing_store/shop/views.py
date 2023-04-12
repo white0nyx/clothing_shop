@@ -1,12 +1,8 @@
-import math
-import random
-from django.contrib.auth import logout, login, authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import logout, login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
 from django.core.handlers.wsgi import WSGIRequest
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect,_get_queryset, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, FormView
 
@@ -43,8 +39,6 @@ class HomePage(LoginView, ListView):
         context['title'] = 'WearFit'
         context['form'] = LoginUserForm
         context['cart'] = cart
-        for i in cart:
-            print(f'ID ТОВАРА = {i}')
         return render(request, 'shop/home.html', context)
 
     def get_queryset(self):
@@ -52,10 +46,6 @@ class HomePage(LoginView, ListView):
         return split_list_into_chunks((list(items)))
 
     object_list = split_list_into_chunks((list(Item.objects.all())))
-
-    # def form_invalid(self, form):
-    #     print(form.errors)
-    #     return super().form_invalid(form)
 
 
 def logout_user(request):
@@ -122,7 +112,6 @@ class RegistrationPage(CreateView, ListView):
 
     def form_valid(self, form):
         user = form.save()
-        print(user.email, user.password)
 
         # user = authenticate(email=user.email, password=user.password)
         login(self.request, user)
@@ -135,24 +124,6 @@ class RegistrationPage(CreateView, ListView):
     def post(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
         return super().post(request, *args, **kwargs)
-
-
-'''
-class LoginPage(LoginView):
-    """Класс представления страницы авторизации"""
-
-    form_class = LoginUserForm
-    template_name = 'shop/login.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Авторизация'
-
-        return context
-
-    def get_success_url(self):
-        return reverse_lazy('home')
-'''
 
 
 class AccountPage(FormView):
@@ -218,7 +189,6 @@ def cart(request):
 
 
 def cart_add(request, item_id):
-    # Получаем объект товара по идентификатору
     item = get_object_or_404(Item, id=item_id)
     size = request.POST['size']
     quantity = request.POST['quantity']
@@ -226,7 +196,7 @@ def cart_add(request, item_id):
     cart = Cart(request)
 
     if size in ['S', 'M', 'L', 'XL', '2XL'] and 1 <= int(quantity) <= 20:
-        cart.add(item=item, quantity=quantity, size=size, update_quantity=False)  # update_quantity - временно True
+        cart.add(item=item, quantity=quantity, size=size, update_quantity=False)
     return redirect('home')
 
 

@@ -1,42 +1,11 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.db import models
 from django.urls import reverse
-from decimal import Decimal
 from django.conf import settings
 
 from clothing_store import settings
 
 
-# from django.contrib.auth.models import AbstractUser, User, Group
-
-
-# class Account(AbstractUser):
-#     email = models.EmailField(
-#         'email_address',
-#         unique=True,
-#         default='')
-#
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = ['username']
-#
-#     groups = models.ManyToManyField(
-#         'auth.Group',
-#         blank=True,
-#         related_name='user_group_set',
-#         help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-#         verbose_name='groups'
-#     )
-#
-#     user_permissions = models.ManyToManyField(
-#         'auth.Permission',
-#         blank=True,
-#         related_name='user_permission_set',
-#         help_text='Specific permissions for this user.',
-#         verbose_name='user permissions'
-#     )
-#
-#     # def get_absolute_url(self):
-#     #     return reverse('account', kwargs={'account_slug': self.username})
 class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password, first_name='', last_name='', father_name='', phone='',
@@ -181,9 +150,6 @@ class AdditionalImageItem(models.Model):
         verbose_name = 'Дополнительное изображение товара'
         verbose_name_plural = 'Дополнительные изображения товара'
 
-    # def get_absolute_url(self):
-    #     return self.path
-
     def __str__(self):
         return self.item.name + ' ADD_Image'
 
@@ -242,7 +208,6 @@ class Cart(object):
 
         for item_code in items_codes:
             self.cart[item_code]['product'] = Item.objects.get(id=int(item_code.split('_')[0]))
-            print(self.cart)
 
         for item in self.cart.values():
             item['price'] = int(item['price'])

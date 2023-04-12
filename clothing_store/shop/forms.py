@@ -1,6 +1,4 @@
-from captcha.fields import CaptchaField
 from django import forms
-from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from shop.models import User
