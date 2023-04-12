@@ -797,7 +797,6 @@ ul {
     width: 1024px;
     height: 256px;
     display: flex;
-    background: orange;
     position: relative;
     left: 0;
     transition: all ease 1s;
@@ -2096,6 +2095,21 @@ button {
     position: relative;
     text-transform: uppercase;
     width: 300px;
+}
+
+.account-link-p{
+    margin-left: 15px;
+    margin-right: 15px;
+    text-decoration: none;
+    border-radius: 100px;
+    color: #fff;
+    background-color: #000;
+    padding-top: 5px;
+    transition: all .1s ease-out;
+}
+
+.account-link-p:hover{
+    color: #fff;
 }
 
 .account__details-delivery-save-changes:hover {
