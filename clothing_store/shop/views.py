@@ -1,15 +1,12 @@
-import math
-
-from django.contrib.auth import logout, login, authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth import logout, login
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
 from django.core.handlers.wsgi import WSGIRequest
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect, _get_queryset, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic import CreateView, ListView, DetailView, FormView
 
-from shop.forms import RegisterUserForm, LoginUserForm
+from shop.forms import RegisterUserForm, LoginUserForm, MainUserDataForm
 from shop.models import *
 
 
@@ -32,22 +29,23 @@ class HomePage(LoginView, ListView):
     """Класс представления главной страницы"""
 
     model = Item
-    template_name = 'shop/category_page.html'
+    template_name = 'shop/home.html'
     context_object_name = 'items'
     form_class = LoginUserForm
-    register_form_class = RegisterUserForm
+
+    def get(self, request, *args, **kwargs):
+        cart = Cart(request)
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'WearFit'
+        context['form'] = LoginUserForm
+        context['cart'] = cart
+        return render(request, 'shop/home.html', context)
 
     def get_queryset(self):
         items = Item.objects.all()
         return split_list_into_chunks((list(items)))
 
     object_list = split_list_into_chunks((list(Item.objects.all())))
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'WearFit'
-        context['form'] = LoginUserForm
-        return context
 
 
 def logout_user(request):
@@ -75,7 +73,6 @@ class CategoryPage(ListView, LoginView):
         context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
         context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
         context['form'] = LoginUserForm
-        context['registration_form'] = RegisterUserForm
         return context
 
     def get_success_url(self):
@@ -91,6 +88,7 @@ class ItemPage(LoginView, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = context['item']
+        context['items'] = Item.objects.all().order_by('?')
         return context
 
 
@@ -114,43 +112,74 @@ class RegistrationPage(CreateView, ListView):
 
     def form_valid(self, form):
         user = form.save()
-        print(user.email, user.password)
 
         # user = authenticate(email=user.email, password=user.password)
         login(self.request, user)
         return redirect('home')
 
+    def get(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        return super().get(request, *args, **kwargs)
 
-'''
-class LoginPage(LoginView):
-    """Класс представления страницы авторизации"""
-
-    form_class = LoginUserForm
-    template_name = 'shop/login.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Авторизация'
-
-        return context
-
-    def get_success_url(self):
-        return reverse_lazy('home')
-'''
+    def post(self, request, *args, **kwargs):
+        self.object_list = self.get_queryset()
+        return super().post(request, *args, **kwargs)
 
 
-class AccountPage(DetailView):
+class AccountPage(FormView):
     model = User
     template_name = 'shop/account_page.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = context['user']
-        return context
+    form_class = MainUserDataForm
 
     def get(self, request: WSGIRequest, *args, **kwargs):
-        username = kwargs.get('username')
-        return render(request, 'shop/account_page.html', {'username': username})
+        user = User.objects.get(username=request.user.username)
+        user_data = {'first_name': user.first_name,
+                     'last_name': user.last_name,
+                     'father_name': user.father_name,
+                     'phone': user.phone,
+                     'country': user.country,
+                     'city': user.city,
+                     'address': user.address,
+                     'post_index': user.post_index,
+                     'region': user.region,
+                     'email': user.email
+                     }
+        context = {
+            'title': "Аккаунт",
+            'form': MainUserDataForm(initial=user_data),
+            'username': kwargs.get('username')
+        }
+        return render(request, 'shop/account_page.html', context)
+
+    def post(self, request: WSGIRequest, *args, **kwargs):
+        new_user_data = request.POST
+        user = User.objects.get(username=request.user.username)
+        user.first_name = new_user_data['first_name']
+        user.last_name = new_user_data['last_name']
+        user.father_name = new_user_data['father_name']
+        user.phone = new_user_data['phone']
+        user.country = new_user_data['country']
+        user.city = new_user_data['city']
+        user.address = new_user_data['address']
+        user.post_index = new_user_data['post_index']
+        user.region = new_user_data['region']
+        user.email = new_user_data['email']
+
+        password = new_user_data['password']
+        password_confirmation = new_user_data['password_confirmation']
+        if password and password_confirmation:
+            if password == password_confirmation:
+                user.password = make_password(password)  # Обновляем пароль
+            else:
+                # Если новые пароли не совпадают, можно вывести ошибку
+                # или предпринять другие действия в зависимости от вашей логики
+                pass
+
+        user.save()
+        return super().post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('account')
 
 
 def cart(request):
@@ -160,7 +189,6 @@ def cart(request):
 
 
 def cart_add(request, item_id):
-    # Получаем объект товара по идентификатору
     item = get_object_or_404(Item, id=item_id)
     size = request.POST['size']
     quantity = request.POST['quantity']
@@ -168,18 +196,22 @@ def cart_add(request, item_id):
     cart = Cart(request)
 
     if size in ['S', 'M', 'L', 'XL', '2XL'] and 1 <= int(quantity) <= 20:
-        cart.add(item=item, quantity=quantity, size=size, update_quantity=True)  # update_quantity - временно True
-    print(cart.get_total_price())
-    return redirect('cart')
+        cart.add(item=item, quantity=quantity, size=size, update_quantity=False)
+    return redirect('home')
 
 
-def cart_remove(request, item_id):
+def cart_remove(request, item_code):
     cart = Cart(request)
-    item = get_object_or_404(Item, id=item_id)
-    cart.remove(item)
-    return redirect('cart')
+    cart.remove(item_code)
+    return redirect('home')
 
 
 def cart_detail(request):
     cart = Cart(request)
     return render(request, 'shop/cart_test_page.html', {'cart': cart})
+
+
+def place_on_order_page(request):
+    """Функция представления страницы оформления заказа"""
+
+    return render(request, 'shop/place_on_order.html')

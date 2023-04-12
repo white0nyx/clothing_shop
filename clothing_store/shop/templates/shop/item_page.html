@@ -3,18 +3,25 @@
 
 
 {% block content %}
+
+{{ item.relatedmodel_set }}
+
 <div class="product-name">
     <h2>{{ item }}</h2>
 </div>
 
 <div class="product-content">
+
+
+
     <div class="slider-container">
         <button class="slider-prev">🢐</button>
         <div class="product-slide">
             <div class="slide-line">
                 <img src="{{ item.main_photo.url }}" class="product-photo">
-                <img src="{{ item.main_photo.url }}" class="product-photo">
-                <img src="{{ item.main_photo.url }}" class="product-photo">
+                {% for add_item in item.add_images.all %}
+                <img src="{{ add_item.path.url }}" class="product-photo">
+                {% endfor %}
             </div>
         </div>
         <button class="slider-next"> 🢒</button>
@@ -39,7 +46,7 @@
             <div class="product-info-sizes-title">Выберите размер:</div>
             <div class="product-info-sizes-list">
                 <div class="product-info-sizes-list-content">
-                    <button type="button" class="product-info-sizes-size" id="smb">S</button>
+                    <button type="button" class="product-info-sizes-size">S</button>
                     <button type="button" class="product-info-sizes-size">M</button>
                     <button type="button" class="product-info-sizes-size">L</button>
                     <button type="button" class="product-info-sizes-size">XL</button>
@@ -47,7 +54,6 @@
                 </div>
             </div>
         </div>
-
         <div class="product-info-count-counter">
             <div class="product-info-count-title">Количество:</div>
             <div class="counter" data-counter>
@@ -94,96 +100,25 @@
     <button class="slider-prev2">🢐</button>
     <div class="product-slide2">
         <div class="slide-line2">
+
+            {% for other_item in items %}
+
+            {% if item.id != other_item.id %}
+            <a href="{{ other_item.get_absolute_url }}">
             <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
+                <img src="{{ other_item.main_photo.url }}" class="product-photo2">
                 <div class="price product-recs-recommendation-price">
                     <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
+                        <span>{{ other_item.price }} &nbsp РУБ
                         </span>
                     </div>
                 </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
+                <div class="product-recs-recommendation-name">{{ other_item }}</div>
             </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
-            <div class="rec">
-                <img src="{{ item.main_photo.url }}" class="product-photo2">
-                <div class="price product-recs-recommendation-price">
-                    <div class="price-current">
-                        <span>{{ item.price }} &nbsp РУБ
-                        </span>
-                    </div>
-                </div>
-                <div class="product-recs-recommendation-name">{{ item }}</div>
-            </div>
+                </a>
+            {% endif %}
+            {% endfor %}
+
         </div>
     </div>
     <button class="slider-next2"> 🢒</button>

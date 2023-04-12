@@ -1,42 +1,11 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.db import models
 from django.urls import reverse
-from decimal import Decimal
 from django.conf import settings
 
 from clothing_store import settings
 
 
-# from django.contrib.auth.models import AbstractUser, User, Group
-
-
-# class Account(AbstractUser):
-#     email = models.EmailField(
-#         'email_address',
-#         unique=True,
-#         default='')
-#
-#     USERNAME_FIELD = 'email'
-#     REQUIRED_FIELDS = ['username']
-#
-#     groups = models.ManyToManyField(
-#         'auth.Group',
-#         blank=True,
-#         related_name='user_group_set',
-#         help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-#         verbose_name='groups'
-#     )
-#
-#     user_permissions = models.ManyToManyField(
-#         'auth.Permission',
-#         blank=True,
-#         related_name='user_permission_set',
-#         help_text='Specific permissions for this user.',
-#         verbose_name='user permissions'
-#     )
-#
-#     # def get_absolute_url(self):
-#     #     return reverse('account', kwargs={'account_slug': self.username})
 class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password, first_name='', last_name='', father_name='', phone='',
@@ -175,14 +144,14 @@ class AdditionalImageItem(models.Model):
     """Модель изображения товара"""
 
     path = models.ImageField(upload_to="images/photo/", verbose_name='Фото')
-    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Товар', )
+    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Товар', related_name='add_images')
 
     class Meta:
         verbose_name = 'Дополнительное изображение товара'
         verbose_name_plural = 'Дополнительные изображения товара'
 
     def __str__(self):
-        return self.item.name + ' Image'
+        return self.item.name + ' ADD_Image'
 
 
 class Cart(object):
@@ -195,7 +164,6 @@ class Cart(object):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
-            # save an empty cart in the session
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
@@ -203,16 +171,17 @@ class Cart(object):
         """
         Добавить продукт в корзину или обновить его количество.
         """
-        item_id = str(item.id)
-        if item_id not in self.cart:
-            self.cart[item_id] = {'quantity': 0,
-                                  'price': str(item.price)}
+        item_code = f"{item.id}_{size}"
+        if item_code not in self.cart:
+            self.cart[item_code] = {'quantity': 0,
+                                  'price': str(item.price),
+                                    'item_code': item_code}
         if update_quantity:
-            self.cart[item_id]['quantity'] = quantity
-            self.cart[item_id]['size'] = size
+            self.cart[item_code]['quantity'] = int(quantity)
+            self.cart[item_code]['size'] = size
         else:
-            self.cart[item_id]['quantity'] += quantity
-            self.cart[item_id]['size'] = size
+            self.cart[item_code]['quantity'] = int(self.cart[item_code]['quantity']) + int(quantity)
+            self.cart[item_code]['size'] = size
 
         self.save()
 
@@ -222,24 +191,23 @@ class Cart(object):
         # Отметить сеанс как "измененный", чтобы убедиться, что он сохранен
         self.session.modified = True
 
-    def remove(self, item):
+    def remove(self, item_code):
         """
         Удаление товара из корзины.
         """
-        product_id = str(item.id)
-        if product_id in self.cart:
-            del self.cart[product_id]
+
+        if item_code in self.cart:
+            del self.cart[item_code]
             self.save()
 
     def __iter__(self):
         """
         Перебор элементов в корзине и получение продуктов из базы данных.
         """
-        items_ids = self.cart.keys()
-        # получение объектов product и добавление их в корзину
-        items = Item.objects.filter(id__in=items_ids)
-        for product in items:
-            self.cart[str(product.id)]['product'] = product
+        items_codes = self.cart.keys()
+
+        for item_code in items_codes:
+            self.cart[item_code]['product'] = Item.objects.get(id=int(item_code.split('_')[0]))
 
         for item in self.cart.values():
             item['price'] = int(item['price'])
