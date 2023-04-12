@@ -2,6 +2,7 @@ import math
 import random
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
 from django.core.handlers.wsgi import WSGIRequest
 from django.http import HttpRequest, HttpResponse
@@ -192,6 +193,17 @@ class AccountPage(FormView):
         user.post_index = new_user_data['post_index']
         user.region = new_user_data['region']
         user.email = new_user_data['email']
+
+        password = new_user_data['password']
+        password_confirmation = new_user_data['password_confirmation']
+        if password and password_confirmation:
+            if password == password_confirmation:
+                user.password = make_password(password)  # Обновляем пароль
+            else:
+                # Если новые пароли не совпадают, можно вывести ошибку
+                # или предпринять другие действия в зависимости от вашей логики
+                pass
+
         user.save()
         return super().post(request, *args, **kwargs)
 

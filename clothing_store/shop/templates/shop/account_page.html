@@ -87,7 +87,24 @@
                             <hr>
                         </div>
                     </div>
-                    <button class="account__details-delivery-save-changes hoverable" type="submit"><span>Сохранить изменения</span>
+                    <header class="account__details-reset-password-header">
+                        <span class="account__details-reset-password-title">Пароль</span>
+                        <button class="account__details-reset-password-change hoverable" type="button">Изменить</button>
+                    </header>
+                    <div class="account__details-reset-password-list">
+                        <div class="account__details-reset-password-list-content">
+                            <div class="account__details-reset-password-item">
+                                <p class="account__details-reset-password-item-title">{{ form.password.label_tag }}</p>
+                                {{ form.password }}
+                            </div>
+                            <div class="account__details-reset-password-item">
+                                <p class="account__details-reset-password-item-title">{{ form.password.label_tag }}</p>
+                                {{ form.password_confirmation }}
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <button class="account__details-reset-password-save-changes hoverable" type="submit"><span>Сохранить изменения</span>
                     </button>
                 </form>
 
@@ -152,29 +169,28 @@
 
                 </script>
 
-                <form class="account__details-reset-password" changing="false">
-                    <header class="account__details-reset-password-header">
-                        <span class="account__details-reset-password-title">Пароль</span>
-                        <button class="account__details-reset-password-change hoverable" type="button">Изменить</button>
-                    </header>
-                    <div class="account__details-reset-password-list">
-                        <div class="account__details-reset-password-list-content">
-                            <div class="account__details-reset-password-item">
-                                <p class="account__details-reset-password-item-title">Новый пароль</p>
-                                <input name="password" class="account__details-personal-data-item-input1"
-                                       maxlength="255" type="password" value="">
-                            </div>
-                            <div class="account__details-reset-password-item">
-                                <p class="account__details-reset-password-item-title">Повторите пароль</p>
-                                <input name="password_confirmation" class="account__details-personal-data-item-input1"
-                                       maxlength="255" type="password" value="">
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <button class="account__details-reset-password-save-changes hoverable" type="button"><span>Сохранить изменения</span>
-                    </button>
-                </form>
+<!--                    <header class="account__details-reset-password-header">-->
+<!--                        <span class="account__details-reset-password-title">Пароль</span>-->
+<!--                        <button class="account__details-reset-password-change hoverable" type="button">Изменить</button>-->
+<!--                    </header>-->
+<!--                    <div class="account__details-reset-password-list">-->
+<!--                        <div class="account__details-reset-password-list-content">-->
+<!--                            <div class="account__details-reset-password-item">-->
+<!--                                <p class="account__details-reset-password-item-title">Новый пароль</p>-->
+<!--                                <input name="password" class="account__details-personal-data-item-input1"-->
+<!--                                       maxlength="255" type="password" value="">-->
+<!--                            </div>-->
+<!--                            <div class="account__details-reset-password-item">-->
+<!--                                <p class="account__details-reset-password-item-title">Повторите пароль</p>-->
+<!--                                <input name="password_confirmation" class="account__details-personal-data-item-input1"-->
+<!--                                       maxlength="255" type="password" value="">-->
+<!--                            </div>-->
+<!--                            <hr>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <button class="account__details-reset-password-save-changes hoverable" type="submit"><span>Сохранить изменения</span>-->
+<!--                    </button>-->
+<!--                </form>-->
 
                 <script>
                     $('.account__details-reset-password-change').on('click', function () {

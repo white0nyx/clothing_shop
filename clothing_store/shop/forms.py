@@ -130,8 +130,22 @@ class MainUserDataForm(forms.Form):
         'maxlength': "30"
     }))
 
+    password = forms.CharField(label='Новый Пароль', widget=forms.PasswordInput(attrs={
+        'class': 'account__details-personal-data-item-input1',
+        'name': 'password',
+        'maxlength': "255"
+    }))
+
+    password_confirmation = forms.CharField(label='Повторите Пароль', widget=forms.PasswordInput(attrs={
+        'class': 'account__details-personal-data-item-input1',
+        'name': 'password_confirmation',
+        'maxlength': "255"
+    }))
+
+
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'father_name', 'phone', 'email', 'country', 'city', 'address', 'post_index', 'region')
+        fields = ('first_name', 'last_name', 'father_name', 'phone', 'email', 'country', 'city',
+                  'address', 'post_index', 'region', 'password', 'password_confirmation')
 
 
