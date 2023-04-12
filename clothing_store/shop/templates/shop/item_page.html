@@ -3,18 +3,25 @@
 
 
 {% block content %}
+
+{{ item.relatedmodel_set }}
+
 <div class="product-name">
     <h2>{{ item }}</h2>
 </div>
 
 <div class="product-content">
+
+
+
     <div class="slider-container">
         <button class="slider-prev">🢐</button>
         <div class="product-slide">
             <div class="slide-line">
                 <img src="{{ item.main_photo.url }}" class="product-photo">
-                <img src="{{ item.main_photo.url }}" class="product-photo">
-                <img src="{{ item.main_photo.url }}" class="product-photo">
+                {% for add_item in item.add_images.all %}
+                <img src="{{ add_item.path.url }}" class="product-photo">
+                {% endfor %}
             </div>
         </div>
         <button class="slider-next"> 🢒</button>

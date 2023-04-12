@@ -175,14 +175,17 @@ class AdditionalImageItem(models.Model):
     """Модель изображения товара"""
 
     path = models.ImageField(upload_to="images/photo/", verbose_name='Фото')
-    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Товар', )
+    item = models.ForeignKey(Item, default=None, on_delete=models.CASCADE, verbose_name='Товар', related_name='add_images')
 
     class Meta:
         verbose_name = 'Дополнительное изображение товара'
         verbose_name_plural = 'Дополнительные изображения товара'
 
+    # def get_absolute_url(self):
+    #     return self.path
+
     def __str__(self):
-        return self.item.name + ' Image'
+        return self.item.name + ' ADD_Image'
 
 
 class Cart(object):
