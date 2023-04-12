@@ -12,9 +12,12 @@
                 <li class="account-page-menu-item hoverable" active="false">
                     <a href="#">Мои заказы</a></li>
             </ul>
-            <button type="button" class="account-page-logout hoverable">
+            <a href="{% url 'logout' %}" >
+                <button type="submit" class="account-page-logout hoverable">
                 <span>Выйти из аккаунта</span>
             </button>
+            </a>
+
         </div>
 
 
