@@ -6,6 +6,15 @@ from django.conf import settings
 from clothing_store import settings
 
 
+
+class Currency(models.Model):
+    name = models.CharField(verbose_name='Название валюты', max_length=255)
+    conversion_rate = models.DecimalField(verbose_name='Коэффициент конвертации', max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
+
+
 class UserManager(BaseUserManager):
 
     def create_user(self, username, email, password, first_name='', last_name='', father_name='', phone='',
@@ -128,6 +137,38 @@ class Item(models.Model):
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     is_in_stock = models.BooleanField(default=False, verbose_name='Есть в наличии')
 
+    # def get_price_in_selected_currency(self, currency):
+    #     # Здесь вы должны реализовать получение коэффициента конвертации для выбранной валюты
+    #     # и выполнить конвертацию цены товара
+    #     if currency == 'USD':
+    #         coefficient = 0.012  # Пример коэффициента конвертации для USD
+    #     elif currency == 'EUR':
+    #         coefficient = 0.01  # Пример коэффициента конвертации для EUR
+    #     else:
+    #         coefficient = 1.0  # Коэффициент для базовой валюты (RUB)
+    #
+    #     converted_price = self.price * coefficient
+    #     return converted_price
+
+    def convert_price(self, currency):
+        # здесь нужно использовать парсинг, но пока будет словарь со значениями
+        conversion_rates = {
+            'USD': 0.0125,
+            'EUR': 0.0114,
+            'RUB': 1.0,
+        }
+
+        # Выполнение конвертации цены товара
+        if currency in conversion_rates:
+            conversion_rate = conversion_rates[currency]
+            converted_price = round(self.price * conversion_rate, 2)
+
+            return converted_price
+
+        # Если выбранная валюта не найдена в словаре коэффициентов конвертации,
+        # вернуть цену товара в рублях
+        return self.price
+
     def __str__(self):
         return self.name
 
@@ -231,3 +272,5 @@ class Cart(object):
         # удаление корзины из сессии
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
+
+

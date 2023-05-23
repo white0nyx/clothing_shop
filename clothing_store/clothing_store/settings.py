@@ -132,3 +132,5 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'home'
 
 CART_SESSION_ID = 'cart'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'

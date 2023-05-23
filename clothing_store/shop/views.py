@@ -70,8 +70,17 @@ class CategoryPage(ListView, LoginView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
-        context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
+        category_slug = self.kwargs['category_slug']
+        currency = self.request.session.get('currency', 'RUB')
+
+        # Конвертирование цен для каждого товара в выбранной категории
+        items = context['items']
+        for chunk in items:
+            for item in chunk:
+                item.converted_price = item.convert_price(currency)
+
+        context['title'] = Category.objects.get(slug=category_slug).name + ' - WearFit'
+        context['category_selected'] = Category.objects.filter(slug=category_slug)[0].id
         context['form'] = LoginUserForm
         return context
 
@@ -89,7 +98,11 @@ class ItemPage(LoginView, DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['item']
         context['items'] = Item.objects.all().order_by('?')
+        currency = self.request.session.get('currency', 'RUB')
+        converted_price = self.object.convert_price(currency)
+        context['converted_price'] = converted_price
         return context
+
 
 
 class RegistrationPage(CreateView, ListView):
@@ -215,3 +228,11 @@ def place_on_order_page(request):
     """Функция представления страницы оформления заказа"""
 
     return render(request, 'shop/place_on_order.html')
+
+def change_currency(request):
+    if request.method == 'POST':
+        currency = request.POST.get('currency')
+        request.session['currency'] = currency
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
