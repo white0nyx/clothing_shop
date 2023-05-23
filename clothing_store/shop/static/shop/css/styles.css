@@ -2622,3 +2622,143 @@ small{
     width: 277px;
     margin-top: 10px;
 }
+
+@media only screen and (min-width: 1024px) and (max-width: 2000px)
+    .booking-page__payment {
+    width: 495px;
+}
+
+.booking-page__payment {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-title {
+    margin-bottom: 50px;
+}
+
+.booking-page__payment-title {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.booking-page__payment-form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.booking-page__payment-form-payments {
+    grid-gap: 13px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,114px);
+    width: 100%;
+}
+
+.booking-page__payment-form-section-title {
+    color: #818d92;
+    font-size: 15px;
+    grid-column-end: -1;
+    grid-column-start: 1;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+.booking-page__payment-form-direction {
+    align-items: center;
+    background: #f4f6f8;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    height: 114px;
+    justify-content: center;
+    transition: all .5s;
+    width: 114px;
+}
+
+.booking-page__payment-form-direction:focus {
+    background: #fff;
+    border: 1px solid #000;
+}
+
+.booking-page__payment-form-direction-image {
+    height: 86px;
+    object-fit: contain;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 86px;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-form-bottom {
+    align-items: flex-end;
+    margin-top: 40px;
+}
+
+.booking-page__payment-form-bottom {
+    display: flex;
+    position: relative;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-back {
+    margin-right: 25px;
+}
+
+.booking-page__payment-back {
+    border-bottom: 1px dashed #585858;
+    color: #585858;
+    cursor: pointer;
+    font-size: 17px;
+    line-height: 15px;
+    transition: all .5s;
+}
+
+.booking-page__payment-pay {
+    align-items: center;
+    background: #000;
+    border-radius: 1000px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+    height: 50px;
+    justify-content: center;
+    letter-spacing: 2px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all .5s;
+    width: 276px;
+}
+
+.booking-page__payment-pay>span {
+    line-height: 1em;
+}
+
+.booking-page__payment-pay-arrow {
+    fill: #fff;
+    margin-left: 12px;
+}
+
+.icon__animated {
+    transition: all .3s;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-step {
+    margin-left: 25px;
+}
+
+.booking-page__payment-step {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.booking-page__payment-step>span {
+    color: #818d92;
+    font-weight: 300;
+}
