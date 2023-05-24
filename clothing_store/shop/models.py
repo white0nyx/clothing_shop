@@ -1,7 +1,10 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.sites import requests
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+import requests
+from bs4 import BeautifulSoup
 
 from clothing_store import settings
 
@@ -136,38 +139,35 @@ class Item(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания товара')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     is_in_stock = models.BooleanField(default=False, verbose_name='Есть в наличии')
-
-    # def get_price_in_selected_currency(self, currency):
-    #     # Здесь вы должны реализовать получение коэффициента конвертации для выбранной валюты
-    #     # и выполнить конвертацию цены товара
-    #     if currency == 'USD':
-    #         coefficient = 0.012  # Пример коэффициента конвертации для USD
-    #     elif currency == 'EUR':
-    #         coefficient = 0.01  # Пример коэффициента конвертации для EUR
-    #     else:
-    #         coefficient = 1.0  # Коэффициент для базовой валюты (RUB)
-    #
-    #     converted_price = self.price * coefficient
-    #     return converted_price
+    conversion_rates = {
+        'RUB': 1.0,
+    }
 
     def convert_price(self, currency):
-        # здесь нужно использовать парсинг, но пока будет словарь со значениями
-        conversion_rates = {
-            'USD': 0.0125,
-            'EUR': 0.0114,
-            'RUB': 1.0,
-        }
+        if currency not in self.conversion_rates:
+            self.update_conversion_rates()
+        conversion_rate = self.conversion_rates[currency]
+        converted_price = round(self.price / conversion_rate, 2)
+        return converted_price
 
-        # Выполнение конвертации цены товара
-        if currency in conversion_rates:
-            conversion_rate = conversion_rates[currency]
-            converted_price = round(self.price * conversion_rate, 2)
-
-            return converted_price
-
-        # Если выбранная валюта не найдена в словаре коэффициентов конвертации,
-        # вернуть цену товара в рублях
-        return self.price
+    def update_conversion_rates(self):
+        url = 'https://ru.myfin.by/currency'
+        response = requests.get(url)
+        html = response.text
+        soup = BeautifulSoup(html, 'html.parser')
+        table = soup.find('table', {'class': 'table-best yellow_bg'})
+        rows = table.findAll('tr')
+        conversion_rates = {}
+        for row in rows:
+            cells = row.find_all('td')
+            if len(cells) >= 4:
+                currency_element = cells[0].find('a')
+                if currency_element:
+                    currency = currency_element.text.strip()
+                    if currency == 'Usd' or currency == 'Eur':
+                        cbr_today = cells[3].text.strip()
+                        conversion_rates[currency.upper()] = float(cbr_today)
+        self.conversion_rates.update(conversion_rates)
 
     def __str__(self):
         return self.name
