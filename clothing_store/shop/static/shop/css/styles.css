@@ -209,7 +209,7 @@ body {
     transition: all .3s;
 }
 
-.icon .arrow4 {
+.icon{
     height: 32px;
     width: 17px;
 }
@@ -881,7 +881,6 @@ input {
     border-radius: 0;
     font-size: 18px;
     font-weight: 500;
-    outline: none;
 }
 
 .modal__signin-classic-field:nth-child(2) {
@@ -944,7 +943,7 @@ input {
     transition: all .3s;
 }
 
-.icon .arrow {
+.icon {
     height: 7px;
     width: 12px;
 }
@@ -1146,10 +1145,6 @@ svg:not(:root) {
     margin: 0;
     padding-top: 0;
     vertical-align: initial;
-}
-
-*{
-    box-sizing: border-box;
 }
 
 .category-product {
@@ -1539,7 +1534,6 @@ input {
     border: none;
     font-size: 18px;
     font-weight: 500;
-    outline: none;
     font-family: Futura,sans-serif;
     margin: 0;
     vertical-align: initial;
@@ -2254,26 +2248,13 @@ button {
 
 input {
     -webkit-appearance: none;
-    outline: none;
 }
 
 .booking-page__details-form-item:not(:first-child) {
     margin-top: 30px;
 }
 
-.react-tel-input {
-    font-family: Roboto,sans-serif;
-    font-size: 15px;
-    position: relative;
-    width: 100%;
-}
-
-.react-tel-input .special-label {
-    display: none;
-    white-space: nowrap;
-}
-
-.react-tel-input .invalid-number-message, .react-tel-input .special-label {
+.invalid-number-message,{
     background: #fff;
     font-size: 13px;
     left: 46px;
@@ -2283,11 +2264,7 @@ input {
     z-index: 1;
 }
 
-.react-tel-input * {
-    box-sizing: border-box;
-}
-
-.react-tel-input .form-control {
+.form-control {
     letter-spacing: .01rem;
     line-height: 25px;
     margin-bottom: 0!important;
@@ -2309,14 +2286,6 @@ input {
     width: 100%!important;
 }
 
-.react-tel-input .flag-dropdown {
-    border-radius: 3px 0 0 3px;
-    bottom: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-}
-
 .booking-page__details-form-item-phone-button {
     background: #f4f6f8!important;
     border: none!important;
@@ -2325,198 +2294,14 @@ input {
     height: 36px!important;
 }
 
-.react-tel-input .selected-flag {
-    border-radius: 3px 0 0 3px;
-    height: 100%;
-    outline: none;
-    padding: 0 0 0 8px;
-    position: relative;
-    width: 38px;
-}
-
-.react-tel-input .selected-flag .flag {
+.selected-flag .flag {
     margin-top: -5px;
     position: absolute;
     top: 50%;
 }
 
-.booking-page__details-form-item-phone-button .flag {
+.booking-page__details-form-item-phone-button {
     border-radius: 2px;
-}
-
-.react-tel-input .ua {
-    background-position: -80px -143px;
-}
-
-.react-tel-input .flag {
-    /*background-image:*/
-    height: 11px;
-    width: 16px;
-}
-
-.css-b62m3t-container {
-    position: relative;
-    box-sizing: border-box;
-}
-
-.css-7pg0cj-a11yText {
-    z-index: 9999;
-    border: 0px;
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    width: 1px;
-    position: absolute;
-    overflow: hidden;
-    padding: 0px;
-    white-space: nowrap;
-}
-
-.css-1g5ybnw-control {
-    -webkit-box-align: center;
-    align-items: center;
-    background-color: rgb(244, 246, 248);
-    border-color: rgb(244, 246, 248);
-    border-radius: 1000px;
-    border-style: solid;
-    border-width: 0px;
-    box-shadow: none;
-    cursor: default;
-    display: flex;
-    flex-wrap: wrap;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    min-height: 38px;
-    position: relative;
-    transition: all 100ms ease 0s;
-    box-sizing: border-box;
-    padding: 0px 7px;
-    outline: 0px !important;
-}
-
-.css-1d8n9bt {
-    -webkit-box-align: center;
-    align-items: center;
-    display: grid;
-    flex: 1 1 0%;
-    flex-wrap: wrap;
-    padding: 2px 8px;
-    position: relative;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.css-14el2xx-placeholder {
-    color: rgb(128, 128, 128);
-    grid-area: 1 / 1 / 2 / 3;
-    margin-left: 2px;
-    margin-right: 2px;
-    box-sizing: border-box;
-}
-
-.css-ackcql {
-    margin: 2px;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    visibility: visible;
-    color: rgb(51, 51, 51);
-    flex: 1 1 auto;
-    display: inline-grid;
-    grid-area: 1 / 1 / 2 / 3;
-    grid-template-columns: 0px min-content;
-    box-sizing: border-box;
-}
-
-.css-ackcql.input{
-    color: inherit;
-    background: 0px center;
-    opacity: 1;
-    width: 100%;
-    grid-area: 1 / 2 / auto / auto;
-    font: inherit;
-    min-width: 2px;
-    border: 0px;
-    margin: 0px;
-    outline: 0px;
-    padding: 0px;
-}
-
-.css-ackcql>::after {
-    content: attr(data-value) " ";
-    visibility: hidden;
-    white-space: pre;
-    grid-area: 1 / 2 / auto / auto;
-    font: inherit;
-    min-width: 2px;
-    border: 0px;
-    margin: 0px;
-    outline: 0px;
-    padding: 0px;
-}
-
-.css-1wy0on6 {
-    -webkit-box-align: center;
-    align-items: center;
-    align-self: stretch;
-    display: flex;
-    flex-shrink: 0;
-    box-sizing: border-box;
-}
-
-.css-1okebmr-indicatorSeparator {
-    align-self: stretch;
-    background-color: rgb(204, 204, 204);
-    margin-bottom: 8px;
-    margin-top: 8px;
-    width: 1px;
-    box-sizing: border-box;
-}
-
-.css-tlfecz-indicatorContainer {
-    color: rgb(204, 204, 204);
-    display: flex;
-    padding: 8px;
-    transition: color 150ms ease 0s;
-    box-sizing: border-box;
-}
-
-.css-8mmkcg {
-    display: inline-block;
-    fill: currentcolor;
-    line-height: 1;
-    stroke: currentcolor;
-    stroke-width: 0;
-}
-
-.svg.css-8mmkcg{
-    height: 20;
-    width: 20;
-}
-
-svg:not(:root) {
-    overflow-clip-margin: content-box;
-    overflow: hidden;
-}
-
-.css-tlfecz-indicatorContainer {
-    color: rgb(204, 204, 204);
-}
-
-.css-8mmkcg {
-    display: inline-block;
-    fill: currentcolor;
-    line-height: 1;
-    stroke: currentcolor;
-    stroke-width: 0;
-}
-
-.css-1a0ro4n-requiredInput {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    width: 100%;
 }
 
 .modal__signin-classic-remember {
@@ -2540,8 +2325,28 @@ svg:not(:root) {
     position: relative;
 }
 
+.modal__signin-classic-remember-input:checked+.modal__signin-classic-remember-label .modal__signin-classic-remember-label-selector {
+    background: #000;
+    border: 1px solid #000;
+}
+
 .modal__signin-classic-remember-input:not(:checked)+.modal__signin-classic-remember-label .modal__signin-classic-remember-label-selector {
     border: 1px solid #d8dee6;
+}
+
+.modal__signin-classic-remember-label-selector:before {
+    border: solid #fff;
+    border-width: 0 3px 3px 0;
+    content: "";
+    display: block;
+    height: 10px;
+    left: 8px;
+    position: absolute;
+    top: 3px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    transition: opacity .15s;
+    width: 5px;
 }
 
 .modal__signin-classic-remember-label-selector {
@@ -2556,20 +2361,6 @@ svg:not(:root) {
 
 .modal__signin-classic-remember-input:not(:checked)+.modal__signin-classic-remember-label .modal__signin-classic-remember-label-selector:before {
     opacity: 0;
-}
-
-.modal__signin-classic-remember-label-selector:before {
-    border: solid #fff;
-    border-width: 0 3px 3px 0;
-    content: "";
-    display: block;
-    height: 10px;
-    left: 8px;
-    position: absolute;
-    top: 3px;
-    transform: rotate(45deg);
-    transition: opacity .15s;
-    width: 5px;
 }
 
 @media only screen and (max-width: 1024px){
@@ -2830,4 +2621,144 @@ small{
     transition: all .5s;
     width: 277px;
     margin-top: 10px;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 2000px)
+    .booking-page__payment {
+    width: 495px;
+}
+
+.booking-page__payment {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-title {
+    margin-bottom: 50px;
+}
+
+.booking-page__payment-title {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.booking-page__payment-form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.booking-page__payment-form-payments {
+    grid-gap: 13px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,114px);
+    width: 100%;
+}
+
+.booking-page__payment-form-section-title {
+    color: #818d92;
+    font-size: 15px;
+    grid-column-end: -1;
+    grid-column-start: 1;
+    line-height: 25px;
+    text-transform: uppercase;
+}
+
+.booking-page__payment-form-direction {
+    align-items: center;
+    background: #f4f6f8;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    height: 114px;
+    justify-content: center;
+    transition: all .5s;
+    width: 114px;
+}
+
+.booking-page__payment-form-direction:focus {
+    background: #fff;
+    border: 1px solid #000;
+}
+
+.booking-page__payment-form-direction-image {
+    height: 86px;
+    object-fit: contain;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 86px;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-form-bottom {
+    align-items: flex-end;
+    margin-top: 40px;
+}
+
+.booking-page__payment-form-bottom {
+    display: flex;
+    position: relative;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-back {
+    margin-right: 25px;
+}
+
+.booking-page__payment-back {
+    border-bottom: 1px dashed #585858;
+    color: #585858;
+    cursor: pointer;
+    font-size: 17px;
+    line-height: 15px;
+    transition: all .5s;
+}
+
+.booking-page__payment-pay {
+    align-items: center;
+    background: #000;
+    border-radius: 1000px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    font-weight: 400;
+    height: 50px;
+    justify-content: center;
+    letter-spacing: 2px;
+    position: relative;
+    text-transform: uppercase;
+    transition: all .5s;
+    width: 276px;
+}
+
+.booking-page__payment-pay>span {
+    line-height: 1em;
+}
+
+.booking-page__payment-pay-arrow {
+    fill: #fff;
+    margin-left: 12px;
+}
+
+.icon__animated {
+    transition: all .3s;
+}
+
+@media only screen and (min-width: 1024px)
+    .booking-page__payment-step {
+    margin-left: 25px;
+}
+
+.booking-page__payment-step {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.booking-page__payment-step>span {
+    color: #818d92;
+    font-weight: 300;
 }
