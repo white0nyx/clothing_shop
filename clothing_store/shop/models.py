@@ -83,6 +83,8 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(verbose_name='Сотрудник', default=False)
     is_superuser = models.BooleanField(verbose_name='Администратор', default=False)
     date_joined = models.DateTimeField(verbose_name='Дата регистрации', auto_now_add=True)
+    currency = models.CharField(max_length=3, default='RUB')
+    temporary_currency = models.CharField(max_length=3, blank=True)
 
     objects = UserManager()
 
@@ -139,34 +141,25 @@ class Item(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания товара')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     is_in_stock = models.BooleanField(default=False, verbose_name='Есть в наличии')
-    conversion_rates = {
-        'RUB': 1.0,
-    }
+    conversion_rates = {}
 
     def convert_price(self, currency):
         if currency not in self.conversion_rates:
             self.update_conversion_rates()
         conversion_rate = self.conversion_rates[currency]
-        converted_price = round(self.price / conversion_rate, 2)
+        converted_price = round(self.price * conversion_rate, 2)
         return converted_price
 
     def update_conversion_rates(self):
-        url = 'https://ru.myfin.by/currency'
+        url = 'https://v6.exchangerate-api.com/v6/8a5c33bec501153b4cac56bb/latest/RUB'
+
         response = requests.get(url)
-        html = response.text
-        soup = BeautifulSoup(html, 'html.parser')
-        table = soup.find('table', {'class': 'table-best yellow_bg'})
-        rows = table.findAll('tr')
-        conversion_rates = {}
-        for row in rows:
-            cells = row.find_all('td')
-            if len(cells) >= 4:
-                currency_element = cells[0].find('a')
-                if currency_element:
-                    currency = currency_element.text.strip()
-                    if currency == 'Usd' or currency == 'Eur':
-                        cbr_today = cells[3].text.strip()
-                        conversion_rates[currency.upper()] = float(cbr_today)
+        data = response.json()
+
+        conversion_rates = data['conversion_rates']
+        EUR = conversion_rates['EUR']
+        USD = conversion_rates['USD']
+
         self.conversion_rates.update(conversion_rates)
 
     def __str__(self):
