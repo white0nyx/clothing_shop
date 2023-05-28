@@ -89,33 +89,36 @@
                 <div class="booking-page__products-title">Ваш заказ</div>
                 <div class="booking-page__products-tile">
                     <div class="booking-page__products-list">
+                            {% for item in cart %}
                         <div class="booking-page__product">
                             <div class="booking-page__product-content">
-                                <span class="booking-page__product-name hoverable">Ультра Черная Футболка</span>
+                                <span class="booking-page__product-name hoverable">{{ item.product }}</span>
                                 <div class="booking-page__product-size">
                                     <span class="booking-page__product-size-title">Размер:</span>
-                                    <span class="booking-page__product-size-value">&nbsp;XS</span>
+                                    <span class="booking-page__product-size-value">&nbsp;{{ item.size }}</span>
                                 </div>
                                 <div class="booking-page__product-count">
                                     <span class="booking-page__product-count-title">Количество:</span>
-                                    <span class="booking-page__product-count-value">&nbsp;1</span>
+                                    <span class="booking-page__product-count-value">&nbsp;{{ item.quantity }}</span>
                                 </div>
-                                <div class="booking-page__product-price">26.25&nbsp;USD<br></div>
+                                <div class="booking-page__product-price">{{ item.total_price }}&nbsp;RUB<br></div>
                             </div>
                         </div>
+                            {% endfor %}
+
                     </div>
                     <div class="booking-page__products-products-cost">
                         <span class="booking-page__products-products-cost-title">Стоимость товаров:</span>
-                        <span class="booking-page__products-products-cost-value">&nbsp;26.25&nbsp;USD</span>
+                        <span class="booking-page__products-products-cost-value">&nbsp;{{ cart.get_total_price }}&nbsp;RUB</span>
                     </div>
                     <div class="booking-page__products-delivery-cost">
                         <span class="booking-page__products-delivery-cost-title">Стоимость доставки:</span>
-                        <span class="booking-page__products-delivery-cost-value">&nbsp;7.5&nbsp;USD</span>
+                        <span class="booking-page__products-delivery-cost-value">&nbsp;500&nbsp;RUB</span>
                     </div>
                 </div>
                 <div class="booking-page__products-total-cost">
                     <span class="booking-page__products-total-cost-title">Итого к оплате:</span>
-                    <span class="booking-page__products-total-cost-value">33.75&nbsp;USD</span>
+                    <span class="booking-page__products-total-cost-value">{{ cart.get_total_price|add:500}}&nbsp;RUB</span>
                 </div>
             </div>
         </div>

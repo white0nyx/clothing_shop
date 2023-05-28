@@ -140,6 +140,34 @@ class Item(models.Model):
         ordering = ['id']
 
 
+class Order(models.Model):
+    """Модель заказа"""
+
+    user_id = models.ForeignKey(User, verbose_name='Аккаунт заказчика', on_delete=models.PROTECT)
+    first_name = models.TextField(verbose_name='Имя')
+    last_name = models.TextField(verbose_name='Фамилия')
+    father_name = models.TextField(verbose_name='Отчество')
+    phone = models.TextField(verbose_name='Телефон')
+    email = models.TextField(verbose_name='ЭЛ. ПОЧТА')
+    country = models.TextField(verbose_name='Страна')
+    city = models.TextField(verbose_name='Город')
+    region = models.TextField(verbose_name='Край / Область / Регион')
+    address = models.TextField(verbose_name='Адрес')
+    mail_index = models.TextField(verbose_name='Почтовый индекс')
+    note = models.TextField(verbose_name='Примечание')
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания товара')
+    date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
+    status = models.TextField(default="Не оплачен", verbose_name="Статус")
+
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
+    def __str__(self):
+        return str(self.user_id) + str(self.status)
+
+
+
 class AdditionalImageItem(models.Model):
     """Модель изображения товара"""
 
@@ -151,8 +179,27 @@ class AdditionalImageItem(models.Model):
         verbose_name_plural = 'Дополнительные изображения товара'
 
     def __str__(self):
-        return self.item.name + ' ADD_Image'
+        return self.item.name + ' _ADD_Image'
 
+class OrderData:
+    """Модель данных заказа"""
+
+    def __init__(self, request):
+        self.session = request.session
+        order_data = self.session.get(settings.CART_SESSION_ID)
+        if not order_data:
+            order_data = self.session[settings.CART_SESSION_ID] = {}
+        self.order_data = order_data
+
+    def save(self):
+        self.session['order_data'] = self.order_data
+        self.session.modified = True
+
+    def __str__(self):
+        return str(self.session.get('order_data'))
+
+    def get_dict_of_data(self):
+        return self.session.get('order_data')
 
 class Cart(object):
     """Модель корзины"""
@@ -213,6 +260,8 @@ class Cart(object):
             item['price'] = int(item['price'])
             item['total_price'] = int(item['price']) * int(item['quantity'])
             yield item
+
+
 
     def __len__(self):
         """

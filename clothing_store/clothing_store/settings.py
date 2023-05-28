@@ -132,3 +132,4 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'home'
 
 CART_SESSION_ID = 'cart'
+USERDATA_SESSION_ID = 'userdata'

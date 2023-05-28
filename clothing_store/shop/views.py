@@ -1,11 +1,13 @@
 from django.contrib.auth import logout, login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
+from django.contrib.sessions.backends.db import SessionStore
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, FormView
 
+from qiwi import Payment
 from shop.forms import RegisterUserForm, LoginUserForm, MainUserDataForm
 from shop.models import *
 
@@ -211,7 +213,39 @@ def cart_detail(request):
     return render(request, 'shop/cart_test_page.html', {'cart': cart})
 
 
-def place_on_order_page(request):
-    """Функция представления страницы оформления заказа"""
+def place_on_order_page(request: WSGIRequest):
+    """Функция представления 1 страницы оформления заказа"""
+    cart = Cart(request)
+    if request.GET:
+        OrderData(request)
+        context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': request.GET}
+        return render(request, 'shop/place_on_order_2.html', context)
 
-    return render(request, 'shop/place_on_order.html')
+    else:
+        context = {'title': 'Оформление заказа', 'cart': cart}
+        cart.get_total_price()
+        return render(request, 'shop/place_on_order.html', context)
+
+
+def payment_page(request: WSGIRequest):
+    """Оплата"""
+
+    cart = Cart(request)
+    order_data = OrderData(request).get_dict_of_data()
+    first_name = order_data['first_name'][0]
+    last_name = order_data['last_name'][0]
+    middle_name = order_data['middle_name'][0]
+    countries = order_data['countrys'][0]
+    city = order_data['city'][0]
+    region = order_data['region'][0]
+    address = order_data['address'][0]
+    zip_code = order_data['zip_code'][0]
+    note = order_data['note'][0]
+
+    print(request.user.pk)
+    Order(len(Order.objects.all()), request.user.pk, first_name, last_name, middle_name, '+78888888888', 'TEST@mail.ru', countries, city, region, address, zip_code, note).save()
+    # Order(request.user.pk, region, address, zip_code, note).save()
+    payment = Payment(cart.get_total_price())
+    payment.create()
+    return redirect(payment.invoice)
+
