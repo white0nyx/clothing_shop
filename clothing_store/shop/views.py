@@ -1,4 +1,5 @@
 from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
 from django.contrib.sessions.backends.db import SessionStore
@@ -64,24 +65,41 @@ class CategoryPage(ListView, LoginView):
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
     form_class = LoginUserForm
-    object_list = split_list_into_chunks((list(Item.objects.all())))
+    object_list = split_list_into_chunks(list(Item.objects.all()))
 
     def get_queryset(self):
         items = Item.objects.filter(category__slug=self.kwargs['category_slug'], is_in_stock=True)
-        return split_list_into_chunks((list(items)))
+        return split_list_into_chunks(list(items))
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
-        context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
+        category_slug = self.kwargs['category_slug']
+
+        if self.request.user.is_authenticated:
+            currency = self.request.user.currency
+        else:
+            currency = 'RUB'
+
+        if not self.request.user.is_authenticated and self.request.session.get('temporary_currency'):
+            currency = self.request.session['temporary_currency']
+
+        # Конвертирование цен для каждого товара в выбранной категории
+        items = context['items']
+        for chunk in items:
+            for item in chunk:
+                item.converted_price = item.convert_price(currency)
+
+        context['title'] = Category.objects.get(slug=category_slug).name + ' - WearFit'
+        context['category_selected'] = Category.objects.filter(slug=category_slug)[0].id
         context['form'] = LoginUserForm
+        context['currency'] = currency
         return context
 
     def get_success_url(self):
         return reverse_lazy('home')
 
 
-class ItemPage(LoginView, DetailView):
+class ItemPage(DetailView):
     model = Item
     template_name = 'shop/item_page.html'
     slug_url_kwarg = 'item_slug'
@@ -91,7 +109,20 @@ class ItemPage(LoginView, DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['item']
         context['items'] = Item.objects.all().order_by('?')
+
+        if self.request.user.is_authenticated:
+            user = User.objects.get(username=self.request.user.username)
+            currency = getattr(user, 'currency', 'RUB')
+        else:
+            currency = 'RUB'
+
+        converted_price = self.object.convert_price(currency)
+
+        context['converted_price'] = converted_price
+        context['currency'] = currency
         return context
+
+
 
 
 class RegistrationPage(CreateView, ListView):
@@ -248,4 +279,21 @@ def payment_page(request: WSGIRequest):
     payment = Payment(cart.get_total_price())
     payment.create()
     return redirect(payment.invoice)
+
+
+# def change_currency(request):
+#     if request.method == 'POST':
+#         currency = request.POST.get('currency')
+#         request.session['currency'] = currency
+#     return redirect(request.META.get('HTTP_REFERER'))
+
+def change_currency(request):
+    if request.method == 'POST':
+        currency = request.POST.get('currency')
+        request.session['temporary_currency'] = currency
+        if request.user.is_authenticated:
+            user = User.objects.get(username=request.user.username)
+            user.currency = currency
+            user.save()
+    return redirect(request.META.get('HTTP_REFERER'))
 

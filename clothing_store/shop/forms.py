@@ -132,13 +132,13 @@ class MainUserDataForm(forms.Form):
         'class': 'account__details-personal-data-item-input1',
         'name': 'password',
         'maxlength': "255"
-    }))
+    }), required=False)
 
     password_confirmation = forms.CharField(label='Повторите Пароль', widget=forms.PasswordInput(attrs={
         'class': 'account__details-personal-data-item-input1',
         'name': 'password_confirmation',
         'maxlength': "255"
-    }))
+    }), required=False)
 
 
     class Meta:

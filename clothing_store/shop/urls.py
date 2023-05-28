@@ -13,4 +13,5 @@ urlpatterns = [
     path('cart_remove/<slug:item_code>/', cart_remove, name='cart_remove'),
     path('place_on_order', place_on_order_page, name='place_on_order'),
     path('payment', payment_page, name='payment'),
+    path('change_currency/', change_currency, name='change_currency'),
 ]

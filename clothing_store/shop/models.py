@@ -1,9 +1,21 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.sites import requests
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+import requests
+from bs4 import BeautifulSoup
 
 from clothing_store import settings
+
+
+
+class Currency(models.Model):
+    name = models.CharField(verbose_name='Название валюты', max_length=255)
+    conversion_rate = models.DecimalField(verbose_name='Коэффициент конвертации', max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
 
 
 class UserManager(BaseUserManager):
@@ -71,6 +83,8 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(verbose_name='Сотрудник', default=False)
     is_superuser = models.BooleanField(verbose_name='Администратор', default=False)
     date_joined = models.DateTimeField(verbose_name='Дата регистрации', auto_now_add=True)
+    currency = models.CharField(max_length=3, default='RUB')
+    temporary_currency = models.CharField(max_length=3, blank=True)
 
     objects = UserManager()
 
@@ -127,6 +141,26 @@ class Item(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания товара')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     is_in_stock = models.BooleanField(default=False, verbose_name='Есть в наличии')
+    conversion_rates = {}
+
+    def convert_price(self, currency):
+        if currency not in self.conversion_rates:
+            self.update_conversion_rates()
+        conversion_rate = self.conversion_rates[currency]
+        converted_price = round(self.price * conversion_rate, 2)
+        return converted_price
+
+    def update_conversion_rates(self):
+        url = 'https://v6.exchangerate-api.com/v6/8a5c33bec501153b4cac56bb/latest/RUB'
+
+        response = requests.get(url)
+        data = response.json()
+
+        conversion_rates = data['conversion_rates']
+        EUR = conversion_rates['EUR']
+        USD = conversion_rates['USD']
+
+        self.conversion_rates.update(conversion_rates)
 
     def __str__(self):
         return self.name
@@ -280,3 +314,5 @@ class Cart(object):
         # удаление корзины из сессии
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
+
+
