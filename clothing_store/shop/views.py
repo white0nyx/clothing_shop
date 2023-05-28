@@ -274,7 +274,6 @@ def payment_page(request: WSGIRequest):
     zip_code = order_data['zip_code'][0]
     note = order_data['note'][0]
 
-    print(request.user.pk)
     Order(len(Order.objects.all()), request.user.pk, first_name, last_name, middle_name, '+78888888888', 'TEST@mail.ru',
           countries, city, region, address, zip_code, note).save()
     # Order(request.user.pk, region, address, zip_code, note).save()
@@ -282,12 +281,6 @@ def payment_page(request: WSGIRequest):
     payment.create()
     return redirect(payment.invoice)
 
-
-# def change_currency(request):
-#     if request.method == 'POST':
-#         currency = request.POST.get('currency')
-#         request.session['currency'] = currency
-#     return redirect(request.META.get('HTTP_REFERER'))
 
 def change_currency(request):
     if request.method == 'POST':

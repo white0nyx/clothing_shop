@@ -154,11 +154,9 @@ class Item(models.Model):
         url = 'https://v6.exchangerate-api.com/v6/8a5c33bec501153b4cac56bb/latest/RUB'
 
         response = requests.get(url)
-        data = response.json()
+        data = dict(response.json())
 
         conversion_rates = data['conversion_rates']
-        EUR = conversion_rates['EUR']
-        USD = conversion_rates['USD']
 
         self.conversion_rates.update(conversion_rates)
 
