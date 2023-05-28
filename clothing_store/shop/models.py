@@ -165,6 +165,9 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+    def __repr__(self):
+        return f'{self.pk}_{self.name}'
+
     def get_absolute_url(self):
         return reverse('item', kwargs={'item_slug': self.slug})
 
@@ -220,20 +223,20 @@ class OrderData:
 
     def __init__(self, request):
         self.session = request.session
-        order_data = self.session.get(settings.CART_SESSION_ID)
+        order_data = self.session.get(settings.USERDATA_SESSION_ID)
         if not order_data:
-            order_data = self.session[settings.CART_SESSION_ID] = {}
+            order_data = self.session[settings.USERDATA_SESSION_ID] = dict(request.GET)
         self.order_data = order_data
 
     def save(self):
-        self.session['order_data'] = self.order_data
+        self.session[settings.USERDATA_SESSION_ID] = self.order_data
         self.session.modified = True
 
     def __str__(self):
-        return str(self.session.get('order_data'))
+        return str(self.session.get(settings.USERDATA_SESSION_ID))
 
     def get_dict_of_data(self):
-        return self.session.get('order_data')
+        return self.session.get(settings.USERDATA_SESSION_ID)
 
 class Cart(object):
     """Модель корзины"""

@@ -123,8 +123,6 @@ class ItemPage(DetailView):
         return context
 
 
-
-
 class RegistrationPage(CreateView, ListView):
     """Класс представления страницы регистрации нового пользователя"""
 
@@ -248,11 +246,14 @@ def place_on_order_page(request: WSGIRequest):
     """Функция представления 1 страницы оформления заказа"""
     cart = Cart(request)
     if request.GET:
-        OrderData(request)
-        context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': request.GET}
+        order_data = OrderData(request)
+        print(order_data)
+        context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': order_data}
         return render(request, 'shop/place_on_order_2.html', context)
 
     else:
+        order_data = OrderData(request)
+        print(order_data)
         context = {'title': 'Оформление заказа', 'cart': cart}
         cart.get_total_price()
         return render(request, 'shop/place_on_order.html', context)
@@ -274,7 +275,8 @@ def payment_page(request: WSGIRequest):
     note = order_data['note'][0]
 
     print(request.user.pk)
-    Order(len(Order.objects.all()), request.user.pk, first_name, last_name, middle_name, '+78888888888', 'TEST@mail.ru', countries, city, region, address, zip_code, note).save()
+    Order(len(Order.objects.all()), request.user.pk, first_name, last_name, middle_name, '+78888888888', 'TEST@mail.ru',
+          countries, city, region, address, zip_code, note).save()
     # Order(request.user.pk, region, address, zip_code, note).save()
     payment = Payment(cart.get_total_price())
     payment.create()
@@ -296,4 +298,3 @@ def change_currency(request):
             user.currency = currency
             user.save()
     return redirect(request.META.get('HTTP_REFERER'))
-
