@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<selection class="profile_page app-page">
+    <h1 class="account-page-title">Мой аккаунт</h1>
+
+    <div class="account-page-content">
+        <div class="account-page-side">
+            <ul class="account-page-menu">
+                <li class="account-page-menu-item hoverable" active="true">
+                    <a href="#">Личные данные</a></li>
+                <li class="account-page-menu-item hoverable" active="false">
+                    <a href="#">Мои заказы</a></li>
+            </ul>
+            <a href="{% url 'logout' %}" >
+                <button type="submit" class="account-page-logout hoverable">
+                <span>Выйти из аккаунта</span>
+            </button>
+            </a>
+
+        </div>
+    </div>
+    <div class="account-page-page">
+        <div class="account__orders">
+            <div class="account__orders-title">История заказов</div>
+            <div class="account__orders-list">
+                <div class="account__orders-empty">История заказов пуста</div>
+            </div>
+        </div>
+    </div>
+</selection>
+{% endblock %}
