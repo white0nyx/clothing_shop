@@ -8,11 +8,6 @@
     <section class="booking-page app-page">
         <header class="booking-page-header">
             <h1 class="booking-page-title">Оформление заказа</h1>
-            <div class="booking-page-id">
-                Номер заказа:
-                &nbsp;
-                77777
-            </div>
         </header>
         <div class="booking-page-content">
             <div class="booking-page__details">
@@ -32,13 +27,13 @@
                         <p class="booking-page__details-form-item-title">Отчество</p>
                         <input name="middle_name" class="booking-page__details-form-item-input" maxlength="30" type="text" required="" value="">
                     </div>
-                    <div class="booking-page__details-form-item booking-page__details-form-phone-number">
+                    <div class="booking-page__details-form-item">
                         <p class="booking-page__details-form-item-title">Телефон</p>
-                        <input class="form-control booking-page__details-form-item-input" placeholder="+7 777 777 77 77" type="tel" required="" value="">
+                        <input name="telephone" class="form-control booking-page__details-form-item-input" placeholder="+7 777 777 77 77" type="text" required="" value="">
                     </div>
-                    <div class="booking-page__details-form-item booking-page__details-form-email">
+                    <div class="booking-page__details-form-item">
                         <p class="booking-page__details-form-item-title">Эл.Почта</p>
-                        <input name="email" class="booking-page__details-form-item-input" maxlength="30" type="email" required="" value="">
+                        <input name="email" class="booking-page__details-form-item-input" maxlength="30" type="text" required="" value="">
                     </div>
                     <div class="booking-page__details-form-item">
                         <p class="booking-page__details-form-item-title">Страна</p>
@@ -63,13 +58,6 @@
                     <div class="booking-page__details-form-item">
                         <p class="booking-page__details-form-item-title">Примечание</p>
                         <input name="note" class="booking-page__details-form-item-input" maxlength="30" type="text" value="">
-                    </div>
-                    <div class="booking-page__details-form-item modal__signin-classic-remember hoverable">
-                        <input id="modal__signin-classic-remember-input" name="signature" class="modal__signin-classic-remember-input" type="checkbox">
-                        <label class="modal__signin-classic-remember-label" for="modal__signin-classic-remember-input">
-                            <div class="modal__signin-classic-remember-label-selector"></div>
-                            Добавить роспись
-                        </label>
                     </div>
                     <div class="booking-page__details-form-bottom">
                         <button class="booking-page__details-next-step" type="submit">

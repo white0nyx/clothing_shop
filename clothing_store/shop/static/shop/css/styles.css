@@ -2146,16 +2146,6 @@ button {
     text-align: center;
 }
 
-.booking-page-id {
-    font-size: 13px;
-    width: 176px;
-}
-
-.booking-page-id {
-    color: #818d92;
-    text-transform: uppercase;
-}
-
 @media only screen and (max-width: 1024px){
     .booking-page-content {
         justify-content: center;
@@ -2308,59 +2298,6 @@ input {
     align-items: center;
     display: flex;
     position: relative;
-}
-
-.modal__signin-classic-remember-input {
-    cursor: pointer;
-    opacity: 0;
-    position: absolute;
-}
-
-.modal__signin-classic-remember-label {
-    color: #818d92;
-    cursor: pointer;
-    font-size: 15px;
-    line-height: 25px;
-    margin-left: 35px;
-    position: relative;
-}
-
-.modal__signin-classic-remember-input:checked+.modal__signin-classic-remember-label .modal__signin-classic-remember-label-selector {
-    background: #000;
-    border: 1px solid #000;
-}
-
-.modal__signin-classic-remember-input:not(:checked)+.modal__signin-classic-remember-label .modal__signin-classic-remember-label-selector {
-    border: 1px solid #d8dee6;
-}
-
-.modal__signin-classic-remember-label-selector:before {
-    border: solid #fff;
-    border-width: 0 3px 3px 0;
-    content: "";
-    display: block;
-    height: 10px;
-    left: 8px;
-    position: absolute;
-    top: 3px;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    transition: opacity .15s;
-    width: 5px;
-}
-
-.modal__signin-classic-remember-label-selector {
-    background: #fff;
-    height: 25px;
-    position: absolute;
-    right: calc(100% + 10px);
-    top: 1px;
-    transition: background .15s,border-color .15s;
-    width: 25px;
-}
-
-.modal__signin-classic-remember-input:not(:checked)+.modal__signin-classic-remember-label .modal__signin-classic-remember-label-selector:before {
-    opacity: 0;
 }
 
 @media only screen and (max-width: 1024px){
@@ -2563,18 +2500,6 @@ input {
     font-size: 26px;
     font-weight: 600;
     margin-left: 5px;
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1600px){
-    .booking-page__details-form-phone-number {
-        width: 220px;
-    }
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1600px){
-    .booking-page__details-form-email {
-        width: 220px;
-    }
 }
 
 p {
