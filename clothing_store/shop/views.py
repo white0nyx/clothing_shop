@@ -245,17 +245,30 @@ def cart_detail(request):
 def place_on_order_page(request: WSGIRequest):
     """Функция представления 1 страницы оформления заказа"""
     cart = Cart(request)
+
+    print("###########")
+    for item in cart:
+        print(item)
+    print("XXXXXXXX")
+
+    cart = [item for item in Cart(request)]
+
+    for item in cart:
+        item['product'] = str(item['product']).split('_')[-1]
+
+    total_price = sum([item['total_price'] for item in cart]) # + 500
+
     if request.GET:
         order_data = OrderData(request)
         print(order_data)
-        context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': order_data}
+        context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': order_data, 'total_price' : total_price}
         return render(request, 'shop/place_on_order_2.html', context)
 
     else:
         order_data = OrderData(request)
         print(order_data)
-        context = {'title': 'Оформление заказа', 'cart': cart}
-        cart.get_total_price()
+        context = {'title': 'Оформление заказа', 'cart': cart, 'total_price' : total_price}
+        # cart.get_total_price()
         return render(request, 'shop/place_on_order.html', context)
 
 

@@ -109,7 +109,7 @@
                     </div>
                     <div class="booking-page__products-products-cost">
                         <span class="booking-page__products-products-cost-title">Стоимость товаров:</span>
-                        <span class="booking-page__products-products-cost-value">&nbsp;{{ cart.get_total_price }}&nbsp;RUB</span>
+                        <span class="booking-page__products-products-cost-value">&nbsp;{{ total_price }}&nbsp;RUB</span>
                     </div>
                     <div class="booking-page__products-delivery-cost">
                         <span class="booking-page__products-delivery-cost-title">Стоимость доставки:</span>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="booking-page__products-total-cost">
                     <span class="booking-page__products-total-cost-title">Итого к оплате:</span>
-                    <span class="booking-page__products-total-cost-value">{{ cart.get_total_price|add:500}}&nbsp;RUB</span>
+                    <span class="booking-page__products-total-cost-value">{{ total_price }}&nbsp;RUB</span>
                 </div>
             </div>
         </div>
