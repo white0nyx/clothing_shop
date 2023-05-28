@@ -55,7 +55,18 @@ class ImageItemAdmin(admin.ModelAdmin):
     list_display_links = ('path',)
 
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user_id', 'email', 'date_create', 'date_update', 'status')
+    list_display_links = ('user_id', )
+    list_editable = ('status', )
+    list_filter = ('user_id', 'status', 'date_create', 'date_update')
+    search_fields = ('user_id', 'email')
+
+
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(AdditionalImageItem, ImageItemAdmin)
 admin.site.register(User, UserAdmin)
+admin.site.register(Order, OrderAdmin)
