@@ -209,11 +209,6 @@ body {
     transition: all .3s;
 }
 
-.icon{
-    height: 32px;
-    width: 17px;
-}
-
 .modal__cart-continue-shopping>span {
     margin-left: 24px;
 }
@@ -274,8 +269,6 @@ body {
 .modal-close-area {
     position: absolute;
 }
-
-
 
 .modal__cart-tile.modal-tile {
     align-items: center;
@@ -818,7 +811,7 @@ ul {
     right: 5vw;
     width: 366px;
     padding: 30px;
-    margin: 35px auto 0px 0px;
+    margin: 60px auto 0px 0px;
     z-index: 5;
 
 }
@@ -939,12 +932,8 @@ input {
     margin-left: 12px;
 }
 
-.icon__animated {
-    transition: all .3s;
-}
-
 .icon {
-    height: 7px;
+    height: 32px;
     width: 12px;
 }
 
@@ -984,10 +973,6 @@ svg:not(:root) {
     right: 20px;
     top: 20px;
     width: 20px;
-}
-
-.icon__animated {
-    transition: all .3s;
 }
 
 .icon .cross {
@@ -1262,10 +1247,6 @@ a {
     width: 100%;
 }
 
-*{
-    box-sizing: border-box;
-}
-
 .currency-switcher .select-list, .language-switcher .select-list {
 }
 
@@ -1370,11 +1351,6 @@ app__modals active{
     margin: 0;
     padding: 0;
     vertical-align: initial;
-}
-
-* {
-    box-sizing: border-box;
-    scrollbar-width: none;
 }
 
 html {
@@ -1611,10 +1587,6 @@ button {
     margin-left: 12px;
 }
 
-.icon__animated {
-    transition: all .3s;
-}
-
 .modal__signup-socials {
     align-items: center;
     display: flex;
@@ -1648,10 +1620,6 @@ button {
     height: 40px;
     transition: opacity .2s;
     width: 40px;
-}
-
-.icon__animated {
-    transition: all .3s;
 }
 
 .icon .google, .icon .instagram, .icon .vk {
@@ -2667,10 +2635,6 @@ small{
 .booking-page__payment-pay-arrow {
     fill: #fff;
     margin-left: 12px;
-}
-
-.icon__animated {
-    transition: all .3s;
 }
 
 @media only screen and (min-width: 1024px)
