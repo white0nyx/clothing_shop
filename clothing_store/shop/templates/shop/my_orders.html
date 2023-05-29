@@ -9,16 +9,81 @@
         <div class="account-page-side">
             <ul class="account-page-menu">
                 <li class="account-page-menu-item hoverable" active="true">
-                    <a href="#">Личные данные</a></li>
+                    <a href="#">Личные данные</a>
+                </li>
                 <li class="account-page-menu-item hoverable" active="false">
-                    <a href="#">Мои заказы</a></li>
+                    <a href="#">Мои заказы</a>
+                </li>
             </ul>
             <a href="{% url 'logout' %}" >
                 <button type="submit" class="account-page-logout hoverable">
-                <span>Выйти из аккаунта</span>
-            </button>
+                    <span>Выйти из аккаунта</span>
+                </button>
             </a>
-
+        </div>
+        <div class="account-page-page">
+            <div class="account__orders">
+                <div class="account__orders-title">История заказов</div>
+                <div class="account__orders-list">
+                    <div class="account__order-container">
+                        <div class="account__order">
+                            <div class="account__order-item account__order-date">
+                                <span class="account__order-label">Дата заказа:</span>
+                                <span class="account__order-value">29 мая 2023</span>
+                                <span class="account__order-value">Состояние заказа</span>
+                            </div>
+                            <div class="account__order-item account__order-details">
+                                <span class="account__order-label">Детали заказа:</span>
+                                <span class="account__order-value">Заказ №12345</span>
+                                <span class="account__order-value">Название</span>
+                                <span class="account__order-value">Количество: 1</span>
+                                <span class="account__order-value">Цена</span>
+                            </div>
+                            <div class="account__order-item account__order-delivery">
+                                <span class="account__order-label">Код:</span>
+                                <span class="account__order-value">RE123456</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">Адрес доставки:</span>
+                                <span class="account__order-value">ул. Примерная, 123</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">На имя:</span>
+                                <span class="account__order-value">АС Пушкин</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">Промокод:</span>
+                                <span class="account__order-value">-</span>
+                            </div>
+                        </div>
+                        <div class="account__order">
+                            <div class="account__order-item account__order-date">
+                                <span class="account__order-label">Дата заказа:</span>
+                                <span class="account__order-value">27 мая 2023</span>
+                                <span class="account__order-value">Состояние заказа</span>
+                            </div>
+                            <div class="account__order-item account__order-details">
+                                <span class="account__order-label">Детали заказа:</span>
+                                <span class="account__order-value">Заказ №23425</span>
+                                <span class="account__order-value">Название</span>
+                                <span class="account__order-value">Количество: 5</span>
+                                <span class="account__order-value">Цена</span>
+                            </div>
+                            <div class="account__order-item account__order-delivery">
+                                <span class="account__order-label">Код:</span>
+                                <span class="account__order-value">RE344456</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">Адрес доставки:</span>
+                                <span class="account__order-value">ул. Номмерная, 123</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">На имя:</span>
+                                <span class="account__order-value">АП Чехов</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">Промокод:</span>
+                                <span class="account__order-value">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="account__orders-empty">История заказов пуста</div>
+            </div>
         </div>
     </div>
     {% for order in orders %}
@@ -32,77 +97,12 @@
     Полная стоимость: {{ order.total_price }}<br>
     Товары:<br><br>
     {% for link in order.linkinordersanditems_set.all %}
-        Предмет: {{ link.item }}<br>
-        Цена: {{ link.item.price }}<br>
-        Количество: {{ link.quantity }}<br>
-        Размер: {{ link.size }}<br>
-        {{ item.size }}<br>
-        {% endfor %}<br><br>
+    Предмет: {{ link.item }}<br>
+    Цена: {{ link.item.price }}<br>
+    Количество: {{ link.quantity }}<br>
+    Размер: {{ link.size }}<br>
+    {{ item.size }}<br>
+    {% endfor %}<br><br>
     {% endfor %}
-
-    <div class="account-page-page">
-        <div class="account__orders">
-            <div class="account__orders-title">История заказов</div>
-            <div class="account__orders-list">
-                <div class="account__order-container">
-                    <div class="account__order">
-                        <div class="account__order-item account__order-date">
-                            <span class="account__order-label">Дата заказа:</span>
-                            <span class="account__order-value">29 мая 2023</span>
-                            <span class="account__order-value">Состояние заказа</span>
-                        </div>
-                        <div class="account__order-item account__order-details">
-                            <span class="account__order-label">Детали заказа:</span>
-                            <span class="account__order-value">Заказ №12345</span>
-                            <span class="account__order-value">Название</span>
-                            <span class="account__order-value">Количество: 1</span>
-                            <span class="account__order-value">Цена</span>
-                        </div>
-                        <div class="account__order-item account__order-delivery">
-                            <span class="account__order-label">Код:</span>
-                            <span class="account__order-value">RE123456</span>
-                            <span class="account__order-value">&nbsp</span>
-                            <span class="account__order-label">Адрес доставки:</span>
-                            <span class="account__order-value">ул. Примерная, 123</span>
-                            <span class="account__order-value">&nbsp</span>
-                            <span class="account__order-label">На имя:</span>
-                            <span class="account__order-value">АС Пушкин</span>
-                            <span class="account__order-value">&nbsp</span>
-                            <span class="account__order-label">Промокод:</span>
-                            <span class="account__order-value">-</span>
-                        </div>
-                    </div>
-                    <div class="account__order">
-                        <div class="account__order-item account__order-date">
-                            <span class="account__order-label">Дата заказа:</span>
-                            <span class="account__order-value">27 мая 2023</span>
-                            <span class="account__order-value">Состояние заказа</span>
-                        </div>
-                        <div class="account__order-item account__order-details">
-                            <span class="account__order-label">Детали заказа:</span>
-                            <span class="account__order-value">Заказ №23425</span>
-                            <span class="account__order-value">Название</span>
-                            <span class="account__order-value">Количество: 5</span>
-                            <span class="account__order-value">Цена</span>
-                        </div>
-                        <div class="account__order-item account__order-delivery">
-                            <span class="account__order-label">Код:</span>
-                            <span class="account__order-value">RE344456</span>
-                            <span class="account__order-value">&nbsp</span>
-                            <span class="account__order-label">Адрес доставки:</span>
-                            <span class="account__order-value">ул. Номмерная, 123</span>
-                            <span class="account__order-value">&nbsp</span>
-                            <span class="account__order-label">На имя:</span>
-                            <span class="account__order-value">АП Чехов</span>
-                            <span class="account__order-value">&nbsp</span>
-                            <span class="account__order-label">Промокод:</span>
-                            <span class="account__order-value">-</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="account__orders-empty">История заказов пуста</div>
-        </div>
-    </div>
 </selection>
 {% endblock %}
