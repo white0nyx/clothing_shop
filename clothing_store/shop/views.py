@@ -93,6 +93,7 @@ class CategoryPage(ListView, LoginView):
         context['category_selected'] = Category.objects.filter(slug=category_slug)[0].id
         context['form'] = LoginUserForm
         context['currency'] = currency
+        context['cart'] = Cart(self.request)
         return context
 
     def get_success_url(self):
@@ -120,6 +121,7 @@ class ItemPage(DetailView):
 
         context['converted_price'] = converted_price
         context['currency'] = currency
+        context['cart'] = Cart(self.request)
         return context
 
 
