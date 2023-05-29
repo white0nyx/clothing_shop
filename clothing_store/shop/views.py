@@ -297,6 +297,17 @@ def payment_page(request: WSGIRequest):
     return redirect(payment.invoice)
 
 
+def my_orders(request: WSGIRequest):
+    cart = Cart(request)
+
+    context = {
+        'title': "Мои заказы",
+        'cart': cart,
+    }
+
+    return render(request, 'shop/my_orders.html', context)
+
+
 def change_currency(request):
     if request.method == 'POST':
         currency = request.POST.get('currency')
@@ -306,3 +317,5 @@ def change_currency(request):
             user.currency = currency
             user.save()
     return redirect(request.META.get('HTTP_REFERER'))
+
+
