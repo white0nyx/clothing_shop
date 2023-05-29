@@ -252,10 +252,8 @@ def place_on_order_page(request: WSGIRequest):
     """Функция представления 1 страницы оформления заказа"""
     cart = Cart(request)
 
-    print("###########")
     for item in cart:
         print(item)
-    print("XXXXXXXX")
 
     cart = [item for item in Cart(request)]
 
@@ -266,13 +264,11 @@ def place_on_order_page(request: WSGIRequest):
 
     if request.GET:
         order_data = OrderData(request)
-        print(order_data)
         context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': order_data, 'total_price' : total_price}
         return render(request, 'shop/place_on_order_2.html', context)
 
     else:
         order_data = OrderData(request)
-        print(order_data)
         context = {'title': 'Оформление заказа', 'cart': cart, 'total_price' : total_price}
         # cart.get_total_price()
         return render(request, 'shop/place_on_order.html', context)
@@ -286,6 +282,8 @@ def payment_page(request: WSGIRequest):
     first_name = order_data['first_name'][0]
     last_name = order_data['last_name'][0]
     middle_name = order_data['middle_name'][0]
+    phone = order_data['telephone'][0]
+    email = order_data['email'][0]
     countries = order_data['countrys'][0]
     city = order_data['city'][0]
     region = order_data['region'][0]
@@ -293,9 +291,29 @@ def payment_page(request: WSGIRequest):
     zip_code = order_data['zip_code'][0]
     note = order_data['note'][0]
 
-    Order(len(Order.objects.all()), request.user.pk, first_name, last_name, middle_name, '+78888888888', 'TEST@mail.ru',
-          countries, city, region, address, zip_code, note).save()
-    # Order(request.user.pk, region, address, zip_code, note).save()
+    order = Order(user_id=request.user,
+                  first_name=first_name,
+                  last_name=last_name,
+                  father_name=middle_name,
+                  phone=phone,
+                  email=email,
+                  country=countries,
+                  city=city,
+                  region=region,
+                  address=address,
+                  mail_index=zip_code,
+                  note=note,
+                  total_price=cart.get_total_price(),
+                  )
+
+    order.save()
+
+    for item in cart:
+        product = item.get('product')
+        quantity = item.get('quantity')
+        size = item.get('size')
+        LinkinOrdersAndItems(order=order, item=product, quantity=quantity, size=size).save()
+
     payment = Payment(cart.get_total_price())
     payment.create()
     return redirect(payment.invoice)
@@ -303,11 +321,16 @@ def payment_page(request: WSGIRequest):
 
 def my_orders(request: WSGIRequest):
     cart = Cart(request)
-
+    user_id = request.user.pk
+    user_orders = Order.objects.filter(user_id=user_id)
     context = {
         'title': "Мои заказы",
         'cart': cart,
+        'orders': user_orders,
+
     }
+
+
 
     return render(request, 'shop/my_orders.html', context)
 
