@@ -1,6 +1,7 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
+
 <selection class="profile_page app-page">
     <h1 class="account-page-title">Мой аккаунт</h1>
 
@@ -18,6 +19,30 @@
             </button>
             </a>
         </div>
+    </div>
+    {% for order in orders %}
+    Заказчик: {{ order.first_name }} {{ order.last_name }} {{ order.middle_name }}<br>
+    Почта: {{ order.email }}<br>
+    Телефон: {{ order.phone }}<br>
+    Адрес доставки: {{ order.country }} | {{ order.region }} | {{ order.city }} | {{ order.address }} | {{ order.mail_index }} <br>
+    Дата заказа: {{ order.date_create }}<br>
+    Дата последнего обновления статуса: {{ order.date_update }}<br>
+    Статус: {{ order.status }}<br>
+    Полная стоимость: {{ order.total_price }}<br>
+    Товары:<br><br>
+    {% for link in order.linkinordersanditems_set.all %}
+        Предмет: {{ link.item }}<br>
+        Цена: {{ link.item.price }}<br>
+        Количество: {{ link.quantity }}<br>
+        Размер: {{ link.size }}<br>
+        {{ item.size }}<br>
+        {% endfor %}<br><br>
+    {% endfor %}
+
+    <div class="account-page-page">
+        <div class="account__orders">
+            <div class="account__orders-title">История заказов</div>
+            <div class="account__orders-list">
         <div class="account-page-page">
             <div class="account__orders">
                 <div class="account__orders-title">История заказов</div>

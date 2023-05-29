@@ -193,6 +193,7 @@ class Order(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания товара')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     status = models.TextField(default="Не оплачен", verbose_name="Статус")
+    total_price = models.PositiveIntegerField(verbose_name="Сумма заказа",default=0)
 
     class Meta:
         verbose_name = "Заказ"
@@ -200,6 +201,23 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.user_id) + str(self.status)
+
+
+
+class LinkinOrdersAndItems(models.Model):
+
+    order = models.ForeignKey(Order, verbose_name="Заказ", on_delete=models.PROTECT)
+    item = models.ForeignKey(Item, verbose_name="Товар", on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(verbose_name="Количество")
+    size = models.TextField(verbose_name="Размер")
+
+
+    class Meta:
+        verbose_name = "Связь заказов с товарами"
+        verbose_name_plural = "Связи заказов с товарами"
+
+    def __str__(self):
+        return f'{self.pk}_{self.order}_{self.item}'
 
 
 
@@ -219,10 +237,10 @@ class AdditionalImageItem(models.Model):
 class OrderData:
     """Модель данных заказа"""
 
-    def __init__(self, request):
+    def __init__(self, request, recreate=False):
         self.session = request.session
         order_data = self.session.get(settings.USERDATA_SESSION_ID)
-        if not order_data:
+        if recreate:
             order_data = self.session[settings.USERDATA_SESSION_ID] = dict(request.GET)
         self.order_data = order_data
 
