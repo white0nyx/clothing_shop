@@ -263,12 +263,12 @@ def place_on_order_page(request: WSGIRequest):
     total_price = sum([item['total_price'] for item in cart]) # + 500
 
     if request.GET:
-        order_data = OrderData(request)
+        order_data = OrderData(request, recreate=True)
         context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': order_data, 'total_price' : total_price}
         return render(request, 'shop/place_on_order_2.html', context)
 
     else:
-        order_data = OrderData(request)
+        order_data = OrderData(request, recreate=True)
         context = {'title': 'Оформление заказа', 'cart': cart, 'total_price' : total_price}
         # cart.get_total_price()
         return render(request, 'shop/place_on_order.html', context)
@@ -278,7 +278,7 @@ def payment_page(request: WSGIRequest):
     """Оплата"""
 
     cart = Cart(request)
-    order_data = OrderData(request).get_dict_of_data()
+    order_data = OrderData(request, recreate=False).get_dict_of_data()
     first_name = order_data['first_name'][0]
     last_name = order_data['last_name'][0]
     middle_name = order_data['middle_name'][0]

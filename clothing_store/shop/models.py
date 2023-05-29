@@ -237,9 +237,12 @@ class AdditionalImageItem(models.Model):
 class OrderData:
     """Модель данных заказа"""
 
-    def __init__(self, request):
+    def __init__(self, request, recreate=False):
         self.session = request.session
-        self.order_data = self.session.get(settings.USERDATA_SESSION_ID)
+        order_data = self.session.get(settings.USERDATA_SESSION_ID)
+        if recreate:
+            order_data = self.session[settings.USERDATA_SESSION_ID] = dict(request.GET)
+        self.order_data = order_data
 
     def save(self):
         self.session[settings.USERDATA_SESSION_ID] = self.order_data
