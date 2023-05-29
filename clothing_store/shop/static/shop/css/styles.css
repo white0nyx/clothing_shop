@@ -1731,7 +1731,7 @@ button {
     flex-wrap: wrap;
     margin-top: 40px;
     margin-left: 40px;
-    margin-right: 400px;
+    margin-right: 40px;
     margin-bottom: 40px;
 }
 
@@ -2663,15 +2663,83 @@ small{
     line-height: 100%;
 }
 
-.account__orders-list {
+account__orders-list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     margin-top: 40px;
 }
 
-.account__orders-empty {
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 100%;
-    opacity: .9;
+.account__order {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: #e7e7e7;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.account__order-item {
+    flex-basis: calc(33.33% - 10px);
+    margin-bottom: 10px;
+    border-radius: 30px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.account__order-item:last-child {
+    margin-right: 0;
+}
+
+.account__order-label {
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.account__order-value {
+    display: block;
+    white-space: normal;
+}
+
+.account__order-date {
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.account__order-details {
+    background-color: white;
+    border-radius: 30px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.account__order-delivery {
+    background-color: black;
+    color: white;
+    border-radius: 30px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.account__order-code {
+    display: block;
+}
+
+.account__order{
+    margin-top: 20px;
+}
+
+.account__order-date,
+.account__order-details,
+.account__order-delivery {
+  flex-basis: 300px;
+  max-width: 300px;
 }
