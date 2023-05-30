@@ -2762,3 +2762,14 @@ account__orders-list {
     line-height: 100%;
     opacity: .9;
 }
+
+.check-payment-button {
+    border-radius: 100px;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: block;
+    height: 50px;
+    border-color: none;
+}
