@@ -104,6 +104,7 @@ body {
 }
 
 .buttonEnter {
+    border: none;
     margin-left: 15px;
     margin-right: 15px;
     text-decoration: none;
@@ -121,6 +122,7 @@ body {
 }
 
 .button-language,.button-currency {
+    border: none;
     margin-left: 15px;
     margin-right: 15px;
     text-decoration: none;
@@ -133,6 +135,7 @@ body {
 }
 
 .button-basket {
+    border: none;
     margin-left: 15px;
     margin-right: 15px;
     text-decoration: none;
@@ -2772,4 +2775,16 @@ account__orders-list {
     display: block;
     height: 50px;
     border-color: none;
+}
+
+.switcher-currency select {
+    background-color: black;
+    border: none;
+    border-radius: 100px;
+    color: white;
+}
+
+.switcher-currency select option {
+  background-color: white;
+  color: black;
 }
