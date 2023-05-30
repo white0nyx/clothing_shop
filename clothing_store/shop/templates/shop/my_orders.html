@@ -8,11 +8,11 @@
     <div class="account-page-content">
         <div class="account-page-side">
             <ul class="account-page-menu">
-                <li class="account-page-menu-item hoverable" active="true">
+                <li class="account-page-menu-item hoverable">
                     <a href="/account">Личные данные</a>
                 </li>
-                <li class="account-page-menu-item hoverable" active="false">
-                    <a href="#">Мои заказы</a>
+                <li class="account-page-menu-item hoverable active">
+                    <a href="#">— Мои заказы</a>
                 </li>
             </ul>
             <a href="{% url 'logout' %}" >
@@ -72,7 +72,7 @@
                     </div>
                 </div>
                 {% if not orders %}
-                <div class="account__orders-empty">История заказов пуста</div>
+                <div class="account__orders-empty active">История заказов пуста</div>
                 {% endif %}
             </div>
         </div>

@@ -1755,6 +1755,11 @@ button {
     text-decoration: none;
 }
 
+.account-page-menu-item.active>a {
+    font-size: 19px;
+    font-weight: 500;
+}
+
 .account-page-logout {
     background: #000;
     border-radius: 1000px;
@@ -2740,6 +2745,20 @@ account__orders-list {
 .account__order-date,
 .account__order-details,
 .account__order-delivery {
-  flex-basis: 300px;
-  max-width: 300px;
+    flex-basis: 300px;
+    max-width: 300px;
+}
+
+.account__orders-empty {
+    font-size: 0px;
+    font-weight: 400;
+    line-height: 100%;
+    opacity: .9;
+}
+
+.account__orders-empty.active {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 100%;
+    opacity: .9;
 }
