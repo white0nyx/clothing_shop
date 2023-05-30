@@ -1,5 +1,7 @@
 {% load shop_tags %}
 {% load static %}
+{% load currency_cart %}
+
 <!DOCTYPE html>
 
 <html lang="ru" translate="no">
@@ -227,11 +229,11 @@
                                     <br>
                                     Размер: {{ item.size }}
                                     <br>
-                                    Цена: {{ item.price }}
+                                    Цена: {{ item.price|currency_cart:user.currency }} {{ user.currency }}
                                     <br>
                                     Количество: {{ item.quantity }}
                                     <br>
-                                    Общая стоимость: <span class='item_total_price'>{{ item.total_price }}
+                                    Общая стоимость: <span class='item_total_price'>{{ item.total_price|currency_cart:user.currency }} {{ user.currency }}
                                         <a href="{% url 'cart_remove' item.item_code %}">
                                 <button type="button" class="delete-category-product">Убрать из корзины</button></a>
                                         {% endif %}
@@ -267,7 +269,7 @@
                                         </span>
                                         <span
                                                 class="modal__cart-total-cost-value">
-                                            <span id="total-to-purchase">{{ cart.get_total_price }} RUB</span>
+                                            <span id="total-to-purchase">{{ cart.get_total_price }} {{ user.currency }} </span>
                                             
                                             <span id="button-currency-id-basket">
                                                 RUB
