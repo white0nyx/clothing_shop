@@ -2778,6 +2778,7 @@ account__orders-list {
 }
 
 .switcher-currency select {
+    padding-top: 6px;
     background-color: black;
     border: none;
     border-radius: 100px;
@@ -2787,4 +2788,9 @@ account__orders-list {
 .switcher-currency select option {
   background-color: white;
   color: black;
+}
+
+.switcher-currency select:focus {
+  outline: none;
+  border: none;
 }
