@@ -315,6 +315,7 @@ def payment_page(request: WSGIRequest):
 
     payment = Payment(cart.get_total_price())
     payment.create()
+    cart.clear()
     return redirect(payment.invoice)
 
 
