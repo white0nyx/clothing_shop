@@ -1,6 +1,6 @@
 {% extends 'shop/base.html' %}
 {% load static %}
-
+{% load currency_cart %}
 
 {% block content %}
 
@@ -109,7 +109,11 @@
                 <img src="{{ other_item.main_photo.url }}" class="product-photo2">
                 <div class="price product-recs-recommendation-price">
                     <div class="price-current">
-                        <span>{{ other_item.price }} &nbsp РУБ
+                        {% if not request.user.is_authenticated %}
+                        <span>{{ other_item.price|currency_cart:currency }}&nbsp;{{ currency }}
+                         {% else %}
+                        <span>{{ other_item.price|currency_cart:user.currency }}&nbsp;{{ user.currency }}
+                        {% endif %}
                         </span>
                     </div>
                 </div>

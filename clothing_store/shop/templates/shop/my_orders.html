@@ -1,5 +1,5 @@
 {% extends 'shop/base.html' %}
-
+{% load currency_cart %}
 {% block content %}
 
 <selection class="profile_page app-page">
@@ -45,11 +45,11 @@
                                 <span class="account__order-value">{{ link.item }}</span>
                                 <span class="account__order-value">Количество: {{ link.quantity }}</span>
                                 <span class="account__order-value">Размер: {{ link.size }}</span>
-                                <span class="account__order-value">Цена: {{ link.item.price }}</span>
+                                <span class="account__order-value">Цена: {{ link.item.price|currency_cart:user.currency }} {{ user.currency }}</span>
                                     <br>
                                 {% endfor %}
                                 <br><span class="account__order-label">Итоговая стоимость</span>
-                                <span class="account__order-value">{{ order.total_price }} RUB</span>
+                                <span class="account__order-value">{{ order.total_price|currency_cart:user.currency }} {{ user.currency }}</span>
 
                             </div>
                             <div class="account__order-item account__order-delivery">

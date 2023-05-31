@@ -84,7 +84,7 @@ class User(AbstractBaseUser):
     is_superuser = models.BooleanField(verbose_name='Администратор', default=False)
     date_joined = models.DateTimeField(verbose_name='Дата регистрации', auto_now_add=True)
     currency = models.CharField(max_length=3, default='RUB')
-    temporary_currency = models.CharField(max_length=3, blank=True)
+    temporary_currency = models.CharField(max_length=3, default='RUB', blank=True)
 
     objects = UserManager()
 

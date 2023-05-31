@@ -117,6 +117,9 @@ class ItemPage(DetailView):
         else:
             currency = 'RUB'
 
+        if not self.request.user.is_authenticated and self.request.session.get('temporary_currency'):
+            currency = self.request.session['temporary_currency']
+
         converted_price = self.object.convert_price(currency)
 
         context['converted_price'] = converted_price
