@@ -17,13 +17,18 @@ def currency_cart(price, currency):
 
     if currency == 'USD' and 'USD' in conversion_set:
         conversion_rate = conversion_set['USD']
+        print(conversion_rate)
+        print(price)
         converted_price = round(price * conversion_rate, 2)
 
         return converted_price
 
     if currency == 'EUR' and 'EUR' in conversion_set:
         conversion_rate = conversion_set['EUR']
+        print(conversion_rate)
+        print(price)
         converted_price = round(price * conversion_rate, 2)
+
 
         return converted_price
 

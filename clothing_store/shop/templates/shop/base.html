@@ -269,8 +269,14 @@
                                         </span>
                                         <span
                                                 class="modal__cart-total-cost-value">
-                                            <span id="total-to-purchase">{{ cart.get_total_price }} {{ user.currency }} </span>
-                                            
+                                            {% if total_price %}
+
+                                            <span id="total-to-purchase">{{ total_price|currency_cart:user.currency }} {{ user.currency }} </span>
+                                            {% elif cart %}
+
+                                            <span id="total-to-purchase">{{ cart.get_total_price|currency_cart:user.currency }} {{ user.currency }} </span>
+                                            {% endif %}
+
                                             <span id="button-currency-id-basket">
                                                 RUB
 
