@@ -271,7 +271,6 @@ def place_on_order_page(request: WSGIRequest):
     else:
         order_data = OrderData(request, recreate=True)
         context = {'title': 'Оформление заказа', 'cart': cart, 'total_price' : total_price}
-        # cart.get_total_price()
         return render(request, 'shop/place_on_order.html', context)
 
 
@@ -317,6 +316,7 @@ def payment_page(request: WSGIRequest):
 
     payment = Payment(cart.get_total_price())
     payment.create()
+    cart.clear()
     return redirect(payment.invoice)
 
 
