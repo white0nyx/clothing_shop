@@ -151,7 +151,7 @@ class Item(models.Model):
         return converted_price
 
     def update_conversion_rates(self):
-        url = 'https://v6.exchangerate-api.com/v6/8a5c33bec501153b4cac56bb/latest/RUB'
+        url = 'https://v6.exchangerate-api.com/v6/74942ad6620965e43cb2afd8/latest/RUB'
 
         response = requests.get(url)
         data = dict(response.json())
@@ -194,6 +194,7 @@ class Order(models.Model):
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     status = models.TextField(default="Не оплачен", verbose_name="Статус")
     total_price = models.PositiveIntegerField(verbose_name="Сумма заказа",default=0)
+    payment_code = models.TextField(verbose_name='Ключ оплаты')
 
     class Meta:
         verbose_name = "Заказ"

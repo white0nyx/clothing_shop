@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth import logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
@@ -7,7 +9,9 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, FormView
+from pyqiwi.types import Transaction
 
+import qiwi
 from qiwi import Payment
 from shop.forms import RegisterUserForm, LoginUserForm, MainUserDataForm
 from shop.models import *
@@ -253,10 +257,8 @@ def cart_detail(request):
 
 def place_on_order_page(request: WSGIRequest):
     """Функция представления 1 страницы оформления заказа"""
-    cart = Cart(request)
 
-    for item in cart:
-        print(item)
+
 
     cart = [item for item in Cart(request)]
 
@@ -264,7 +266,6 @@ def place_on_order_page(request: WSGIRequest):
         item['product'] = str(item['product']).split('_')[-1]
 
     total_price = sum([item['total_price'] for item in cart]) # + 500
-    print("sadasdas", total_price)
 
     if request.GET:
         order_data = OrderData(request, recreate=True)
@@ -294,6 +295,9 @@ def payment_page(request: WSGIRequest):
     zip_code = order_data['zip_code'][0]
     note = order_data['note'][0]
 
+    payment = Payment(cart.get_total_price())
+    payment.create()
+
     order = Order(user_id=request.user,
                   first_name=first_name,
                   last_name=last_name,
@@ -307,6 +311,7 @@ def payment_page(request: WSGIRequest):
                   mail_index=zip_code,
                   note=note,
                   total_price=cart.get_total_price(),
+                  payment_code=str(payment.id),
                   )
 
     order.save()
@@ -317,8 +322,7 @@ def payment_page(request: WSGIRequest):
         size = item.get('size')
         LinkinOrdersAndItems(order=order, item=product, quantity=quantity, size=size).save()
 
-    payment = Payment(cart.get_total_price())
-    payment.create()
+
     cart.clear()
     return redirect(payment.invoice)
 
@@ -339,6 +343,29 @@ def my_orders(request: WSGIRequest):
     return render(request, 'shop/my_orders.html', context)
 
 
+def check_payment(request: WSGIRequest, order_slug):
+
+    payment_code, total_price = order_slug.split('__')
+    start_date = datetime.datetime.now() - datetime.timedelta(days=2)
+    transactions : [Transaction] = qiwi.wallet.history(start_date=start_date).get("transactions")
+    for t in transactions:
+        t: Transaction = t
+        if t.comment:
+            if str(payment_code) in str(t.comment):
+                if float(t.total.amount) >= float(total_price):
+                    order = Order.objects.get(payment_code=payment_code)
+                    order.status = "Оплачен"
+                    order.save()
+                    return redirect('my_orders')
+
+
+                else:
+                    raise qiwi.NotEnoughMoney
+
+    else:
+        raise qiwi.NoPaymentFound
+
+
 def change_currency(request):
     if request.method == 'POST':
         currency = request.POST.get('currency')
@@ -348,5 +375,7 @@ def change_currency(request):
             user.currency = currency
             user.save()
     return redirect(request.META.get('HTTP_REFERER'))
+
+
 
 
