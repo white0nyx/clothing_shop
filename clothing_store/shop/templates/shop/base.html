@@ -85,11 +85,11 @@
                     <select name="currency" onchange="this.form.submit()">
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
-                        <option value="RUB">RUB</option>
+                        <option value="RUB" selected>RUB</option>
                         {% if user.is_authenticated %}
                         <option value="{{ user.currency }}" selected>{{ user.currency }}</option>
                         {% else %}
-                        <option value="RUB" selected>{{ user.temporary_currency }}</option>
+                        <option value="RUB" selected>{{ request.session.temporary_currency }}</option>
                         {% endif %}
                     </select>
                 </div>

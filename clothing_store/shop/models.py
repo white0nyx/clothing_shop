@@ -151,7 +151,7 @@ class Item(models.Model):
         return converted_price
 
     def update_conversion_rates(self):
-        url = 'https://v6.exchangerate-api.com/v6/8a5c33bec501153b4cac56bb/latest/RUB'
+        url = 'https://v6.exchangerate-api.com/v6/74942ad6620965e43cb2afd8/latest/RUB'
 
         response = requests.get(url)
         data = dict(response.json())
