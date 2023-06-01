@@ -14,5 +14,6 @@ urlpatterns = [
     path('place_on_order', place_on_order_page, name='place_on_order'),
     path('payment', payment_page, name='payment'),
     path('change_currency/', change_currency, name='change_currency'),
-    path('my_orders/', my_orders, name='my_oreders'),
+    path('my_orders/', my_orders, name='my_orders'),
+    path('order/<slug:order_slug>', check_payment, name='my_oreders'),
 ]

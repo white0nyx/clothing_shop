@@ -194,6 +194,7 @@ class Order(models.Model):
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     status = models.TextField(default="Не оплачен", verbose_name="Статус")
     total_price = models.PositiveIntegerField(verbose_name="Сумма заказа",default=0)
+    payment_code = models.TextField(verbose_name='Ключ оплаты')
 
     class Meta:
         verbose_name = "Заказ"
