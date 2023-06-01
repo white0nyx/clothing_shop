@@ -327,7 +327,15 @@ def payment_page(request: WSGIRequest):
     return redirect(payment.invoice)
 
 
-def my_orders(request: WSGIRequest):
+def my_orders(request: WSGIRequest, context=None):
+
+    if context == 'no_payment':
+        alert_message = 'Платёж не обнаружен'
+    elif context == 'success':
+        alert_message = 'Платёж обнаружен. Статус заказа обновлен.'
+    else:
+        alert_message = ''
+
     cart = Cart(request)
     user_id = request.user.pk
     user_orders = Order.objects.filter(user_id=user_id)
@@ -335,7 +343,7 @@ def my_orders(request: WSGIRequest):
         'title': "Мои заказы",
         'cart': cart,
         'orders': user_orders,
-
+        'alert_message': alert_message,
     }
 
 
@@ -356,14 +364,14 @@ def check_payment(request: WSGIRequest, order_slug):
                     order = Order.objects.get(payment_code=payment_code)
                     order.status = "Оплачен"
                     order.save()
-                    return redirect('my_orders')
+                    return redirect('my_orders', context='success')
 
 
                 else:
-                    raise qiwi.NotEnoughMoney
+                    return redirect('my_orders', context='not_enough_money')
 
     else:
-        raise qiwi.NoPaymentFound
+        return redirect('my_orders', context='no_payment')
 
 
 def change_currency(request):

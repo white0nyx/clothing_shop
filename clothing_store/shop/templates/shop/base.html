@@ -32,6 +32,14 @@
 </head>
 
 <body>
+
+{% if alert_message %}
+    <script>
+        alert('{{ alert_message }}');
+    </script>
+{% endif %}
+
+
 <nav class="header">
     <div class="container1">
         <a href="{% url 'home' %}" class="header-brand"><img src="{% static 'shop/WEARFIT_main1.png' %} " alt=""
@@ -329,7 +337,7 @@
                 <h4>Помощь</h4>
                 <ul>
                     <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Ваш заказ</a></li>
+                    <li><a href="{% url 'my_orders' %}">Ваш заказ</a></li>
                 </ul>
             </div>
             <div class="footer-col">
