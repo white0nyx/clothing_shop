@@ -265,7 +265,7 @@ def place_on_order_page(request: WSGIRequest):
     for item in cart:
         item['product'] = str(item['product']).split('_')[-1]
 
-    total_price = sum([item['total_price'] for item in cart]) # + 500
+    total_price = sum([item['total_price'] for item in cart])
 
     if request.GET:
         order_data = OrderData(request, recreate=True)
