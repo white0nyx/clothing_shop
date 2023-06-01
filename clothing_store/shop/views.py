@@ -231,7 +231,7 @@ def cart(request):
 def cart_add(request, item_id):
 
     if request.user.pk is None:
-        return redirect('home')
+        return redirect('registration')
 
     item = get_object_or_404(Item, id=item_id)
     size = request.POST['size']
