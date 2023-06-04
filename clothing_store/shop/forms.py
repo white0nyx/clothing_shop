@@ -98,7 +98,7 @@ class MainUserDataForm(forms.Form):
         'name': 'email',
         'class': 'account__details-personal-data-item-input unchangable'
     }))
-    country = forms.CharField(label='СТАРНА', widget=forms.TextInput(attrs={
+    country = forms.CharField(label='СТРАНА', widget=forms.TextInput(attrs={
         'name': 'country',
         'class': 'account__details-delivery-item-input',
         'maxlength': "30"
