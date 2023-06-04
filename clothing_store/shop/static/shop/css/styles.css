@@ -1830,6 +1830,7 @@ button {
 }
 
 .account__details-personal-data-list-content{
+    width: 1000px;
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
@@ -1922,6 +1923,7 @@ button {
 }
 
 .account__details-delivery-list-content{
+    width: 1000px;
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
@@ -1974,6 +1976,7 @@ button {
 }
 
 .account__details-reset-password-list-content {
+    width: 1000px;
     align-items: flex-end;
     display: flex;
     flex-wrap: wrap;
@@ -2800,4 +2803,13 @@ account__orders-list {
 .switcher-currency select:focus {
   outline: none;
   border: none;
+}
+
+.no-underline {
+    text-decoration: none;
+}
+
+.no-underline:hover {
+    color: inherit;
+    text-decoration: none;
 }
