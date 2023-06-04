@@ -2784,7 +2784,15 @@ account__orders-list {
     text-align: center;
     display: block;
     height: 50px;
-    border-color: none;
+    border: none;
+    text-decoration: none;
+}
+
+.check-payment-button:hover {
+    background-color: black;
+    color: white;
+    border: none;
+    text-decoration: none;
 }
 
 .switcher-currency select {
@@ -2810,6 +2818,16 @@ account__orders-list {
 }
 
 .no-underline:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nothing{
+    color: inherit;
+    text-decoration: none;
+}
+
+.nothing: hover{
     color: inherit;
     text-decoration: none;
 }

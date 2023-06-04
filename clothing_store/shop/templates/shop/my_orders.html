@@ -68,7 +68,7 @@
                                 <span class="account__order-value">-</span>
                             </div>
                             {% if order.status == "Не оплачен" %}
-                            <a href="/order/{{ order.payment_code }}__{{ order.total_price }}"><button class="check-payment-button">Проверить оплату</button></a>
+                            <a href="/order/{{ order.payment_code }}__{{ order.total_price }}" class="nothing"><button class="check-payment-button">Проверить оплату</button></a>
                             {% endif %}
                         </div>
 
