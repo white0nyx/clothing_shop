@@ -929,6 +929,7 @@ input {
 }
 
 .modal__signin-classic-signIn-arrow {
+    padding-top: 11px;
     fill: #fff;
     margin-left: 12px;
 }
@@ -1083,6 +1084,7 @@ svg:not(:root) {
 }
 
 .product-recs-recommendation-name {
+    text-decoration: none;
     margin-left:auto;
     margin-right:auto;
     margin-top:10px;
@@ -1584,6 +1586,7 @@ button {
 }
 
 .modal__signup-classic-sign-up-arrow {
+    padding-top: 11px;
     fill: #fff;
     margin-left: 12px;
 }
@@ -1967,7 +1970,7 @@ button {
 }
 
 .account__details-reset-password-list-content {
-    justify-content: flex-start!important;
+    justify-content: space-between;
 }
 
 .account__details-reset-password-list-content {
@@ -2321,6 +2324,7 @@ input {
 }
 
 .booking-page__details-next-step-arrow {
+    padding-top: 11px;
     fill: #fff;
     margin-left: 12px;
 }
@@ -2522,9 +2526,15 @@ small{
 }
 
 .booking-page__payment {
+    width: 600px;
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+.booking-page__payment-form-bottom {
+    align-items: flex-end;
+    margin-top: 40px;
 }
 
 @media only screen and (min-width: 1024px)
@@ -2609,6 +2619,7 @@ small{
     font-size: 17px;
     line-height: 15px;
     transition: all .5s;
+    margin-right: 10px;
 }
 
 .booking-page__payment-pay {
@@ -2626,6 +2637,8 @@ small{
     text-transform: uppercase;
     transition: all .5s;
     width: 276px;
+    margin-left: 10 px;
+    margin-right: 10 px;
 }
 
 .booking-page__payment-pay>span {
@@ -2633,6 +2646,7 @@ small{
 }
 
 .booking-page__payment-pay-arrow {
+    padding-top: 11px;
     fill: #fff;
     margin-left: 12px;
 }
@@ -2643,6 +2657,7 @@ small{
 }
 
 .booking-page__payment-step {
+    margin-left: 10px;
     font-size: 17px;
     font-weight: 500;
 }
