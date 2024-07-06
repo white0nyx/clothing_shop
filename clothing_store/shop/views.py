@@ -221,3 +221,39 @@ def chart_page(request):
     """Функция представления страницы с аналитикой"""
 
     return render(request, 'shop/chart_page.html')
+
+
+import csv
+from django.http import HttpResponse
+
+
+def export_products_to_csv(request):
+    # Создаем HTTP-ответ с указанием типа контента
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="products.csv"'
+
+    # Создаем объект writer для записи в CSV
+    writer = csv.writer(response)
+
+    # Записываем заголовки столбцов
+    writer.writerow(['Product ID', 'Name', 'Category', 'Slug', 'Description', 'Price', 'Creation Date', 'Update Date', 'In Stock'])
+
+    # Получаем все товары
+    products = Item.objects.all()
+
+    # Записываем данные по каждому товару
+    for product in products:
+        writer.writerow([
+            product.id,
+            product.name,
+            product.category.name,
+            product.slug,
+            product.description,
+            product.price,
+            product.date_create,
+            product.date_update,
+            product.is_in_stock
+        ])
+
+    return response
+
