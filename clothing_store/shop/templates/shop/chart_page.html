@@ -1,0 +1,231 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <div class="chart__container">
+        <div class="chart__title">Статистика продаж</div>
+        <div class="chart__points">
+            <div class="chart__tab-button active" onclick="showImage('categories')">Категории</div>
+            <div class="chart__tab-button" onclick="showImage('products')">Товары</div>
+        </div>
+        <img class="chart__image-chart" id="statisticsImage" src="http://127.0.0.1:8000/static/shop/static_categories_count_sales.png" alt="">
+    </div>
+    <div class="table__container">
+        <div class="chart__points">
+            <div class="table__tab-button table__active" onclick="showTable('users')">Пользователи</div>
+            <div class="table__tab-button" onclick="showTable('products')">Товары</div>
+        </div>
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Отчество</th>
+                    <th>Город</th>
+                    <th>Телефон</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Иван</td>
+                    <td>Иванов</td>
+                    <td>Иванович</td>
+                    <td>Москва</td>
+                    <td>79001234567</td>
+                    <td>ivan.ivanov@example.com</td>
+                </tr>
+                <tr>
+                    <td>Петр</td>
+                    <td>Петров</td>
+                    <td>Петрович</td>
+                    <td>Санкт-Петербург</td>
+                    <td>79007654321</td>
+                    <td>petr.petrov@example.com</td>
+                </tr>
+                <tr>
+                    <td>Сергей</td>
+                    <td>Сергеев</td>
+                    <td>Сергеевич</td>
+                    <td>Новосибирск</td>
+                    <td>79003456789</td>
+                    <td>sergey.sergeev@example.com</td>
+                </tr>
+                <tr>
+                    <td>Алексей</td>
+                    <td>Алексеев</td>
+                    <td>Алексеевич</td>
+                    <td>Екатеринбург</td>
+                    <td>79005678901</td>
+                    <td>alexey.alexeev@example.com</td>
+                </tr>
+                <tr>
+                    <td>Мария</td>
+                    <td>Морозова</td>
+                    <td>Алексеевна</td>
+                    <td>Казань</td>
+                    <td>79009876543</td>
+                    <td>maria.morozova@example.com</td>
+                </tr>
+                <tr>
+                    <td>Наталья</td>
+                    <td>Николаева</td>
+                    <td>Ивановна</td>
+                    <td>Ростов-на-Дону</td>
+                    <td>79001239876</td>
+                    <td>natalya.nikolaeva@example.com</td>
+                </tr>
+                <tr>
+                    <td>Ольга</td>
+                    <td>Орлова</td>
+                    <td>Сергеевна</td>
+                    <td>Краснодар</td>
+                    <td>79007651234</td>
+                    <td>olga.orlova@example.com</td>
+                </tr>
+                <tr>
+                    <td>Анна</td>
+                    <td>Александрова</td>
+                    <td>Петровна</td>
+                    <td>Самара</td>
+                    <td>79003459876</td>
+                    <td>anna.alexandrova@example.com</td>
+                </tr>
+                <tr>
+                    <td>Владимир</td>
+                    <td>Владимиров</td>
+                    <td>Иванович</td>
+                    <td>Челябинск</td>
+                    <td>79005673421</td>
+                    <td>vladimir.vladimirov@example.com</td>
+                </tr>
+                <tr>
+                    <td>Екатерина</td>
+                    <td>Егорова</td>
+                    <td>Сергеевна</td>
+                    <td>Тюмень</td>
+                    <td>79009871234</td>
+                    <td>ekaterina.egorova@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="productsTable" class="hidden">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Цена</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Базовая футболка</td>
+                    <td>Футболки</td>
+                    <td>1499.99</td>
+                </tr>
+                <tr>
+                    <td>Худи с принтом</td>
+                    <td>Свитшоты/Худи</td>
+                    <td>3499.99</td>
+                </tr>
+                <tr>
+                    <td>Джинсы</td>
+                    <td>Штаны/Шорты</td>
+                    <td>2999.99</td>
+                </tr>
+                <tr>
+                    <td>Спортивные шорты</td>
+                    <td>Штаны/Шорты</td>
+                    <td>1999.99</td>
+                </tr>
+                <tr>
+                    <td>Бейсболка</td>
+                    <td>Шапки</td>
+                    <td>999.99</td>
+                </tr>
+                <tr>
+                    <td>Рюкзак</td>
+                    <td>Рюкзаки/Сумки</td>
+                    <td>3999.99</td>
+                </tr>
+                <tr>
+                    <td>Кроссовки</td>
+                    <td>Тестовые товары</td>
+                    <td>4999.99</td>
+                </tr>
+                <tr>
+                    <td>Тестовый товар 1</td>
+                    <td>Тестовые товары</td>
+                    <td>100.00</td>
+                </tr>
+                <tr>
+                    <td>Тестовый товар 2</td>
+                    <td>Тестовые товары</td>
+                    <td>200.00</td>
+                </tr>
+                <tr>
+                    <td>Тестовый товар 3</td>
+                    <td>Тестовые товары</td>
+                    <td>300.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="buttons__container">
+        <button id="exportUsersBtn" onclick="exportUsers()">Выгрузить пользователей</button>
+        <button id="exportProductsBtn" class="hidden" onclick="exportProducts()">Выгрузить товары</button>
+    </div>
+
+    <script>
+        function showImage(type) {
+            var img = document.getElementById('statisticsImage');
+            var categoryButton = document.querySelector('.chart__tab-button:nth-child(1)');
+            var productButton = document.querySelector('.chart__tab-button:nth-child(2)');
+
+            if (type === 'categories') {
+                img.src = 'http://127.0.0.1:8000/static/shop/static_categories_count_sales.png';
+                categoryButton.classList.add('active');
+                productButton.classList.remove('active');
+            } else if (type === 'products') {
+                img.src = 'http://127.0.0.1:8000/static/shop/static_products_count_sales.png';
+                categoryButton.classList.remove('active');
+                productButton.classList.add('active');
+            }
+        }
+
+        function showTable(type) {
+            var usersTable = document.getElementById('usersTable');
+            var productsTable = document.getElementById('productsTable');
+            var usersButton = document.querySelector('.table__tab-button:nth-child(1)');
+            var productsButton = document.querySelector('.table__tab-button:nth-child(2)');
+            var exportUsersBtn = document.getElementById('exportUsersBtn');
+            var exportProductsBtn = document.getElementById('exportProductsBtn');
+
+            if (type === 'users') {
+                usersTable.classList.remove('hidden');
+                productsTable.classList.add('hidden');
+                usersButton.classList.add('table__active');
+                productsButton.classList.remove('table__active');
+                exportUsersBtn.classList.remove('hidden');
+                exportProductsBtn.classList.add('hidden');
+            } else if (type === 'products') {
+                usersTable.classList.add('hidden');
+                productsTable.classList.remove('hidden');
+                usersButton.classList.remove('table__active');
+                productsButton.classList.add('table__active');
+                exportUsersBtn.classList.add('hidden');
+                exportProductsBtn.classList.remove('hidden');
+            }
+        }
+
+        function exportUsers() {
+            // Логика выгрузки пользователей
+            alert('Выгрузка пользователей');
+        }
+
+        function exportProducts() {
+            // Логика выгрузки товаров
+            alert('Выгрузка товаров');
+        }
+    </script>
+{% endblock %}
