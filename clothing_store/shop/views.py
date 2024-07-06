@@ -215,3 +215,9 @@ def place_on_order_page(request):
     """Функция представления страницы оформления заказа"""
 
     return render(request, 'shop/place_on_order.html')
+
+
+def chart_page(request):
+    """Функция представления страницы с аналитикой"""
+
+    return render(request, 'shop/chart_page.html')
