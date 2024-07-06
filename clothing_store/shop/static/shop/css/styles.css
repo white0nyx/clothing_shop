@@ -2890,85 +2890,84 @@ small{
     color: red;
 }
 
-.active {
+.chart__active {
     color: red;
     background-color: #f0f0f0;
 }
 
-.active::after {
+.chart__active::after {
     width: 0 !important;
     left: 50% !important;
 }
 
+/* Новые стили для таблиц */
+.chart__table__container {
+    margin-top: 20px;
+    width: 100%;
+}
 
- /* Новые стили для таблиц */
-        .table__container {
-            margin-top: 20px;
-            width: 100%;
-        }
+.chart__table__tab-button {
+    color: black;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s, background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
 
-        .table__tab-button {
-            color: black;
-            cursor: pointer;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            transition: color 0.3s, background-color 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
+.chart__table__tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: red;
+    transition: width 0.3s ease, left 0.3s ease;
+}
 
-        .table__tab-button::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background-color: red;
-            transition: width 0.3s ease, left 0.3s ease;
-        }
+.chart__table__tab-button:hover::after {
+    width: 100%;
+    left: 0;
+}
 
-        .table__tab-button:hover::after {
-            width: 100%;
-            left: 0;
-        }
+.chart__table__tab-button:hover {
+    color: red;
+}
 
-        .table__tab-button:hover {
-            color: red;
-        }
+.chart__table__active {
+    color: red;
+    background-color: #f0f0f0;
+}
 
-        .table__active {
-            color: red;
-            background-color: #f0f0f0;
-        }
+.chart__table__active::after {
+    width: 0 !important;
+    left: 50% !important;
+}
 
-        .table__active::after {
-            width: 0 !important;
-            left: 50% !important;
-        }
+.chart__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
 
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
+th {
+    background-color: #f0f0f0;
+}
 
-        th {
-            background-color: #f0f0f0;
-        }
+.hidden {
+    display: none;
+}
 
-        .hidden {
-            display: none;
-        }
-
-.buttons__container {
+.chart__buttons__container {
     margin-top: 20px;
     display: flex;
     gap: 20px;
@@ -2976,7 +2975,7 @@ small{
     margin-bottom: 20px;
 }
 
-.buttons__container > button {
+.chart__buttons__container > button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -2986,6 +2985,6 @@ small{
     transition: background-color 0.3s, color 0.3s;
 }
 
-.buttons__container > button:hover {
+.chart__buttons__container > button:hover {
     background-color: #006400;
 }
