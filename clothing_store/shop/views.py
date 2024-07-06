@@ -1,3 +1,5 @@
+import codecs
+
 from django.contrib.auth import logout, login
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
@@ -229,11 +231,11 @@ from django.http import HttpResponse
 
 def export_products_to_csv(request):
     # Создаем HTTP-ответ с указанием типа контента
-    response = HttpResponse(content_type='text/csv')
+    response = HttpResponse(content_type='text/csv; charset=utf-8')
     response['Content-Disposition'] = 'attachment; filename="products.csv"'
 
     # Создаем объект writer для записи в CSV
-    writer = csv.writer(response)
+    writer = csv.writer(response, delimiter=';')
 
     # Записываем заголовки столбцов
     writer.writerow(['Product ID', 'Name', 'Category', 'Slug', 'Description', 'Price', 'Creation Date', 'Update Date', 'In Stock'])
@@ -257,3 +259,32 @@ def export_products_to_csv(request):
 
     return response
 
+
+def export_users_to_csv(request):
+    # Создаем HTTP-ответ с указанием типа контента
+    response = HttpResponse(content_type='text/csv; charset=utf-8')
+    response['Content-Disposition'] = 'attachment; filename="users.csv"'
+
+    # Используем контекстный менеджер для записи данных в CSV
+    writer = csv.writer(response, delimiter=';', quoting=csv.QUOTE_MINIMAL)
+
+    # Записываем заголовки столбцов
+    writer.writerow(['User ID', 'Username', 'First Name', 'Last Name', 'Email', 'Date Joined', 'Is Staff', 'Is Active'])
+
+    # Получаем всех пользователей
+    users = User.objects.all()
+
+    # Записываем данные по каждому пользователю
+    for user in users:
+        writer.writerow([
+            user.id,
+            user.username,
+            user.first_name,
+            user.last_name,
+            user.email,
+            user.date_joined,
+            user.is_staff,
+            user.is_active
+        ])
+
+    return response

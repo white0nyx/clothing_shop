@@ -14,4 +14,5 @@ urlpatterns = [
     path('place_on_order', place_on_order_page, name='place_on_order'),
     path('chart_page', chart_page, name='chart_page'),
     path('export/products/', export_products_to_csv, name='export_products_to_csv'),
+    path('export/users/', export_users_to_csv, name='export_users_to_csv'),
 ]
