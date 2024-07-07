@@ -1,13 +1,20 @@
 import codecs
 
+import datetime
+
 from django.contrib.auth import logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import LoginView
+from django.contrib.sessions.backends.db import SessionStore
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, FormView
+from pyqiwi.types import Transaction
 
+import qiwi
+from qiwi import Payment
 from shop.forms import RegisterUserForm, LoginUserForm, MainUserDataForm
 from shop.models import *
 
@@ -64,24 +71,42 @@ class CategoryPage(ListView, LoginView):
     template_name = 'shop/category_page.html'
     context_object_name = 'items'
     form_class = LoginUserForm
-    object_list = split_list_into_chunks((list(Item.objects.all())))
+    object_list = split_list_into_chunks(list(Item.objects.all()))
 
     def get_queryset(self):
         items = Item.objects.filter(category__slug=self.kwargs['category_slug'], is_in_stock=True)
-        return split_list_into_chunks((list(items)))
+        return split_list_into_chunks(list(items))
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = Category.objects.get(slug=self.kwargs['category_slug']).name + ' - WearFit'
-        context['category_selected'] = Category.objects.filter(slug=self.kwargs['category_slug'])[0].id
+        category_slug = self.kwargs['category_slug']
+
+        if self.request.user.is_authenticated:
+            currency = self.request.user.currency
+        else:
+            currency = 'RUB'
+
+        if not self.request.user.is_authenticated and self.request.session.get('temporary_currency'):
+            currency = self.request.session['temporary_currency']
+
+        # Конвертирование цен для каждого товара в выбранной категории
+        items = context['items']
+        for chunk in items:
+            for item in chunk:
+                item.converted_price = item.convert_price(currency)
+
+        context['title'] = Category.objects.get(slug=category_slug).name + ' - WearFit'
+        context['category_selected'] = Category.objects.filter(slug=category_slug)[0].id
         context['form'] = LoginUserForm
+        context['currency'] = currency
+        context['cart'] = Cart(self.request)
         return context
 
     def get_success_url(self):
         return reverse_lazy('home')
 
 
-class ItemPage(LoginView, DetailView):
+class ItemPage(DetailView):
     model = Item
     template_name = 'shop/item_page.html'
     slug_url_kwarg = 'item_slug'
@@ -91,6 +116,21 @@ class ItemPage(LoginView, DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = context['item']
         context['items'] = Item.objects.all().order_by('?')
+
+        if self.request.user.is_authenticated:
+            user = User.objects.get(username=self.request.user.username)
+            currency = getattr(user, 'currency', 'RUB')
+        else:
+            currency = 'RUB'
+
+        if not self.request.user.is_authenticated and self.request.session.get('temporary_currency'):
+            currency = self.request.session['temporary_currency']
+
+        converted_price = self.object.convert_price(currency)
+
+        context['converted_price'] = converted_price
+        context['currency'] = currency
+        context['cart'] = Cart(self.request)
         return context
 
 
@@ -191,6 +231,10 @@ def cart(request):
 
 
 def cart_add(request, item_id):
+
+    if request.user.pk is None:
+        return redirect('registration')
+
     item = get_object_or_404(Item, id=item_id)
     size = request.POST['size']
     quantity = request.POST['quantity']
@@ -213,10 +257,138 @@ def cart_detail(request):
     return render(request, 'shop/cart_test_page.html', {'cart': cart})
 
 
-def place_on_order_page(request):
-    """Функция представления страницы оформления заказа"""
+def place_on_order_page(request: WSGIRequest):
+    """Функция представления 1 страницы оформления заказа"""
 
-    return render(request, 'shop/place_on_order.html')
+
+
+    cart = [item for item in Cart(request)]
+
+    for item in cart:
+        item['product'] = str(item['product']).split('_')[-1]
+
+    total_price = sum([item['total_price'] for item in cart])
+
+    if request.GET:
+        order_data = OrderData(request, recreate=True)
+        context = {'title': 'Оформление заказа', 'cart': cart, 'order_data': order_data, 'total_price' : total_price}
+        return render(request, 'shop/place_on_order_2.html', context)
+
+    else:
+        order_data = OrderData(request, recreate=True)
+        context = {'title': 'Оформление заказа', 'cart': cart, 'total_price' : total_price}
+        return render(request, 'shop/place_on_order.html', context)
+
+
+def payment_page(request: WSGIRequest):
+    """Оплата"""
+
+    cart = Cart(request)
+    order_data = OrderData(request, recreate=False).get_dict_of_data()
+    first_name = order_data['first_name'][0]
+    last_name = order_data['last_name'][0]
+    middle_name = order_data['middle_name'][0]
+    phone = order_data['telephone'][0]
+    email = order_data['email'][0]
+    countries = order_data['countrys'][0]
+    city = order_data['city'][0]
+    region = order_data['region'][0]
+    address = order_data['address'][0]
+    zip_code = order_data['zip_code'][0]
+    note = order_data['note'][0]
+
+    payment = Payment(cart.get_total_price())
+    payment.create()
+
+    order = Order(user_id=request.user,
+                  first_name=first_name,
+                  last_name=last_name,
+                  father_name=middle_name,
+                  phone=phone,
+                  email=email,
+                  country=countries,
+                  city=city,
+                  region=region,
+                  address=address,
+                  mail_index=zip_code,
+                  note=note,
+                  total_price=cart.get_total_price(),
+                  payment_code=str(payment.id),
+                  )
+
+    order.save()
+
+    for item in cart:
+        product = item.get('product')
+        quantity = item.get('quantity')
+        size = item.get('size')
+        LinkinOrdersAndItems(order=order, item=product, quantity=quantity, size=size).save()
+
+
+    cart.clear()
+    return redirect(payment.invoice)
+
+
+def my_orders(request: WSGIRequest, context=None):
+
+    if context == 'no_payment':
+        alert_message = 'Платёж не обнаружен'
+    elif context == 'success':
+        alert_message = 'Платёж обнаружен. Статус заказа обновлен.'
+    else:
+        alert_message = ''
+
+    cart = Cart(request)
+    user_id = request.user.pk
+    user_orders = Order.objects.filter(user_id=user_id)
+    context = {
+        'title': "Мои заказы",
+        'cart': cart,
+        'orders': user_orders,
+        'alert_message': alert_message,
+    }
+
+
+
+    return render(request, 'shop/my_orders.html', context)
+
+
+def check_payment(request: WSGIRequest, order_slug):
+
+    payment_code, total_price = order_slug.split('__')
+    start_date = datetime.datetime.now() - datetime.timedelta(days=2)
+    transactions : [Transaction] = qiwi.wallet.history(start_date=start_date).get("transactions")
+    for t in transactions:
+        t: Transaction = t
+        if t.comment:
+            if str(payment_code) in str(t.comment):
+                if float(t.total.amount) >= float(total_price):
+                    order = Order.objects.get(payment_code=payment_code)
+                    order.status = "Оплачен"
+                    order.save()
+                    return redirect('my_orders', context='success')
+
+
+                else:
+                    return redirect('my_orders', context='not_enough_money')
+
+    else:
+        return redirect('my_orders', context='no_payment')
+
+
+def change_currency(request):
+    if request.method == 'POST':
+        currency = request.POST.get('currency')
+        request.session['temporary_currency'] = currency
+        if request.user.is_authenticated:
+            user = User.objects.get(username=request.user.username)
+            user.currency = currency
+            user.save()
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+
+
 
 
 def chart_page(request):

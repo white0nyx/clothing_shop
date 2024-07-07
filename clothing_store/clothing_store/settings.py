@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'captcha',
     'shop.apps.ShopConfig',
 ]
 
@@ -49,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'shop.middleware.DefaultCurrencyMiddleware',
 ]
 
 ROOT_URLCONF = 'clothing_store.urls'
@@ -132,3 +132,6 @@ MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = 'home'
 
 CART_SESSION_ID = 'cart'
+USERDATA_SESSION_ID = 'userdata'
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'

@@ -1,0 +1,85 @@
+{% extends 'shop/base.html' %}
+{% load currency_cart %}
+{% block content %}
+
+<selection class="profile_page app-page">
+    <h1 class="account-page-title">Мой аккаунт</h1>
+
+    <div class="account-page-content">
+        <div class="account-page-side">
+            <ul class="account-page-menu">
+                <li class="account-page-menu-item hoverable">
+                    <a href="/account">Личные данные</a>
+                </li>
+                <li class="account-page-menu-item hoverable active">
+                    <a href="#">— Мои заказы</a>
+                </li>
+            </ul>
+            <a href="{% url 'logout' %}" >
+                <button type="submit" class="account-page-logout hoverable">
+                    <span>Выйти из аккаунта</span>
+                </button>
+            </a>
+        </div>
+        <div class="account-page-page">
+            <div class="account__orders">
+                <div class="account__orders-title">История заказов</div>
+                <div class="account__orders-list">
+                    <div class="account__order-container">
+                        {% for order in orders %}
+                        <div class="account__order">
+                            <div class="account__order-item account__order-date">
+                                <span class="account__order-label">Дата заказа:</span>
+                                <span class="account__order-value">{{ order.date_create }}</span>
+                                <br><span class="account__order-label">Дата обновления:</span>
+                                <span class="account__order-value">{{ order.date_update }}</span>
+                                <br><span class="account__order-label">Состояние заказа</span>
+                                <span class="account__order-value">{{ order.status }}</span>
+
+                            </div>
+                            <div class="account__order-item account__order-details">
+                                <span class="account__order-label">Детали заказа:</span>
+                                <span class="account__order-value">Номер заказа: {{ order.pk }}</span>
+                                <br><span class="account__order-label">Товары:</span>
+                                {% for link in order.linkinordersanditems_set.all %}
+                                <span class="account__order-value">{{ link.item }}</span>
+                                <span class="account__order-value">Количество: {{ link.quantity }}</span>
+                                <span class="account__order-value">Размер: {{ link.size }}</span>
+                                <span class="account__order-value">Цена: {{ link.item.price|currency_cart:user.currency }} {{ user.currency }}</span>
+                                    <br>
+                                {% endfor %}
+                                <br><span class="account__order-label">Итоговая стоимость</span>
+                                <span class="account__order-value">{{ order.total_price|currency_cart:user.currency }} {{ user.currency }}</span>
+
+                            </div>
+                            <div class="account__order-item account__order-delivery">
+
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">Адрес доставки:</span>
+                                <span class="account__order-value">{{ order.country }}<br>{{ order.region }}<br>{{ order.city }}<br>{{ order.address }}<br>{{ order.mail_index }}</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">Заказчик:</span>
+                                <span class="account__order-value">{{ order.first_name }} {{ order.last_name }} {{ order.middle_name }}</span>
+                                <span class="account__order-value">&nbsp</span>
+                                <span class="account__order-label">Контакты:</span>
+                                <span class="account__order-value">{{ order.email }}</span>
+                                <span class="account__order-value">{{ order.phone }}</span><br>
+                                <span class="account__order-label">Промокод:</span>
+                                <span class="account__order-value">-</span>
+                            </div>
+                            {% if order.status == "Не оплачен" %}
+                            <a href="/order/{{ order.payment_code }}__{{ order.total_price }}" class="nothing"><button class="check-payment-button">Проверить оплату</button></a>
+                            {% endif %}
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+                {% if not orders %}
+                <div class="account__orders-empty active">История заказов пуста</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</selection>
+{% endblock %}

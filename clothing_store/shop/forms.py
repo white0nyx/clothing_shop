@@ -98,7 +98,7 @@ class MainUserDataForm(forms.Form):
         'name': 'email',
         'class': 'account__details-personal-data-item-input unchangable'
     }))
-    country = forms.CharField(label='СТАРНА', widget=forms.TextInput(attrs={
+    country = forms.CharField(label='СТРАНА', widget=forms.TextInput(attrs={
         'name': 'country',
         'class': 'account__details-delivery-item-input',
         'maxlength': "30"
@@ -132,13 +132,13 @@ class MainUserDataForm(forms.Form):
         'class': 'account__details-personal-data-item-input1',
         'name': 'password',
         'maxlength': "255"
-    }))
+    }), required=False)
 
     password_confirmation = forms.CharField(label='Повторите Пароль', widget=forms.PasswordInput(attrs={
         'class': 'account__details-personal-data-item-input1',
         'name': 'password_confirmation',
         'maxlength': "255"
-    }))
+    }), required=False)
 
 
     class Meta:

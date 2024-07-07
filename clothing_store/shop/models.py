@@ -1,9 +1,21 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
+from django.contrib.sites import requests
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+import requests
+from bs4 import BeautifulSoup
 
 from clothing_store import settings
+
+
+
+class Currency(models.Model):
+    name = models.CharField(verbose_name='Название валюты', max_length=255)
+    conversion_rate = models.DecimalField(verbose_name='Коэффициент конвертации', max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return self.name
 
 
 class UserManager(BaseUserManager):
@@ -71,6 +83,8 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(verbose_name='Сотрудник', default=False)
     is_superuser = models.BooleanField(verbose_name='Администратор', default=False)
     date_joined = models.DateTimeField(verbose_name='Дата регистрации', auto_now_add=True)
+    currency = models.CharField(max_length=3, default='RUB')
+    temporary_currency = models.CharField(max_length=3, default='RUB', blank=True)
 
     objects = UserManager()
 
@@ -127,9 +141,30 @@ class Item(models.Model):
     date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания товара')
     date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
     is_in_stock = models.BooleanField(default=False, verbose_name='Есть в наличии')
+    conversion_rates = {}
+
+    def convert_price(self, currency):
+        if currency not in self.conversion_rates:
+            self.update_conversion_rates()
+        conversion_rate = self.conversion_rates[currency]
+        converted_price = round(self.price * conversion_rate, 2)
+        return converted_price
+
+    def update_conversion_rates(self):
+        url = 'https://v6.exchangerate-api.com/v6/74942ad6620965e43cb2afd8/latest/RUB'
+
+        response = requests.get(url)
+        data = dict(response.json())
+
+        conversion_rates = data['conversion_rates']
+
+        self.conversion_rates.update(conversion_rates)
 
     def __str__(self):
         return self.name
+
+    def __repr__(self):
+        return f'{self.pk}_{self.name}'
 
     def get_absolute_url(self):
         return reverse('item', kwargs={'item_slug': self.slug})
@@ -138,6 +173,53 @@ class Item(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ['id']
+
+
+class Order(models.Model):
+    """Модель заказа"""
+
+    user_id = models.ForeignKey(User, verbose_name='Аккаунт заказчика', on_delete=models.PROTECT)
+    first_name = models.TextField(verbose_name='Имя')
+    last_name = models.TextField(verbose_name='Фамилия')
+    father_name = models.TextField(verbose_name='Отчество')
+    phone = models.TextField(verbose_name='Телефон')
+    email = models.TextField(verbose_name='ЭЛ. ПОЧТА')
+    country = models.TextField(verbose_name='Страна')
+    city = models.TextField(verbose_name='Город')
+    region = models.TextField(verbose_name='Край / Область / Регион')
+    address = models.TextField(verbose_name='Адрес')
+    mail_index = models.TextField(verbose_name='Почтовый индекс')
+    note = models.TextField(verbose_name='Примечание')
+    date_create = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания товара')
+    date_update = models.DateTimeField(auto_now=True, verbose_name='Дата обновления товара')
+    status = models.TextField(default="Не оплачен", verbose_name="Статус")
+    total_price = models.PositiveIntegerField(verbose_name="Сумма заказа",default=0)
+    payment_code = models.TextField(verbose_name='Ключ оплаты')
+
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
+    def __str__(self):
+        return str(self.user_id) + str(self.status)
+
+
+
+class LinkinOrdersAndItems(models.Model):
+
+    order = models.ForeignKey(Order, verbose_name="Заказ", on_delete=models.PROTECT)
+    item = models.ForeignKey(Item, verbose_name="Товар", on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(verbose_name="Количество")
+    size = models.TextField(verbose_name="Размер")
+
+
+    class Meta:
+        verbose_name = "Связь заказов с товарами"
+        verbose_name_plural = "Связи заказов с товарами"
+
+    def __str__(self):
+        return f'{self.pk}_{self.order}_{self.item}'
+
 
 
 class AdditionalImageItem(models.Model):
@@ -151,8 +233,27 @@ class AdditionalImageItem(models.Model):
         verbose_name_plural = 'Дополнительные изображения товара'
 
     def __str__(self):
-        return self.item.name + ' ADD_Image'
+        return self.item.name + ' _ADD_Image'
 
+class OrderData:
+    """Модель данных заказа"""
+
+    def __init__(self, request, recreate=False):
+        self.session = request.session
+        order_data = self.session.get(settings.USERDATA_SESSION_ID)
+        if recreate:
+            order_data = self.session[settings.USERDATA_SESSION_ID] = dict(request.GET)
+        self.order_data = order_data
+
+    def save(self):
+        self.session[settings.USERDATA_SESSION_ID] = self.order_data
+        self.session.modified = True
+
+    def __str__(self):
+        return str(self.session.get(settings.USERDATA_SESSION_ID))
+
+    def get_dict_of_data(self):
+        return self.session.get(settings.USERDATA_SESSION_ID)
 
 class Cart(object):
     """Модель корзины"""
@@ -214,6 +315,8 @@ class Cart(object):
             item['total_price'] = int(item['price']) * int(item['quantity'])
             yield item
 
+
+
     def __len__(self):
         """
         Подсчет всех товаров в корзине.
@@ -231,3 +334,5 @@ class Cart(object):
         # удаление корзины из сессии
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
+
+
