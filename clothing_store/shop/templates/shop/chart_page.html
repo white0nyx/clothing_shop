@@ -1,7 +1,7 @@
 {% extends 'shop/base.html' %}
 
 {% block content %}
-    <div class="chart__container">
+<div class="chart__container">
     <div class="chart__title">Статистика продаж</div>
     <div class="chart__points">
         <div class="chart__tab-button chart__active" onclick="showImage('categories')">Категории</div>
@@ -17,9 +17,9 @@
     <table id="usersTable" class="chart__table">
         <thead>
             <tr>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>Отчество</th>
+                <th onclick="sortTable('usersTable', 0)">Имя</th>
+                <th onclick="sortTable('usersTable', 1)">Фамилия</th>
+                <th onclick="sortTable('usersTable', 2)">Отчество</th>
                 <th>Город</th>
                 <th>Телефон</th>
                 <th>Email</th>
@@ -111,9 +111,9 @@
     <table id="productsTable" class="chart__table hidden">
         <thead>
             <tr>
-                <th>Название</th>
-                <th>Категория</th>
-                <th>Цена</th>
+                <th onclick="sortTable('productsTable', 0)">Название</th>
+                <th onclick="sortTable('productsTable', 1)">Категория</th>
+                <th onclick="sortTable('productsTable', 2)">Цена</th>
             </tr>
         </thead>
         <tbody>
@@ -224,6 +224,34 @@
 
     function exportProducts() {
         window.location.href = 'http://127.0.0.1:8000/export/products/';
+    }
+
+    function sortTable(tableId, columnIndex) {
+        var table = document.getElementById(tableId);
+        var tbody = table.querySelector('tbody');
+        var rows = Array.from(tbody.rows);
+        var sortedRows;
+        var isAsc = table.getAttribute('data-sort-direction') === 'asc';
+
+        sortedRows = rows.sort(function(a, b) {
+            var aText = a.cells[columnIndex].textContent.trim();
+            var bText = b.cells[columnIndex].textContent.trim();
+
+            if (columnIndex === 2 && tableId === 'productsTable') {
+                aText = parseFloat(aText);
+                bText = parseFloat(bText);
+            }
+
+            return isAsc
+                ? aText > bText ? 1 : -1
+                : aText < bText ? 1 : -1;
+        });
+
+        table.setAttribute('data-sort-direction', isAsc ? 'desc' : 'asc');
+
+        sortedRows.forEach(function(row) {
+            tbody.appendChild(row);
+        });
     }
 </script>
 {% endblock %}

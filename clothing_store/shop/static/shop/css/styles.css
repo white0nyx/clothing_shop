@@ -2832,6 +2832,8 @@ small{
     margin-top: 10px;
 }
 
+// Новые стили
+
 .chart__title {
     font-size: 20px;
     font-weight: bold;
@@ -2900,7 +2902,6 @@ small{
     left: 50% !important;
 }
 
-/* Новые стили для таблиц */
 .chart__table__container {
     margin-top: 20px;
     width: 100%;
