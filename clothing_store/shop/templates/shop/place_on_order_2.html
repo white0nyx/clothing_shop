@@ -1,17 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
 {% extends 'shop/base.html' %}
 {% load static %}
 {% load currency_cart %}
 
 {% block content %}
-<html lang="en">
-    <section class="booking-page app-page" style="opacity: 1;">
-        <header class="booking-page-header">
-            <h1 class="booking-page-title">Оформление заказа</h1>
-        </header>
-        <div class="booking-page-content">
+<section class="booking-page app-page" style="opacity: 1;">
+    <header class="booking-page-header">
+        <h1 class="booking-page-title">Оформление заказа</h1>
+    </header>
+    <div class="booking-page-content">
         <div class="booking-page__payment">
             <div class="booking-page__payment-title">Система оплаты</div>
-            <form action="/payment" class="booking-page__payment-form">
+            <form action="/payment" class="booking-page__payment-form" id="payment-form">
                 <div class="booking-page__payment-form-payments">
                     <div class="booking-page__payment-form-section-title">Безналичные</div>
                     <div class="booking-page__payment-form-direction">
@@ -23,13 +24,10 @@
                     <div class="booking-page__payment-form-direction">
                         <img class="booking-page__payment-form-direction-image" src="{% static 'shop/mir.png' %}" draggable="false" alt="">
                     </div>
-                    <div class="booking-page__payment-form-direction">
-                        <img class="booking-page__payment-form-direction-image" src="{% static 'shop/qiwi.png' %}" draggable="false" alt="">
-                    </div>
                 </div>
                 <div class="booking-page__payment-form-bottom">
                     <span class="booking-page__payment-back">Назад</span>
-                    <button class="booking-page__payment-pay" type="submit">
+                    <button type="button" class="booking-page__payment-pay" id="pay-button">
                         <span>Оплатить</span>
                         <div class="icon booking-page__payment-pay-arrow icon__animated">
                             <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="">
@@ -42,35 +40,39 @@
                 </div>
             </form>
         </div>
-            <div class="booking-page__products">
-                <div class="booking-page__products-title">Ваш заказ</div>
-                <div class="booking-page__products-tile">
-                    <div class="booking-page__products-list">
-                            {% for item in cart %}
-                        <div class="booking-page__product">
-                            <div class="booking-page__product-content">
-                                <span class="booking-page__product-name hoverable">{{ item.product }}</span>
-                                <div class="booking-page__product-size">
-                                    <span class="booking-page__product-size-title">Размер:</span>
-                                    <span class="booking-page__product-size-value">&nbsp;{{ item.size }}</span>
-                                </div>
-                                <div class="booking-page__product-count">
-                                    <span class="booking-page__product-count-title">Количество:</span>
-                                    <span class="booking-page__product-count-value">&nbsp;{{ item.quantity }}</span>
-                                </div>
-                                <div class="booking-page__product-price">{{ item.total_price|currency_cart:user.currency }} {{ user.currency }} <br></div>
+        <div class="booking-page__products">
+            <div class="booking-page__products-title">Ваш заказ</div>
+            <div class="booking-page__products-tile">
+                <div class="booking-page__products-list">
+                    {% for item in cart %}
+                    <div class="booking-page__product">
+                        <div class="booking-page__product-content">
+                            <span class="booking-page__product-name hoverable">{{ item.product }}</span>
+                            <div class="booking-page__product-size">
+                                <span class="booking-page__product-size-title">Размер:</span>
+                                <span class="booking-page__product-size-value">&nbsp;{{ item.size }}</span>
                             </div>
+                            <div class="booking-page__product-count">
+                                <span class="booking-page__product-count-title">Количество:</span>
+                                <span class="booking-page__product-count-value">&nbsp;{{ item.quantity }}</span>
+                            </div>
+                            <div class="booking-page__product-price">{{ item.total_price|currency_cart:user.currency }} {{ user.currency }} <br></div>
                         </div>
-                            {% endfor %}
-
                     </div>
-                </div>
-                <div class="booking-page__products-total-cost">
-                    <span class="booking-page__products-total-cost-title">Итого к оплате:</span>
-                    <span class="booking-page__products-total-cost-value">{{ total_price|currency_cart:user.currency }} {{ user.currency }}</span>
+                    {% endfor %}
                 </div>
             </div>
+            <div class="booking-page__products-total-cost">
+                <span class="booking-page__products-total-cost-title">Итого к оплате:</span>
+                <span class="booking-page__products-total-cost-value">{{ total_price|currency_cart:user.currency }} {{ user.currency }}</span>
+            </div>
         </div>
-    </section>
-</html>
+    </div>
+</section>
+<script>
+    document.getElementById("pay-button").addEventListener("click", function() {
+        window.location.href = 'http://127.0.0.1:8000/';
+    });
+</script>
 {% endblock %}
+</html>
