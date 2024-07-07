@@ -11,10 +11,9 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, FormView
-from pyqiwi.types import Transaction
 
-import qiwi
-from qiwi import Payment
+# import qiwi
+# from qiwi import Payment
 from shop.forms import RegisterUserForm, LoginUserForm, MainUserDataForm
 from shop.models import *
 
@@ -353,29 +352,6 @@ def my_orders(request: WSGIRequest, context=None):
     return render(request, 'shop/my_orders.html', context)
 
 
-def check_payment(request: WSGIRequest, order_slug):
-
-    payment_code, total_price = order_slug.split('__')
-    start_date = datetime.datetime.now() - datetime.timedelta(days=2)
-    transactions : [Transaction] = qiwi.wallet.history(start_date=start_date).get("transactions")
-    for t in transactions:
-        t: Transaction = t
-        if t.comment:
-            if str(payment_code) in str(t.comment):
-                if float(t.total.amount) >= float(total_price):
-                    order = Order.objects.get(payment_code=payment_code)
-                    order.status = "Оплачен"
-                    order.save()
-                    return redirect('my_orders', context='success')
-
-
-                else:
-                    return redirect('my_orders', context='not_enough_money')
-
-    else:
-        return redirect('my_orders', context='no_payment')
-
-
 def change_currency(request):
     if request.method == 'POST':
         currency = request.POST.get('currency')
@@ -385,9 +361,6 @@ def change_currency(request):
             user.currency = currency
             user.save()
     return redirect(request.META.get('HTTP_REFERER'))
-
-
-
 
 
 

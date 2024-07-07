@@ -16,7 +16,6 @@ urlpatterns = [
     path('change_currency/', change_currency, name='change_currency'),
     path('my_orders/', my_orders, name='my_orders'),
     path('my_orders/<slug:context>', my_orders, name='my_orders'),
-    path('order/<slug:order_slug>', check_payment, name='check_payment'),
     path('chart_page', chart_page, name='chart_page'),
     path('export/products/', export_products_to_csv, name='export_products_to_csv'),
     path('export/users/', export_users_to_csv, name='export_users_to_csv'),

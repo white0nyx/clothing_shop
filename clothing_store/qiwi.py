@@ -6,13 +6,11 @@ import pyqiwi
 
 env = Env()
 env.read_env('clothing_store/.env')
-wallet=env.str('WALLET')
 token=env.str('QIWI')
 pub_key=env.str('QIWI_P_PUB')
 sec_key=env.str('QIWI_P_SEC')
 
 
-wallet = pyqiwi.Wallet(token=token, number=wallet)
 
 
 class NotEnoughMoney(Exception):
